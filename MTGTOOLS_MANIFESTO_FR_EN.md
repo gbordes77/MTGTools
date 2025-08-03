@@ -60,10 +60,6 @@ Nous sommes le seul endroit où :
 - **Tracker** – Overlay minimaliste pour statistiques in-game
 - **API** – Endpoints optimisés pour l'analyse de métagame
 
-**Archetype ML** – L'IA qui comprend vraiment le métagame
-- Classification automatique avec 95%+ de précision
-- Détection des innovations et tech cards
-- Prédiction de matchups basée sur des millions de parties
 
 ### Comment Contribuer ? 🚀
 
@@ -139,10 +135,7 @@ We are the only place where:
 - **Tracker** – Minimalist overlay for in-game statistics
 - **API** – Endpoints optimized for metagame analysis
 
-**Archetype ML** – The AI that truly understands the metagame
-- Automatic classification with 95%+ accuracy
-- Innovation and tech card detection
-- Matchup prediction based on millions of games
+
 
 ### How to Contribute? 🚀
 
