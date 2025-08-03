@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTGTools Discord - Where Technical Talent Meets Competitive Magic</title>
+    <meta name="description" content="Join the MTGTools Discord community. Connect with developers, data scientists, and top Magic players building tools optimized for winrate. Open source, data-driven, performance-focused.">
+    <style>
+        :root {
+            --primary: #5865F2;
+            --primary-dark: #4752C4;
+            --accent: #57F287;
+            --bg-dark: #0D1117;
+            --bg-card: #161B22;
+            --text-primary: #F0F6FC;
+            --text-secondary: #8B949E;
+            --border: #30363D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f2e 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(88, 101, 242, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .early-bird {
+            margin-top: 2rem;
+            padding: 12px 24px;
+            background: rgba(87, 242, 135, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            display: inline-block;
+            color: var(--accent);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: var(--bg-card);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 80px 0;
+            background: var(--bg-card);
+        }
+
+        .project-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .project-info h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .project-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .project-features li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+        }
+
+        .project-features li:before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .testimonial-author {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-author strong {
+            color: var(--primary);
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1f2e 0%, var(--bg-dark) 100%);
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .countdown {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin: 2rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .project-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>MTGTools Discord</h1>
+            <p class="subtitle">Where Technical Talent Meets Competitive Excellence</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Join developers, data scientists, and top players building tools<br>
+                where <strong>every feature is optimized for winrate</strong>
+            </p>
+            <a href="https://discord.gg/mtgtools" class="cta-button">Join MTGTools Discord</a>
+            <div class="early-bird">
+                🎯 First 100 members get exclusive Founder benefits
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>30+</h3>
+                    <p>Countries Represented</p>
+                </div>
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Archetype Detection Accuracy</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Global Development</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1M+</h3>
+                    <p>Games Analyzed Daily</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why MTGTools Discord?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>🧠 Data-Driven Everything</h3>
+                    <p>Access millions of games worth of data. Request custom analysis. Get metagame updates every 4 hours. Every decision backed by hard numbers.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>👥 Elite Community</h3>
+                    <p>Connect with developers who actually play at competitive REL. Get feedback from top grinders. Collaborate with the brightest minds in Magic tech.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🛠️ Open Source Power</h3>
+                    <p>All code is public. Audit it, improve it, fork it. No black boxes. Complete transparency. Your contributions directly impact thousands of players.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🚀 Early Access</h3>
+                    <p>Beta test new features before public release. Shape the tools you'll use in tournaments. Get priority support and feature requests.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌍 Global Innovation</h3>
+                    <p>When Paris sleeps, Tokyo innovates. 24/7 development across time zones. Tech choices from Vegas meet innovations from Sydney.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Performance Focused</h3>
+                    <p>If it doesn't improve winrate, we don't build it. Every feature validated by competitive impact. No fluff, just results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">Current Projects</h2>
+            <div class="project-showcase">
+                <div class="project-info">
+                    <h3>Videre Project</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                        The flagship MTGTools project. Built by grinders, for grinders.
+                    </p>
+                    <ul class="project-features">
+                        <li>Real-time MTGO tracking with minimal CPU usage</li>
+                        <li>ML-powered archetype detection (95%+ accuracy)</li>
+                        <li>Sideboard pattern analysis</li>
+                        <li>Public API for custom queries</li>
+                        <li>Historical matchup database</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-dark); padding: 40px; border-radius: 12px; border: 1px solid var(--border);">
+                    <pre style="color: var(--accent); font-family: 'Courier New', monospace;">
+// Get latest metagame data
+const response = await fetch(
+  'https://api.mtgtools.org/v1/metagame'
+);
+
+const data = await response.json();
+// Returns win rates, matchups, 
+// sideboard patterns, and more
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem;">What Our Community Says</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p>"The archetype detection alone has saved me hours of manual tracking. Being able to influence what features get built next is incredible."</p>
+                    <div class="testimonial-author">
+                        <strong>Sarah Chen</strong> - MTGO Grinder, 78% Win Rate
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"Finally, a community where developers understand that performance matters more than fancy UI. Every feature here actually helps me win more."</p>
+                    <div class="testimonial-author">
+                        <strong>Alex Rodriguez</strong> - PT Competitor
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <p>"The API access is game-changing. I can pull exactly the data I need for testing. No other tool gives this level of control."</p>
+                    <div class="testimonial-author">
+                        <strong>Marcus Kim</strong> - Data Analyst & Spike
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Level Up Your Game?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                Join the only community where every line of code is optimized for winning
+            </p>
+            <div class="countdown">
+                ⏰ Limited Founder spots remaining
+            </div>
+            <a href="https://discord.gg/mtgtools" class="cta-button">Join MTGTools Discord Now</a>
+            <p style="margin-top: 2rem; color: var(--text-secondary);">
+                No spam. No fluff. Just tools and data to help you win more.
+            </p>
+        </div>
+    </section>
+</body>
+</html>
