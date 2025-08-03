@@ -69,6 +69,7 @@ Ensemble, nous travaillons sur des outils qui toucheront entre autres :
 - **Gameplay** : Décisions in-game améliorées par l'analyse
 - **Metagaming** : Prédiction des tendances et contre-stratégies
 - **Testing** : Méthodologies data-driven pour la préparation
+- **Innovation** : Explorer sans limites des outils inédits pour des aspects du jeu encore inexploités
 
 ## Liens utiles
 
