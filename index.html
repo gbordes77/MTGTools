@@ -378,22 +378,103 @@
                 document.body.classList.add('loaded');
             }, 1000)"
          class="min-h-screen relative z-10">
-        <!-- Language Toggle -->
-        <div class="fixed top-8 right-8 z-50">
-            <button @click="lang = lang === 'fr' ? 'en' : 'fr'" 
-                    class="glassmorphism px-6 py-3 rounded-full hover-glow flex items-center gap-3 text-sm font-medium">
-                <span x-show="lang === 'fr'">🇫🇷 FR</span>
-                <span x-show="lang === 'en'">🇬🇧 EN</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
-                </svg>
-                <span x-show="lang === 'fr'">EN 🇬🇧</span>
-                <span x-show="lang === 'en'">FR 🇫🇷</span>
-            </button>
-        </div>
+        <!-- Navigation Bar -->
+        <nav x-data="{ mobileMenuOpen: false }" class="fixed top-0 left-0 right-0 z-50 glassmorphism backdrop-blur-xl bg-black/50">
+            <div class="max-w-7xl mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Logo/Home -->
+                    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="text-2xl font-bold text-gradient hover:scale-110 transition-transform">MTGTools</a>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-yellow-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                            <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Navigation Links -->
+                    <div class="hidden md:flex items-center gap-6">
+                        <a href="#mission" onclick="document.getElementById('mission').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors">
+                            <span x-show="lang === 'fr'">Mission</span>
+                            <span x-show="lang === 'en'">Mission</span>
+                        </a>
+                        <a href="#community" onclick="document.getElementById('community').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors">
+                            <span x-show="lang === 'fr'">Communauté</span>
+                            <span x-show="lang === 'en'">Community</span>
+                        </a>
+                        <a href="#values" onclick="document.getElementById('values').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors">
+                            <span x-show="lang === 'fr'">Valeurs</span>
+                            <span x-show="lang === 'en'">Values</span>
+                        </a>
+                        <a href="#projects" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors">
+                            <span x-show="lang === 'fr'">Projets</span>
+                            <span x-show="lang === 'en'">Projects</span>
+                        </a>
+                        <a href="#join" onclick="document.getElementById('join').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors">
+                            <span x-show="lang === 'fr'">Rejoindre</span>
+                            <span x-show="lang === 'en'">Join</span>
+                        </a>
+                        <a href="#impact" onclick="document.getElementById('impact').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors">
+                            <span x-show="lang === 'fr'">Impact</span>
+                            <span x-show="lang === 'en'">Impact</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Language Toggle -->
+                    <button @click="lang = lang === 'fr' ? 'en' : 'fr'" 
+                            class="glassmorphism px-6 py-3 rounded-full hover-glow flex items-center gap-3 text-sm font-medium">
+                        <span x-show="lang === 'fr'">🇫🇷 FR</span>
+                        <span x-show="lang === 'en'">🇬🇧 EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                        </svg>
+                        <span x-show="lang === 'fr'">EN 🇬🇧</span>
+                        <span x-show="lang === 'en'">FR 🇫🇷</span>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Dropdown -->
+                <div x-show="mobileMenuOpen" 
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 transform -translate-y-2"
+                     x-transition:enter-end="opacity-100 transform translate-y-0"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100 transform translate-y-0"
+                     x-transition:leave-end="opacity-0 transform -translate-y-2"
+                     class="md:hidden absolute top-full left-0 right-0 glassmorphism bg-black/90 mt-2 mx-4 rounded-2xl p-4">
+                    <div class="flex flex-col gap-3">
+                        <a href="#mission" @click="mobileMenuOpen = false" onclick="document.getElementById('mission').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors py-2">
+                            <span x-show="lang === 'fr'">Mission</span>
+                            <span x-show="lang === 'en'">Mission</span>
+                        </a>
+                        <a href="#community" @click="mobileMenuOpen = false" onclick="document.getElementById('community').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors py-2">
+                            <span x-show="lang === 'fr'">Communauté</span>
+                            <span x-show="lang === 'en'">Community</span>
+                        </a>
+                        <a href="#values" @click="mobileMenuOpen = false" onclick="document.getElementById('values').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors py-2">
+                            <span x-show="lang === 'fr'">Valeurs</span>
+                            <span x-show="lang === 'en'">Values</span>
+                        </a>
+                        <a href="#projects" @click="mobileMenuOpen = false" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors py-2">
+                            <span x-show="lang === 'fr'">Projets</span>
+                            <span x-show="lang === 'en'">Projects</span>
+                        </a>
+                        <a href="#join" @click="mobileMenuOpen = false" onclick="document.getElementById('join').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors py-2">
+                            <span x-show="lang === 'fr'">Rejoindre</span>
+                            <span x-show="lang === 'en'">Join</span>
+                        </a>
+                        <a href="#impact" @click="mobileMenuOpen = false" onclick="document.getElementById('impact').scrollIntoView({behavior: 'smooth'}); return false;" class="text-gray-300 hover:text-yellow-400 transition-colors py-2">
+                            <span x-show="lang === 'fr'">Impact</span>
+                            <span x-show="lang === 'en'">Impact</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
         
         <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center px-4 relative">
+        <section class="min-h-screen flex items-center justify-center px-4 relative pt-20">
             <!-- Animated background particles -->
             <div id="particles-container" class="absolute inset-0 overflow-hidden"></div>
             
@@ -664,7 +745,7 @@
         <div class="section-divider"></div>
         
         <!-- Values Section -->
-        <section class="py-24 px-4">
+        <section id="values" class="py-24 px-4">
             <div class="max-w-6xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center" data-aos="fade-up">
                     <span x-show="lang === 'fr'">Nos Valeurs</span>
@@ -730,7 +811,7 @@
         <div class="section-divider"></div>
         
         <!-- Projects Section -->
-        <section class="py-24 px-4 relative">
+        <section id="projects" class="py-24 px-4 relative">
             <!-- Animated background -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none">
                 <div class="absolute top-20 right-20 w-64 h-64 bg-yellow-500 rounded-full opacity-5 animate-pulse"></div>
@@ -786,7 +867,7 @@
         <div class="section-divider"></div>
         
         <!-- Join Us Section -->
-        <section class="py-24 px-4">
+        <section id="join" class="py-24 px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="grid md:grid-cols-2 gap-12">
                     <div class="card-enhanced glassmorphism p-10 rounded-3xl relative overflow-hidden group" data-aos="fade-right">
@@ -867,7 +948,7 @@
         <div class="section-divider"></div>
         
         <!-- Impact Areas Section -->
-        <section class="py-24 px-4">
+        <section id="impact" class="py-24 px-4">
             <div class="max-w-6xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center" data-aos="fade-up">
                     <span x-show="lang === 'fr'">Domaines d'impact visés</span>
