@@ -4,7 +4,8 @@
 
 # MTGTools – Présentation & Positionnement
 
-MTGTools connecte développeurs, data scientists, designers et talents techniques avec les joueurs compétitifs de Magic: The Gathering pour créer ensemble des outils performants. Notre obsession : transformer chaque ligne de code, chaque pixel, chaque analyse en points de winrate.
+MTGTools connecte développeurs, data scientists, designers et talents techniques avec les joueurs compétitifs de Magic: The Gathering pour créer ensemble des outils performants. 
+Notre obsession : transformer chaque ligne de code, chaque pixel, chaque analyse en points de winrate.
 
 ## Notre ADN – Synergie Unique
 
