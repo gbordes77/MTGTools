@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTGTools - Charte</title>
+    <meta name="description" content="MTGTools connecte talents techniques et compétiteurs pour créer des outils performants">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <style>
+        /* Custom animations */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #1a1a1a, #2d2d2d, #1a1a1a, #0f0f0f);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hover-glow {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .hover-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.3);
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Selection color */
+        ::selection {
+            background: #fbbf24;
+            color: #000;
+        }
+    </style>
+</head>
+<body class="gradient-bg text-white font-['Inter'] overflow-x-hidden">
+    <div x-data="{ lang: 'fr' }" class="min-h-screen">
+        <!-- Language Toggle -->
+        <div class="fixed top-8 right-8 z-50">
+            <button @click="lang = lang === 'fr' ? 'en' : 'fr'" 
+                    class="glassmorphism px-6 py-3 rounded-full hover-glow flex items-center gap-3 text-sm font-medium">
+                <span x-show="lang === 'fr'">🇫🇷 FR</span>
+                <span x-show="lang === 'en'">🇬🇧 EN</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                </svg>
+                <span x-show="lang === 'fr'">EN 🇬🇧</span>
+                <span x-show="lang === 'en'">FR 🇫🇷</span>
+            </button>
+        </div>
+        
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center px-4 relative">
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="absolute -top-40 -right-40 w-80 h-80 bg-yellow-500 rounded-full opacity-10 blur-3xl"></div>
+                <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-amber-500 rounded-full opacity-10 blur-3xl"></div>
+            </div>
+            
+            <div class="max-w-6xl mx-auto text-center relative z-10">
+                <h1 class="text-6xl md:text-8xl font-black mb-8" data-aos="fade-up">
+                    <span class="text-gradient">MTGTools</span>
+                </h1>
+                
+                <div x-show="lang === 'fr'" x-transition>
+                    <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                        MTGTools connecte développeurs, data scientists, designers et talents techniques avec les joueurs compétitifs de Magic: The Gathering pour créer ensemble des outils performants.
+                    </p>
+                    
+                    <p class="text-lg md:text-xl text-yellow-400 font-semibold mb-16" data-aos="fade-up" data-aos-delay="200">
+                        Notre obsession : transformer chaque ligne de code, chaque pixel, chaque analyse en points de winrate.
+                    </p>
+                </div>
+                
+                <div x-show="lang === 'en'" x-transition>
+                    <p class="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                        MTGTools connects developers, data scientists, designers and technical talents with competitive Magic: The Gathering players to create powerful tools together.
+                    </p>
+                    
+                    <p class="text-lg md:text-xl text-yellow-400 font-semibold mb-16" data-aos="fade-up" data-aos-delay="200">
+                        Our obsession: transforming every line of code, every pixel, every analysis into winrate points.
+                    </p>
+                </div>
+                
+                <div class="glassmorphism inline-block px-12 py-6 rounded-2xl" data-aos="zoom-in" data-aos-delay="300">
+                    <p class="text-2xl md:text-3xl font-bold">
+                        <span x-show="lang === 'fr'">Talents Techniques + Compétiteurs = Outils Plus Pertinents</span>
+                        <span x-show="lang === 'en'">Technical Talents + Competitors = More Relevant Tools</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </div>
+        </section>
+        
+        <!-- Community Section -->
+        <section class="py-24 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="glassmorphism p-12 rounded-3xl" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-gradient">
+                        <span x-show="lang === 'fr'">Une Communauté Ouverte</span>
+                        <span x-show="lang === 'en'">An Open Community</span>
+                    </h2>
+                    
+                    <p class="text-lg md:text-xl text-gray-300" x-show="lang === 'fr'">
+                        MTGTools rassemble tous ceux qui veulent repousser les limites du jeu compétitif avec la tech et la data – que vous soyez grinder, créateur d'outils ou joueur d'élite. Chacun contribue à l'excellence, peu importe sa localisation.
+                    </p>
+                    
+                    <p class="text-lg md:text-xl text-gray-300" x-show="lang === 'en'">
+                        MTGTools brings together everyone who wants to push the limits of competitive play with tech and data – whether you're a grinder, tool creator, or elite player. Everyone contributes to excellence, regardless of location.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mission Section -->
+        <section class="py-24 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center" data-aos="fade-up">
+                    <span x-show="lang === 'fr'">Notre Mission</span>
+                    <span x-show="lang === 'en'">Our Mission</span>
+                </h2>
+                
+                <p class="text-xl md:text-2xl text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    <span x-show="lang === 'fr'">Développer ensemble des outils open-source conçus pour améliorer concrètement les performances en jeu.</span>
+                    <span x-show="lang === 'en'">Develop open-source tools together designed to concretely improve in-game performance.</span>
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="glassmorphism p-8 rounded-2xl hover-glow" data-aos="fade-right" data-aos-delay="200">
+                        <div class="text-3xl mb-4">🟨</div>
+                        <p class="text-gray-300" x-show="lang === 'fr'">
+                            Fournir des analyses data-driven qui transforment l'information brute en avantage compétitif
+                        </p>
+                        <p class="text-gray-300" x-show="lang === 'en'">
+                            Provide data-driven analyses that transform raw information into competitive advantage
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-8 rounded-2xl hover-glow" data-aos="fade-left" data-aos-delay="300">
+                        <div class="text-3xl mb-4">🟨</div>
+                        <p class="text-gray-300" x-show="lang === 'fr'">
+                            Créer une communauté d'excellence où techs et compétiteurs collaborent en continu
+                        </p>
+                        <p class="text-gray-300" x-show="lang === 'en'">
+                            Create a community of excellence where techs and competitors collaborate continuously
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-8 rounded-2xl hover-glow" data-aos="fade-right" data-aos-delay="400">
+                        <div class="text-3xl mb-4">🟨</div>
+                        <p class="text-gray-300" x-show="lang === 'fr'">
+                            Innover en partant du terrain : écouter ceux qui jouent 8h/jour et savent ce qui fait la différence
+                        </p>
+                        <p class="text-gray-300" x-show="lang === 'en'">
+                            Innovate from the field: listen to those who play 8h/day and know what makes the difference
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-8 rounded-2xl hover-glow" data-aos="fade-left" data-aos-delay="500">
+                        <div class="text-3xl mb-4">🟨</div>
+                        <p class="text-gray-300" x-show="lang === 'fr'">
+                            Ouvrir le Discord et les outils à tous ceux qui veulent progresser, sans barrière
+                        </p>
+                        <p class="text-gray-300" x-show="lang === 'en'">
+                            Open Discord and tools to all who want to progress, without barriers
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Values Section -->
+        <section class="py-24 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center" data-aos="fade-up">
+                    <span x-show="lang === 'fr'">Nos Valeurs</span>
+                    <span x-show="lang === 'en'">Our Values</span>
+                </h2>
+                
+                <div class="space-y-8">
+                    <div class="group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="glassmorphism p-8 rounded-2xl hover-glow">
+                            <h3 class="text-2xl font-bold text-yellow-400 mb-3">Performance First</h3>
+                            <p class="text-gray-300" x-show="lang === 'fr'">
+                                Chaque fonctionnalité vise à apporter une valeur concrète aux joueurs.
+                            </p>
+                            <p class="text-gray-300" x-show="lang === 'en'">
+                                Every feature aims to bring concrete value to players.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="glassmorphism p-8 rounded-2xl hover-glow">
+                            <h3 class="text-2xl font-bold text-yellow-400 mb-3">Open Source, Closed Circuit</h3>
+                            <p class="text-gray-300" x-show="lang === 'fr'">
+                                Tout est public (MIT), mais la compétition guide les priorités.
+                            </p>
+                            <p class="text-gray-300" x-show="lang === 'en'">
+                                Everything is public (MIT), but competition guides priorities.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="glassmorphism p-8 rounded-2xl hover-glow">
+                            <h3 class="text-2xl font-bold text-yellow-400 mb-3">Data-Driven Everything</h3>
+                            <p class="text-gray-300" x-show="lang === 'fr'">
+                                Décisions par la donnée, analyses prédictives, reporting précis.
+                            </p>
+                            <p class="text-gray-300" x-show="lang === 'en'">
+                                Decisions through data, predictive analyses, precise reporting.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="glassmorphism p-8 rounded-2xl hover-glow">
+                            <h3 class="text-2xl font-bold text-yellow-400 mb-3">
+                                <span x-show="lang === 'fr'">Communauté d'Excellence</span>
+                                <span x-show="lang === 'en'">Community of Excellence</span>
+                            </h3>
+                            <p class="text-gray-300" x-show="lang === 'fr'">
+                                Code reviews d'experts, retours des top players, documentation pointue.
+                            </p>
+                            <p class="text-gray-300" x-show="lang === 'en'">
+                                Expert code reviews, top player feedback, sharp documentation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section class="py-24 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center" data-aos="fade-up">
+                    <span x-show="lang === 'fr'">Projets Phares</span>
+                    <span x-show="lang === 'en'">Flagship Projects</span>
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glassmorphism p-8 rounded-2xl text-center hover-glow" data-aos="zoom-in" data-aos-delay="100">
+                        <h3 class="text-2xl font-bold text-gradient mb-4">MTGOSDK</h3>
+                        <p class="text-gray-300" x-show="lang === 'fr'">
+                            Extraction des données MTGO en temps réel
+                        </p>
+                        <p class="text-gray-300" x-show="lang === 'en'">
+                            Real-time MTGO data extraction
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-8 rounded-2xl text-center hover-glow" data-aos="zoom-in" data-aos-delay="200">
+                        <h3 class="text-2xl font-bold text-gradient mb-4">MTGTracker</h3>
+                        <p class="text-gray-300" x-show="lang === 'fr'">
+                            Analyse des données in-game
+                        </p>
+                        <p class="text-gray-300" x-show="lang === 'en'">
+                            In-game data analysis
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-8 rounded-2xl text-center hover-glow" data-aos="zoom-in" data-aos-delay="300">
+                        <h3 class="text-2xl font-bold text-gradient mb-4">MetaAPI</h3>
+                        <p class="text-gray-300" x-show="lang === 'fr'">
+                            Endpoints pour l'analyse du métagame
+                        </p>
+                        <p class="text-gray-300" x-show="lang === 'en'">
+                            Endpoints for metagame analysis
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Join Us Section -->
+        <section class="py-24 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div data-aos="fade-right">
+                        <h3 class="text-3xl font-bold mb-8 text-gradient">
+                            <span x-show="lang === 'fr'">Pour les Talents Techniques</span>
+                            <span x-show="lang === 'en'">For Technical Talents</span>
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-400 mt-1">▸</span>
+                                <span class="text-gray-300" x-show="lang === 'fr'">
+                                    Travaillez sur des problématiques concrètes des tournois majeurs
+                                </span>
+                                <span class="text-gray-300" x-show="lang === 'en'">
+                                    Work on concrete problems from major tournaments
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-400 mt-1">▸</span>
+                                <span class="text-gray-300" x-show="lang === 'fr'">
+                                    Recevez du feedback des meilleurs joueurs
+                                </span>
+                                <span class="text-gray-300" x-show="lang === 'en'">
+                                    Receive feedback from the best players
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-400 mt-1">▸</span>
+                                <span class="text-gray-300" x-show="lang === 'fr'">
+                                    Vos outils seront cités et utilisés par les pros
+                                </span>
+                                <span class="text-gray-300" x-show="lang === 'en'">
+                                    Your tools will be cited and used by pros
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div data-aos="fade-left">
+                        <h3 class="text-3xl font-bold mb-8 text-gradient">
+                            <span x-show="lang === 'fr'">Pour les Compétiteurs</span>
+                            <span x-show="lang === 'en'">For Competitors</span>
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-400 mt-1">▸</span>
+                                <span class="text-gray-300" x-show="lang === 'fr'">
+                                    Accédez en avant-première aux outils qui font la différence
+                                </span>
+                                <span class="text-gray-300" x-show="lang === 'en'">
+                                    Get early access to tools that make the difference
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="text-yellow-400 mt-1">▸</span>
+                                <span class="text-gray-300" x-show="lang === 'fr'">
+                                    Collaborez avec des devs et data-scientists brillants
+                                </span>
+                                <span class="text-gray-300" x-show="lang === 'en'">
+                                    Collaborate with brilliant devs and data scientists
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Impact Areas Section -->
+        <section class="py-24 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center" data-aos="fade-up">
+                    <span x-show="lang === 'fr'">Domaines d'impact visés</span>
+                    <span x-show="lang === 'en'">Targeted Impact Areas</span>
+                </h2>
+                
+                <p class="text-xl text-center mb-12 text-gray-300" data-aos="fade-up" data-aos-delay="100">
+                    <span x-show="lang === 'fr'">Ensemble, nous travaillons sur des outils qui toucheront entre autres :</span>
+                    <span x-show="lang === 'en'">Together, we're working on tools that will touch areas including:</span>
+                </p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glassmorphism p-6 rounded-xl hover-glow" data-aos="flip-left" data-aos-delay="100">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-2">Deckbuilding</h3>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'fr'">
+                            Optimisation des listes basée sur les données
+                        </p>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'en'">
+                            Data-driven deck optimization
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-6 rounded-xl hover-glow" data-aos="flip-left" data-aos-delay="200">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-2">Sideboarding</h3>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'fr'">
+                            Guides adaptatifs selon le métagame
+                        </p>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'en'">
+                            Adaptive guides based on metagame shifts
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-6 rounded-xl hover-glow" data-aos="flip-left" data-aos-delay="300">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-2">Gameplay</h3>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'fr'">
+                            Décisions in-game améliorées par l'analyse
+                        </p>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'en'">
+                            In-game decisions enhanced by analysis
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-6 rounded-xl hover-glow" data-aos="flip-left" data-aos-delay="400">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-2">Metagaming</h3>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'fr'">
+                            Prédiction des tendances et contre-stratégies
+                        </p>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'en'">
+                            Trend prediction and counter-strategies
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-6 rounded-xl hover-glow" data-aos="flip-left" data-aos-delay="500">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-2">Testing</h3>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'fr'">
+                            Méthodologies data-driven pour la préparation
+                        </p>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'en'">
+                            Data-driven methodologies for preparation
+                        </p>
+                    </div>
+                    
+                    <div class="glassmorphism p-6 rounded-xl hover-glow" data-aos="flip-left" data-aos-delay="600">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-2">Innovation</h3>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'fr'">
+                            Explorer sans limites des outils inédits pour des aspects du jeu encore inexploités
+                        </p>
+                        <p class="text-gray-300 text-sm" x-show="lang === 'en'">
+                            Exploring limitless new tools for untapped aspects of the game
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="py-24 px-4 mb-12">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="glassmorphism p-12 rounded-3xl" data-aos="zoom-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8">
+                        <span x-show="lang === 'fr'">Rejoignez-nous sur Discord</span>
+                        <span x-show="lang === 'en'">Join us on Discord</span>
+                    </h2>
+                    
+                    <p class="text-lg text-gray-300 mb-8" x-show="lang === 'fr'">
+                        MTGTools est un projet en construction. Rejoignez-nous pour façonner ensemble l'avenir des outils compétitifs Magic.
+                    </p>
+                    
+                    <p class="text-lg text-gray-300 mb-8" x-show="lang === 'en'">
+                        MTGTools is a project under construction. Join us to shape together the future of competitive Magic tools.
+                    </p>
+                    
+                    <a href="https://discord.gg/mtgtools" 
+                       class="inline-flex items-center gap-3 bg-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-400 transition-all transform hover:scale-105">
+                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.994a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+                        </svg>
+                        discord.gg/mtgtools
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
