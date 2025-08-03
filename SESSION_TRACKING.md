@@ -645,3 +645,82 @@ Guillaume a demandé la création d'une structure Discord optimale pour MTGTools
 - ✅ Tout pushé sur GitHub
 
 ---
+
+## Session 6 - August 3, 2025 (Night)
+**Duration**: ~60 minutes
+**Focus**: Charte web page creation and DevOps agents setup
+
+### Context
+Guillaume needed a solution to stop copy-pasting the manifesto/charter and wanted a beautiful web page to share.
+
+### Session 6 Start: Web Page Creation
+- **Time**: Night session
+- **Task**: Create premium web page for MTGTools charter
+- **Solution**: GitHub Pages with animated design
+
+#### Actions Performed
+1. **Created index.html**
+   - Premium glassmorphism design
+   - Animated gradient background
+   - FR/EN toggle with smooth transitions
+   - AOS (Animate On Scroll) effects
+   - Dark theme with yellow accents
+   - Responsive on all devices
+
+2. **Added full text summary section**
+   - Button "Voir tout le texte de la charte" at bottom
+   - Collapsible section with complete charter
+   - Both FR and EN versions
+   - Smooth animations
+
+3. **GitHub Pages setup**
+   - Created GITHUB_PAGES_SETUP.md with instructions
+   - Multiple attempts to activate (404 errors)
+   - Fixed submodule issue causing build failures
+   - Added .nojekyll file
+   - Final successful deployment
+
+### Session 6 Part 2: DevOps Agents Creation
+- **Time**: 20 minutes
+- **Task**: Create DevOps agents for GitHub/deployment issues
+
+#### Agents Created
+1. **devops-engineer**
+   - CI/CD specialist (GitHub Actions, Docker, Kubernetes)
+   - For operational tasks and automation
+   - Monitoring setup (Prometheus, Grafana)
+
+2. **deployment-engineer**
+   - Architecture specialist for cloud deployments
+   - Advanced strategies (Blue-Green, Canary)
+   - Security integration (SAST/DAST)
+   - GitOps and zero-downtime deployments
+
+#### Documentation Created
+- `/agents/devops-engineer.md` - Full prompt reference
+- `/agents/deployment-engineer.md` - Full prompt reference
+- `/agents/README.md` - Usage instructions
+
+### Key Learnings
+- GitHub Pages can take 10+ minutes for first deployment
+- Submodules can cause build failures
+- Cache busting sometimes needed for updates
+- Agents must be created via /agents interface, not files
+
+### Files Created/Modified
+- `index.html` - Premium charter web page
+- `GITHUB_PAGES_SETUP.md` - Deployment instructions
+- `.nojekyll` - Bypass Jekyll processing
+- `test.html` - Debug test page
+- `/agents/` - Directory with agent prompts
+- `CLAUDE.md` - Updated with DevOps agents info
+- `SESSION_TRACKING.md` - This session documentation
+
+### Session 6 Summary
+- ✅ Beautiful charter web page created with animations
+- ✅ GitHub Pages eventually deployed successfully
+- ✅ Full text summary feature added
+- ✅ 2 DevOps agents created for future deployment help
+- ✅ All changes pushed to GitHub
+
+---

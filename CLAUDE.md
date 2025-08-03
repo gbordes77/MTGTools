@@ -127,6 +127,12 @@ You can answer directly for:
 - **Voice channels complets** : 20+ salons vocaux en 6 catégories
 - **Métriques définies** : 4 phases de croissance (50→150→300→500 membres)
 
+### DevOps Agents Creation
+- **devops-engineer agent créé** : Spécialiste CI/CD, GitHub Actions, Docker, monitoring
+- **deployment-engineer agent créé** : Architecte déploiement, Kubernetes, GitOps
+- **Usage** : devops-engineer pour l'opérationnel, deployment-engineer pour l'architecture
+- **Cas GitHub Pages** : Agents disponibles pour diagnostiquer et résoudre les problèmes de déploiement
+
 ### Upcoming: Directory Rename
 - **Change** : `/Videre-project/` → `/MTGTools/`
 - **Rationale** : Reflects evolution from single project to complete ecosystem
