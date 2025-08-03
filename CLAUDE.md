@@ -133,6 +133,13 @@ You can answer directly for:
 - **Usage** : devops-engineer pour l'opérationnel, deployment-engineer pour l'architecture
 - **Cas GitHub Pages** : Agents disponibles pour diagnostiquer et résoudre les problèmes de déploiement
 
+### Frontend & Design Agents Creation (August 3, 2025)
+- **frontend-developer agent créé** : React, TypeScript, responsive, state management, tests
+- **ux-designer agent créé** : Research, wireframes, architecture info, tests usabilité
+- **ui-designer agent créé** : Design visuel, maquettes, animations, design system
+- **Différence UX/UI** : UX = logique/parcours, UI = visuel/esthétique
+- **Usage index.html** : UI + Marketing + Frontend pour transformation visuelle
+
 ### Upcoming: Directory Rename
 - **Change** : `/Videre-project/` → `/MTGTools/`
 - **Rationale** : Reflects evolution from single project to complete ecosystem
