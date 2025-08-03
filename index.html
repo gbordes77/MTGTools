@@ -488,13 +488,13 @@
             </div>
             
             <!-- Enhanced scroll indicator -->
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer" onclick="document.getElementById('mission').scrollIntoView({ behavior: 'smooth' });">
                 <div class="scroll-indicator animate-bounce">
-                    <svg class="w-8 h-8 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-8 h-8 text-yellow-400 hover:text-yellow-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
                     </svg>
                 </div>
-                <div class="text-sm text-gray-400 mt-2">
+                <div class="text-sm text-gray-400 mt-2 hover:text-gray-300 transition-colors">
                     <span x-show="lang === 'fr'">Découvrir plus</span>
                     <span x-show="lang === 'en'">Discover more</span>
                 </div>
@@ -587,7 +587,7 @@
         <div class="section-divider"></div>
         
         <!-- Mission Section -->
-        <section class="py-24 px-4 relative">
+        <section id="mission" class="py-24 px-4 relative">
             <!-- Background decoration -->
             <div class="absolute inset-0 opacity-10">
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-yellow-400 rounded-full filter blur-3xl"></div>
