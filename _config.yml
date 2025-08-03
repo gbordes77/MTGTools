@@ -1,0 +1,25 @@
+# GitHub Pages Configuration
+# This file is optional but helps with custom configurations
+
+# Site settings
+title: MTGTools
+description: MTGTools connecte talents techniques et compétiteurs pour créer des outils performants
+url: https://mtgtools.github.io
+baseurl: /MTGTools
+
+# Build settings
+exclude:
+  - README.md
+  - LICENSE
+  - CLAUDE.md
+  - "*.md"
+  - subagent-resources/
+  - agents/
+  - ARCHIVE/
+  - WEEKLY_REPORTS/
+  - docs/
+  - .git/
+  - .github/
+
+# Custom 404
+permalink: /404.html

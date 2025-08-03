@@ -6,6 +6,26 @@
     <title>MTGTools - Charte</title>
     <meta name="description" content="MTGTools connecte talents techniques et compétiteurs pour créer des outils performants">
     
+    <!-- Performance optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//unpkg.com">
+    
+    <!-- SEO and social media tags -->
+    <meta property="og:title" content="MTGTools - Charte">
+    <meta property="og:description" content="MTGTools connecte talents techniques et compétiteurs pour créer des outils performants">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mtgtools.github.io/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MTGTools - Charte">
+    <meta name="twitter:description" content="MTGTools connecte talents techniques et compétiteurs pour créer des outils performants">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#fbbf24">
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +35,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js"></script>
     
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -655,8 +675,16 @@
         AOS.init({
             duration: 800,
             once: true,
-            offset: 100
+            offset: 100,
+            disable: 'mobile' // Disable animations on mobile for better performance
         });
+        
+        // Service Worker registration for offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            });
+        }
     </script>
 </body>
 </html><!-- Cache bust: Dim  3 aoû 2025 21:12:58 CEST -->

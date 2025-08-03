@@ -1,0 +1,6 @@
+# MTGTools robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://mtgtools.github.io/sitemap.xml

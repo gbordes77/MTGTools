@@ -1,0 +1,115 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Optimize HTML and Assets
+        run: |
+          # Create optimized directory
+          mkdir -p _site
+          
+          # Copy all files to _site
+          cp -r * _site/ 2>/dev/null || :
+          cp -r .* _site/ 2>/dev/null || :
+          
+          # Remove unnecessary files from deployment
+          rm -rf _site/.git
+          rm -rf _site/.github
+          rm -rf _site/subagent-resources
+          rm -f _site/subagent-resources.zip
+          rm -rf _site/ARCHIVE
+          rm -f _site/*.md
+          rm -rf _site/agents
+          rm -rf _site/discord
+          rm -rf _site/WEEKLY_REPORTS
+          
+          # Keep only necessary files for the site
+          # index.html, test.html, marketing/discord_landing_page.html, and any assets
+          
+      - name: Minify HTML
+        run: |
+          # Install html-minifier
+          sudo npm install -g html-minifier
+          
+          # Minify HTML files
+          find _site -name "*.html" -type f -exec sh -c '
+            echo "Minifying {}"
+            html-minifier \
+              --collapse-whitespace \
+              --remove-comments \
+              --remove-optional-tags \
+              --remove-redundant-attributes \
+              --remove-script-type-attributes \
+              --remove-tag-whitespace \
+              --use-short-doctype \
+              --minify-css true \
+              --minify-js true \
+              -o "{}.tmp" "{}" && mv "{}.tmp" "{}"
+          ' \;
+          
+      - name: Create 404 page
+        run: |
+          cat > _site/404.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="fr">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>404 - Page non trouvée | MTGTools</title>
+              <script src="https://cdn.tailwindcss.com"></script>
+          </head>
+          <body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+              <div class="text-center">
+                  <h1 class="text-6xl font-bold mb-4">404</h1>
+                  <p class="text-xl mb-8">Page non trouvée</p>
+                  <a href="/" class="px-6 py-3 bg-yellow-500 text-gray-900 rounded-lg hover:bg-yellow-400 transition">
+                      Retour à l'accueil
+                  </a>
+              </div>
+          </body>
+          </html>
+          EOF
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
