@@ -11,7 +11,7 @@
 ### Notre Vision
 **Nous rassemblons les talents techniques et les compétiteurs pour créer des outils où chaque composante est orientée winrate.**
 
-MTGTools est la première communauté qui unit **développeurs**, **data scientists**, **UI/UX designers** et autres **talents techniques** avec les **joueurs les plus exigeants** de Magic: The Gathering. Notre obsession commune : transformer chaque ligne de code, chaque pixel, chaque analyse en points de pourcentage de winrate.
+MTGTools est la première communauté qui unit **développeurs**, **data scientists**, **UI/UX designers** et autres **talents techniques** avec les **joueurs les plus exigeants** de Magic: The Gathering. Notre obsession commune : transformer chaque ligne de code, chaque pixel, chaque analyse en gains de winrate.
 
 ### Notre ADN — La Synergie Unique
 **Talents Techniques × Compétiteurs = Performance Maximale**
@@ -87,7 +87,7 @@ MTGTools connecte les talents de plus de 30 pays, créant une intelligence colle
 ### Our Vision
 **We bring together technical talents and competitors to create tools where every component is winrate-oriented.**
 
-MTGTools is the first community uniting **developers**, **data scientists**, **UI/UX designers** and other **technical talents** with Magic: The Gathering's **most demanding players**. Our shared obsession: transforming every line of code, every pixel, every analysis into win percentage points.
+MTGTools is the first community uniting **developers**, **data scientists**, **UI/UX designers** and other **technical talents** with Magic: The Gathering's **most demanding players**. Our shared obsession: transforming every line of code, every pixel, every analysis into win-rate gain.
 
 ### Our DNA — The Unique Synergy
 **Technical Talents × Competitors = Maximum Performance**

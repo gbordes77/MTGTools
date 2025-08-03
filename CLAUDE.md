@@ -36,7 +36,7 @@ This is the central hub for the MTGTools community initiative, founded and led b
 ### Key Documents
 
 #### MTGTools Community Documents
-- `MTGTOOLS_MANIFESTO_FR_EN.md` - Community vision and values (FR+EN)
+- `MTGTOOLS_MANIFESTO_FR_EN.md` - Community charter and values / Charte et valeurs (FR+EN)
 - `MTGTOOLS_DISCORD_VISION.md` - Discord transformation plan
 - `DISCORD_REWORK_VISION.md` - Original Discord expansion plan
 - `DISCORD_VISUAL_MOCKUP.md` - Visual Discord preview
@@ -110,11 +110,14 @@ You can answer directly for:
 
 ## Recent Updates (August 3, 2025)
 
-### Manifesto Refonte
-- **Vision clarifiée** : "Talents Techniques × Ultra-Compétiteurs = Performance Maximale"
+### Manifesto → Charte Transformation
+- **Nouveau nom** : "Manifesto" remplacé par "Charte" (moins connoté)
+- **Vision ajustée** : "Talents Techniques × Compétiteurs = Performance Maximale" (retiré "Ultra")
 - **Message central** : Chaque composante orientée winrate
-- **Dimension internationale ajoutée** : 30+ pays, développement 24/7, métagames mondiaux
-- **Méthode** : Coordination via agent-organizer avec product-manager, documentation-expert, marketing-writer
+- **Structure épurée** : Sections internationales consolidées, répétitions éliminées
+- **Dimension internationale** : 30+ pays, développement 24/7, métagames mondiaux
+- **Méthode** : Coordination via 3 agents: product-manager, documentation-expert, marketing-writer
+- **Impact** : Plus inclusif et professionnel tout en gardant l'ambition originale
 
 ### Upcoming: Directory Rename
 - **Change** : `/Videre-project/` → `/MTGTools/`
