@@ -71,7 +71,7 @@
     </style>
 </head>
 <body class="gradient-bg text-white font-['Inter'] overflow-x-hidden">
-    <div x-data="{ lang: 'fr' }" class="min-h-screen">
+    <div x-data="{ lang: 'fr', showFullText: false }" class="min-h-screen">
         <!-- Language Toggle -->
         <div class="fixed top-8 right-8 z-50">
             <button @click="lang = lang === 'fr' ? 'en' : 'fr'" 
@@ -487,6 +487,164 @@
                         </svg>
                         discord.gg/mtgtools
                     </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Full Text Summary Section -->
+        <section class="py-24 px-4 mb-12">
+            <div class="max-w-4xl mx-auto text-center">
+                <button @click="showFullText = !showFullText" 
+                        class="glassmorphism px-8 py-4 rounded-full hover-glow mb-8 inline-flex items-center gap-3 text-lg font-medium">
+                    <span x-show="!showFullText">
+                        <span x-show="lang === 'fr'">📄 Voir tout le texte de la charte</span>
+                        <span x-show="lang === 'en'">📄 View full charter text</span>
+                    </span>
+                    <span x-show="showFullText">
+                        <span x-show="lang === 'fr'">📄 Masquer le texte complet</span>
+                        <span x-show="lang === 'en'">📄 Hide full text</span>
+                    </span>
+                    <svg class="w-5 h-5 transition-transform" :class="{'rotate-180': showFullText}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div x-show="showFullText" x-transition class="glassmorphism p-8 rounded-3xl text-left">
+                    <!-- French Version -->
+                    <div x-show="lang === 'fr'" class="prose prose-invert max-w-none">
+                        <h2 class="text-2xl font-bold text-gradient mb-6">Charte MTGTools - Version Complète</h2>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">MTGTools – Présentation & Positionnement</h3>
+                        <p class="mb-4">MTGTools connecte développeurs, data scientists, designers et talents techniques avec les joueurs compétitifs de Magic: The Gathering pour créer ensemble des outils performants.</p>
+                        <p class="mb-4 text-yellow-400">Notre obsession : transformer chaque ligne de code, chaque pixel, chaque analyse en points de winrate.</p>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Notre ADN – Synergie Unique</h3>
+                        <p class="mb-4 text-lg">Talents Techniques + Compétiteurs = Outils Plus Pertinents</p>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Une Communauté Ouverte</h3>
+                        <p class="mb-4">MTGTools rassemble tous ceux qui veulent repousser les limites du jeu compétitif avec la tech et la data – que vous soyez grinder, créateur d'outils ou joueur d'élite. Chacun contribue à l'excellence, peu importe sa localisation.</p>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Notre Mission</h3>
+                        <p class="mb-4">Développer ensemble des outils open-source conçus pour améliorer concrètement les performances en jeu.</p>
+                        
+                        <h4 class="text-lg font-semibold mt-4 mb-3">Engagements clés :</h4>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li>Fournir des analyses data-driven qui transforment l'information brute en avantage compétitif</li>
+                            <li>Créer une communauté d'excellence où techs et compétiteurs collaborent en continu</li>
+                            <li>Innover en partant du terrain : écouter ceux qui jouent 8h/jour et savent ce qui fait la différence</li>
+                            <li>Ouvrir le Discord et les outils à tous ceux qui veulent progresser, sans barrière</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Nos Valeurs</h3>
+                        <ul class="list-none mb-4 space-y-2">
+                            <li><strong>Performance First</strong> : Chaque fonctionnalité vise à apporter une valeur concrète aux joueurs.</li>
+                            <li><strong>Open Source, Closed Circuit</strong> : Tout est public (MIT), mais la compétition guide les priorités.</li>
+                            <li><strong>Data-Driven Everything</strong> : Décisions par la donnée, analyses prédictives, reporting précis.</li>
+                            <li><strong>Communauté d'Excellence</strong> : Code reviews d'experts, retours des top players, documentation pointue.</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Projets phares</h3>
+                        <ul class="list-none mb-4 space-y-2">
+                            <li><strong>MTGOSDK</strong> : Extraction des données MTGO en temps réel</li>
+                            <li><strong>MTGTracker</strong> : Analyse des données in-game</li>
+                            <li><strong>MetaAPI</strong> : Endpoints pour l'analyse du métagame</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Pour les Talents Techniques</h3>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li>Travaillez sur des problématiques concrètes des tournois majeurs</li>
+                            <li>Recevez du feedback des meilleurs joueurs</li>
+                            <li>Vos outils seront cités et utilisés par les pros</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Pour les Compétiteurs</h3>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li>Accédez en avant-première aux outils qui font la différence</li>
+                            <li>Collaborez avec des devs et data-scientists brillants</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Domaines d'impact visés</h3>
+                        <p class="mb-3">Ensemble, nous travaillons sur des outils qui toucheront entre autres :</p>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li><strong>Deckbuilding</strong> : Optimisation des listes basée sur les données</li>
+                            <li><strong>Sideboarding</strong> : Guides adaptatifs selon le métagame</li>
+                            <li><strong>Gameplay</strong> : Décisions in-game améliorées par l'analyse</li>
+                            <li><strong>Metagaming</strong> : Prédiction des tendances et contre-stratégies</li>
+                            <li><strong>Testing</strong> : Méthodologies data-driven pour la préparation</li>
+                            <li><strong>Innovation</strong> : Explorer sans limites des outils inédits pour des aspects du jeu encore inexploités</li>
+                        </ul>
+                        
+                        <p class="mt-6 text-lg">MTGTools est un projet en construction. Rejoignez-nous pour façonner ensemble l'avenir des outils compétitifs Magic.</p>
+                        <p class="mt-4"><strong>Discord</strong> : <a href="https://discord.gg/mtgtools" class="text-yellow-400 hover:text-yellow-300">https://discord.gg/mtgtools</a></p>
+                    </div>
+                    
+                    <!-- English Version -->
+                    <div x-show="lang === 'en'" class="prose prose-invert max-w-none">
+                        <h2 class="text-2xl font-bold text-gradient mb-6">MTGTools Charter - Full Version</h2>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">MTGTools – Presentation & Positioning</h3>
+                        <p class="mb-4">MTGTools connects developers, data scientists, designers and technical talents with competitive Magic: The Gathering players to create powerful tools together.</p>
+                        <p class="mb-4 text-yellow-400">Our obsession: transforming every line of code, every pixel, every analysis into winrate points.</p>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Our DNA – Unique Synergy</h3>
+                        <p class="mb-4 text-lg">Technical Talents + Competitors = More Relevant Tools</p>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">An Open Community</h3>
+                        <p class="mb-4">MTGTools brings together everyone who wants to push the limits of competitive play with tech and data – whether you're a grinder, tool creator, or elite player. Everyone contributes to excellence, regardless of location.</p>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Our Mission</h3>
+                        <p class="mb-4">Develop open-source tools together designed to concretely improve in-game performance.</p>
+                        
+                        <h4 class="text-lg font-semibold mt-4 mb-3">Key Commitments:</h4>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li>Provide data-driven analyses that transform raw information into competitive advantage</li>
+                            <li>Create a community of excellence where techs and competitors collaborate continuously</li>
+                            <li>Innovate from the field: listen to those who play 8h/day and know what makes the difference</li>
+                            <li>Open Discord and tools to all who want to progress, without barriers</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Our Values</h3>
+                        <ul class="list-none mb-4 space-y-2">
+                            <li><strong>Performance First</strong>: Every feature aims to bring concrete value to players.</li>
+                            <li><strong>Open Source, Closed Circuit</strong>: Everything is public (MIT), but competition guides priorities.</li>
+                            <li><strong>Data-Driven Everything</strong>: Decisions through data, predictive analyses, precise reporting.</li>
+                            <li><strong>Community of Excellence</strong>: Expert code reviews, top player feedback, sharp documentation.</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Flagship Projects</h3>
+                        <ul class="list-none mb-4 space-y-2">
+                            <li><strong>MTGOSDK</strong>: Real-time MTGO data extraction</li>
+                            <li><strong>MTGTracker</strong>: In-game data analysis</li>
+                            <li><strong>MetaAPI</strong>: Endpoints for metagame analysis</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">For Technical Talents</h3>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li>Work on concrete problems from major tournaments</li>
+                            <li>Receive feedback from the best players</li>
+                            <li>Your tools will be cited and used by pros</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">For Competitors</h3>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li>Get early access to tools that make the difference</li>
+                            <li>Collaborate with brilliant devs and data scientists</li>
+                        </ul>
+                        
+                        <h3 class="text-xl font-bold mt-6 mb-3">Targeted Impact Areas</h3>
+                        <p class="mb-3">Together, we're working on tools that will touch areas including:</p>
+                        <ul class="list-disc list-inside mb-4 space-y-2">
+                            <li><strong>Deckbuilding</strong>: Data-driven deck optimization</li>
+                            <li><strong>Sideboarding</strong>: Adaptive guides based on metagame shifts</li>
+                            <li><strong>Gameplay</strong>: In-game decisions enhanced by analysis</li>
+                            <li><strong>Metagaming</strong>: Trend prediction and counter-strategies</li>
+                            <li><strong>Testing</strong>: Data-driven methodologies for preparation</li>
+                            <li><strong>Innovation</strong>: Exploring limitless new tools for untapped aspects of the game</li>
+                        </ul>
+                        
+                        <p class="mt-6 text-lg">MTGTools is a project under construction. Join us to shape together the future of competitive Magic tools.</p>
+                        <p class="mt-4"><strong>Discord</strong>: <a href="https://discord.gg/mtgtools" class="text-yellow-400 hover:text-yellow-300">https://discord.gg/mtgtools</a></p>
+                    </div>
                 </div>
             </div>
         </section>
