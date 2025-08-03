@@ -2,34 +2,35 @@
 <!-- IMPORTANT: THIS FILE IS CRITICAL FOR THE PROJECT - DO NOT DELETE -->
 <!-- Protected file: Core project vision and values / Fichier protégé : Vision et valeurs fondamentales -->
 
-# MTGTools Manifesto / Manifeste MTGTools
+# Charte MTGTools / MTGTools Charter
 
 ---
 
-## 📜 Manifesto — Version française
+## 📜 Charte — Version française
 
 ### Notre Vision
-**Nous rassemblons les talents techniques et les ultra-compétiteurs pour créer des outils où chaque composante est orientée winrate.**
+**Nous rassemblons les talents techniques et les compétiteurs pour créer des outils où chaque composante est orientée winrate.**
 
 MTGTools est la première communauté qui unit **développeurs**, **data scientists**, **UI/UX designers** et autres **talents techniques** avec les **joueurs les plus exigeants** de Magic: The Gathering. Notre obsession commune : transformer chaque ligne de code, chaque pixel, chaque analyse en points de pourcentage de winrate.
 
 ### Notre ADN — La Synergie Unique
-**Talents Techniques × Ultra-Compétiteurs = Performance Maximale**
+**Talents Techniques × Compétiteurs = Performance Maximale**
 
 Nous sommes le seul endroit où :
 - Les **développeurs** comprennent vraiment les besoins des grinders
 - Les **data scientists** analysent des millions de parties pour révéler les edges cachés
 - Les **designers** créent des interfaces optimisées pour la prise de décision en tournoi
-- Les **ultra-compétiteurs** guident chaque choix technique par leur expertise terrain
-- Les **frontières s'effacent** pour créer une intelligence collective planétaire
-- Les **métagames du monde entier** convergent : les innovations de Tokyo fusionnent avec les tech choices de Vegas, les stratégies européennes rencontrent le grinding brésilien
-- Le **développement ne dort jamais** : pendant que Paris peaufine l'UI, Seattle optimise les algorithmes, et Sydney analyse les derniers résultats
-- Les **talents techniques** de 30+ pays collaborent en temps réel pour transformer chaque tournoi local en data globale
-- Les **edges compétitifs** se multiplient : ce qui domine au Japon peut être inconnu en Europe, et nous capturons TOUT
+- Les **compétiteurs** guident chaque choix technique par leur expertise terrain
 
-> **L'international n'est pas juste notre portée, c'est notre force multiplicatrice.** Chaque fuseau horaire apporte ses insights, chaque région ses innovations, chaque culture ses approches uniques du jeu. Cette diversité mondiale, canalisée par notre obsession commune du winrate, crée un avantage que personne d'autre ne peut répliquer.
+### Notre Portée Internationale
 
-> Cette alchimie unique produit des outils que personne d'autre ne peut concevoir.
+MTGTools connecte les talents de plus de 30 pays, créant une intelligence collective unique :
+
+- **Innovation continue** : Quand Paris peaufine l'UI, Seattle optimise les algorithmes et Sydney analyse les derniers résultats
+- **Convergence des métagames** : Les tech choices de Vegas fusionnent avec les innovations de Tokyo, créant des synergies inédites
+- **Avantage multiplicateur** : Chaque fuseau horaire apporte ses insights, chaque région ses approches uniques du jeu
+
+> Cette diversité mondiale, canalisée par notre obsession commune du winrate, crée un avantage compétitif unique et des outils que personne d'autre ne peut concevoir.
 
 ### Notre Mission — nous nous engageons à :
 🛠️ **Développer des outils open-source** où chaque feature est validée par son impact sur le winrate
@@ -68,7 +69,7 @@ Nous sommes le seul endroit où :
 - Recevez du feedback des meilleurs joueurs du monde
 - Voyez vos contributions améliorer des milliers de winrates
 
-**Pour les Ultra-Compétiteurs :**
+**Pour les Compétiteurs :**
 - Influencez directement le développement des outils que vous utilisez
 - Accédez en avant-première aux analyses qui font la différence
 - Collaborez avec les esprits techniques les plus brillants
@@ -81,30 +82,31 @@ Nous sommes le seul endroit où :
 
 ---
 
-## 📜 Manifesto — English version
+## 📜 Charter — English version
 
 ### Our Vision
-**We bring together technical talents and ultra-competitors to create tools where every component is winrate-oriented.**
+**We bring together technical talents and competitors to create tools where every component is winrate-oriented.**
 
 MTGTools is the first community uniting **developers**, **data scientists**, **UI/UX designers** and other **technical talents** with Magic: The Gathering's **most demanding players**. Our shared obsession: transforming every line of code, every pixel, every analysis into win percentage points.
 
 ### Our DNA — The Unique Synergy
-**Technical Talents × Ultra-Competitors = Maximum Performance**
+**Technical Talents × Competitors = Maximum Performance**
 
 We are the only place where:
 - **Developers** truly understand grinders' needs
 - **Data scientists** analyze millions of games to reveal hidden edges
 - **Designers** create interfaces optimized for tournament decision-making
-- **Ultra-competitors** guide every technical choice with field expertise
-- **Borders dissolve** to create a planetary collective intelligence
-- **Metagames from around the world** converge: Tokyo's innovations merge with Vegas tech choices, European strategies meet Brazilian grinding
-- **Development never sleeps**: while Paris refines the UI, Seattle optimizes algorithms, and Sydney analyzes the latest results
-- **Technical talents** from 30+ countries collaborate in real-time to transform every local tournament into global data
-- **Competitive edges multiply**: what dominates in Japan might be unknown in Europe, and we capture EVERYTHING
+- **Competitors** guide every technical choice with field expertise
 
-> **International isn't just our reach, it's our force multiplier.** Every timezone brings its insights, every region its innovations, every culture its unique approach to the game. This global diversity, channeled through our shared winrate obsession, creates an advantage no one else can replicate.
+### Our International Reach
 
-> This unique alchemy produces tools no one else can conceive.
+MTGTools connects talents from 30+ countries, creating a unique collective intelligence:
+
+- **Continuous innovation**: While Paris refines the UI, Seattle optimizes algorithms, and Sydney analyzes the latest results
+- **Metagame convergence**: Vegas tech choices merge with Tokyo innovations, creating unprecedented synergies
+- **Force multiplier**: Every timezone brings insights, every region its unique approach to the game
+
+> This global diversity, channeled through our shared winrate obsession, creates a unique competitive advantage and tools no one else can conceive.
 
 ### Our Mission — we commit to:
 🛠️ **Building open-source tools** where every feature is validated by its winrate impact
@@ -144,7 +146,7 @@ We are the only place where:
 - Receive feedback from the world's best players
 - See your contributions improve thousands of winrates
 
-**For Ultra-Competitors:**
+**For Competitors:**
 - Directly influence the development of tools you use
 - Get early access to game-changing analyses
 - Collaborate with the brightest technical minds
@@ -158,7 +160,7 @@ We are the only place where:
 ---
 
 <!-- 
-INTERNAL NOTE: This manifesto represents the core values and vision of MTGTools.
+INTERNAL NOTE: This charter represents the core values and vision of MTGTools.
 Any changes should be discussed with the community leadership team.
 Last updated: 2025-08-03
 -->
