@@ -60,6 +60,16 @@ Développer ensemble des outils open-source conçus pour améliorer concrètemen
 - Accédez en avant-première aux outils qui font la différence
 - Collaborez avec des devs et data-scientists brillants
 
+## Domaines d'impact visés
+
+Ensemble, nous travaillons sur des outils qui toucheront entre autres :
+
+- **Deckbuilding** : Optimisation des listes basée sur les données
+- **Sideboarding** : Guides adaptatifs selon le métagame
+- **Gameplay** : Décisions in-game améliorées par l'analyse
+- **Metagaming** : Prédiction des tendances et contre-stratégies
+- **Testing** : Méthodologies data-driven pour la préparation
+
 ## Liens utiles
 
 **Discord** : https://discord.gg/mtgtools
