@@ -56,6 +56,17 @@ Develop open-source tools together designed to concretely improve in-game perfor
 - Get early access to tools that make the difference
 - Collaborate with brilliant devs and data scientists
 
+## Targeted Impact Areas
+
+Together, we're working on tools that will touch areas including:
+
+- **Deckbuilding**: Data-driven deck optimization
+- **Sideboarding**: Adaptive guides based on metagame shifts
+- **Gameplay**: In-game decisions enhanced by analysis
+- **Metagaming**: Trend prediction and counter-strategies
+- **Testing**: Data-driven methodologies for preparation
+- **Innovation**: Exploring limitless new tools for untapped aspects of the game
+
 ## Useful Links
 
 **Discord**: https://discord.gg/mtgtools
