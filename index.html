@@ -655,6 +655,155 @@
         <!-- Section Divider -->
         <div class="section-divider"></div>
         
+        <!-- Videre Project Showcase Section -->
+        <section id="videre-showcase" class="py-24 px-4 relative overflow-hidden">
+            <!-- Background decoration -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-yellow-400 rounded-full filter blur-3xl"></div>
+                <div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-amber-500 rounded-full filter blur-3xl"></div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto relative z-10">
+                <!-- Section header -->
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <p class="text-yellow-400 text-lg mb-4 font-semibold" x-show="lang === 'fr'">
+                        Découvrez notre premier outil forgé par et pour la communauté compétitive.
+                    </p>
+                    <p class="text-yellow-400 text-lg mb-4 font-semibold" x-show="lang === 'en'">
+                        Discover our first tool forged by and for the competitive community.
+                    </p>
+                </div>
+                
+                <!-- Main content container -->
+                <div class="grid lg:grid-cols-5 gap-12 items-center">
+                    <!-- Text content (40%) -->
+                    <div class="lg:col-span-2 space-y-8" data-aos="fade-right">
+                        <!-- Floating badge -->
+                        <div class="inline-block relative">
+                            <div class="bg-gradient-to-r from-yellow-400 to-amber-500 text-black px-6 py-3 rounded-full text-sm font-bold animate-float">
+                                <span x-show="lang === 'fr'">🚀 Projet Phare</span>
+                                <span x-show="lang === 'en'">🚀 Flagship Project</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Title -->
+                        <div>
+                            <h2 class="text-5xl md:text-6xl font-black mb-4">
+                                <span class="text-gradient">Videre Project</span>
+                            </h2>
+                            <p class="text-xl text-yellow-400 font-semibold" x-show="lang === 'fr'">
+                                La révolution des données MTGO en temps réel
+                            </p>
+                            <p class="text-xl text-yellow-400 font-semibold" x-show="lang === 'en'">
+                                The real-time MTGO data revolution
+                            </p>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="glassmorphism p-6 rounded-2xl border-l-4 border-yellow-400">
+                            <p class="text-gray-300 leading-relaxed" x-show="lang === 'fr'">
+                                Videre Project transforme l'analyse MTGO grâce à son SDK innovant. Développé par Cory Bennett, MTGOSDK lit directement la mémoire du client MTGO pour extraire les données en temps réel - cartes jouées, phases de jeu, life totals, tout est capturé instantanément. Cette technologie alimente l'écosystème complet : MTGTracker pour l'overlay in-game, une API distribuée sur Cloudflare, et des visualisations interactives sur Observable où les métagames prennent vie. Plus qu'un simple tracker : un SDK puissant qui transforme MTGO en plateforme data-driven pour les compétiteurs sérieux.
+                            </p>
+                            <p class="text-gray-300 leading-relaxed" x-show="lang === 'en'">
+                                Videre Project revolutionizes MTGO analysis through its groundbreaking SDK. Developed by Cory Bennett, MTGOSDK reads directly from MTGO client memory to extract real-time data - cards played, game phases, life totals, everything captured instantly. This technology powers the complete ecosystem: MTGTracker for in-game overlay, a distributed API on Cloudflare, and interactive visualizations on Observable where metagames come to life. More than just a tracker: a powerful SDK that transforms MTGO into a data-driven platform for serious competitors.
+                            </p>
+                        </div>
+                        
+                        <!-- CTAs -->
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://github.com/videre-project" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-400 to-amber-500 text-black font-bold rounded-full hover:scale-105 transform transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/30">
+                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span x-show="lang === 'fr'">Explorer le Code</span>
+                                <span x-show="lang === 'en'">Explore the Code</span>
+                            </a>
+                            
+                            <a href="https://observablehq.com/@videre-project" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="group inline-flex items-center gap-3 px-8 py-4 glassmorphism-strong border border-yellow-400/50 text-yellow-400 font-bold rounded-full hover:scale-105 transform transition-all duration-300 hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/20">
+                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span x-show="lang === 'fr'">Voir les Visualisations</span>
+                                <span x-show="lang === 'en'">View Visualizations</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Visual showcase (60%) -->
+                    <div class="lg:col-span-3 space-y-6">
+                        <!-- Main showcase card -->
+                        <div class="glassmorphism-strong p-2 rounded-2xl hover-glow" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="aspect-video bg-gradient-to-br from-gray-900 to-black rounded-xl overflow-hidden relative group">
+                                <!-- Placeholder for Observable chart -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="text-center space-y-4">
+                                        <div class="text-6xl text-yellow-400 opacity-20 group-hover:opacity-30 transition-opacity">
+                                            📊
+                                        </div>
+                                        <p class="text-gray-500 text-sm px-4">Observable Metagame Visualization</p>
+                                    </div>
+                                </div>
+                                <!-- Hover effect overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Secondary showcase cards -->
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- MTGOSDK Terminal -->
+                            <div class="glassmorphism p-2 rounded-2xl hover-glow card-3d" data-aos="fade-up" data-aos-delay="200">
+                                <div class="bg-black rounded-xl p-4 font-mono text-xs overflow-hidden">
+                                    <div class="text-green-400 mb-2">$ mtgosdk extract</div>
+                                    <div class="text-gray-400">
+                                        <div>[INFO] Connecting to MTGO client...</div>
+                                        <div>[INFO] Reading memory at 0x7FF...</div>
+                                        <div class="text-yellow-400">[DATA] Game State: MAIN_PHASE_1</div>
+                                        <div class="text-yellow-400">[DATA] Life Totals: P1=20, P2=18</div>
+                                        <div class="text-yellow-400">[DATA] Cards in hand: 5</div>
+                                        <div class="text-green-400">[SUCCESS] Real-time sync active</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- MTGTracker Overlay -->
+                            <div class="glassmorphism p-2 rounded-2xl hover-glow card-3d" data-aos="fade-up" data-aos-delay="300">
+                                <div class="bg-gradient-to-br from-gray-900 to-black rounded-xl p-4 relative overflow-hidden">
+                                    <div class="absolute top-2 right-2 bg-green-500 text-black text-xs px-2 py-1 rounded font-bold">LIVE</div>
+                                    <div class="space-y-2">
+                                        <div class="text-yellow-400 font-bold text-sm">MTGTracker Overlay</div>
+                                        <div class="text-gray-400 text-xs">
+                                            <div class="flex justify-between">
+                                                <span>Opponent's Deck:</span>
+                                                <span class="text-yellow-400">Azorius Control</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Win %:</span>
+                                                <span class="text-green-400">67.3%</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span>Sideboard Guide:</span>
+                                                <span class="text-blue-400">Available</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
+        
         <!-- Mission Section -->
         <section id="mission" class="py-24 px-4 relative">
             <!-- Background decoration -->
