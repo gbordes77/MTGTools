@@ -383,7 +383,15 @@
             <div class="max-w-7xl mx-auto px-4 py-4">
                 <div class="flex items-center justify-between">
                     <!-- Logo/Home -->
-                    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="text-2xl font-bold text-gradient hover:scale-110 transition-transform">MTGTools</a>
+                    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="group">
+                        <div class="flex flex-col items-start">
+                            <span class="text-2xl font-bold text-gradient hover:scale-110 transition-transform">MTGTools</span>
+                            <span class="text-xs text-gray-400 group-hover:text-yellow-400 transition-colors">
+                                <span class="md:hidden">for MTG players</span>
+                                <span class="hidden md:inline">for Magic: The Gathering players</span>
+                            </span>
+                        </div>
+                    </a>
                     
                     <!-- Mobile Menu Button -->
                     <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-yellow-400">
