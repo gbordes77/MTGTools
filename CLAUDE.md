@@ -245,3 +245,49 @@ Guillaume requested implementation of grinder feedback from `site_modifications_
 - Always check ALL sections for unverified claims (Join Us wasn't in initial TODO)
 - "La Forge des Outils Pro" better represents MTGTools identity than competitive coaching
 - Community and open source focus > exclusive elite promises
+
+## Session 11: Videre Project Showcase Implementation (August 4, 2025)
+
+### Context
+Guillaume requested Phase 2 implementation from LANDING_PAGE_TODO.md with specific visual elements.
+
+### Key Activities
+1. **Agent Coordination**
+   - Activated agent-organizer to coordinate product-manager, marketing-writer, and frontend-developer
+   - Created comprehensive implementation plan for Videre section
+   - Ensured surgical precision (no unwanted refonte)
+
+2. **Videre Description Finalization**
+   - Created 98-word bilingual description focusing on MTGOSDK technology
+   - Emphasized memory reading capabilities and real-time data extraction
+   - Cory Bennett validated the description
+   - Added Observable mention for data visualization
+
+3. **Section Implementation**
+   - Initially placed after hero section (too early)
+   - **Moved to after Projects section** for better flow
+   - Fixed Observable link to @qonfused/mtg-metagame
+   - Created visual representations of screenshots
+
+4. **Visual Design Issues**
+   - Guillaume provided real screenshots but integration was problematic
+   - Created styled HTML representations instead:
+     - Observable: Metagame bars with animations
+     - MTGOSDK: Terminal with realistic output
+     - MTGTracker: Mock overlay with Twitter/X demo link
+
+### Technical Details
+- Badge: "Projet Phare" / "Flagship Project"
+- CTAs: GitHub and Observable links
+- Responsive design maintained
+- Glassmorphism and yellow-400 accents preserved
+
+### Challenges
+- Screenshot integration limitations led to frustration
+- Phase 3 (Visual Proof) skipped due to technical constraints
+- Moving to Phase 4 (Feature Clarification) next
+
+### Guillaume's Feedback
+- Corrected "révolutionnaire" repetition in French
+- Required removal of "complète" from demo text
+- Expressed frustration about screenshot integration capabilities
