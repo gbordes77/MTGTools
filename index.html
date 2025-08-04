@@ -546,8 +546,8 @@
                 <!-- CTA Buttons with enhanced effects -->
                 <div class="mt-12 flex flex-col sm:flex-row gap-6 justify-center" data-aos="fade-up" data-aos-delay="400">
                     <a href="#community" class="glassmorphism px-10 py-5 rounded-full hover-glow inline-flex items-center gap-3 font-semibold text-lg group">
-                        <span x-show="lang === 'fr'">Découvrir comment ça marche</span>
-                        <span x-show="lang === 'en'">Discover how it works</span>
+                        <span x-show="lang === 'fr'">Intégrez la communauté</span>
+                        <span x-show="lang === 'en'">Join the community</span>
                         <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                         </svg>
@@ -575,25 +575,6 @@
                 </div>
             </div>
             
-            <!-- Enhanced social proof ticker with animation -->
-            <div class="absolute bottom-24 left-0 right-0 px-4" data-aos="fade-up" data-aos-delay="600">
-                <div class="glassmorphism px-8 py-4 rounded-full mx-auto max-w-fit text-sm md:text-base overflow-hidden">
-                    <div class="flex items-center gap-4">
-                        <span class="animate-pulse text-green-400 text-xl">●</span>
-                        <div x-data="{ current: 0, messages: [
-                            { fr: '🇫🇷 Guillaume vient de rejoindre depuis Paris', en: '🇫🇷 Guillaume just joined from Paris' },
-                            { fr: '🇺🇸 John a gagné 3 matchs consécutifs avec nos outils', en: '🇺🇸 John won 3 consecutive matches with our tools' },
-                            { fr: '🇯🇵 Takeshi analyse le métagame Modern', en: '🇯🇵 Takeshi is analyzing the Modern metagame' },
-                            { fr: '🇩🇪 Emma partage son deck optimisé', en: '🇩🇪 Emma shared her optimized deck' },
-                            { fr: '150+ membres actifs en 48h', en: '150+ active members in 48h' }
-                        ] }" 
-                             x-init="setInterval(() => { current = (current + 1) % messages.length }, 3000)">
-                            <span x-show="lang === 'fr'" x-text="messages[current].fr" x-transition></span>
-                            <span x-show="lang === 'en'" x-text="messages[current].en" x-transition></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
         
         <!-- Section Divider -->
