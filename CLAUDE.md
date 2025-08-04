@@ -7,6 +7,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **User interactions**: French (français)
 - **All code, documentation, comments, commit messages, and technical content**: English only
 
+## Content Guidelines
+
+- **Critical Principle**: Never put forward features or facts that have not been validated/confirmed
+- **Marketing & Communication**: All claims must be backed by verified data or actual implementations
+- **Statistics & Metrics**: Only use numbers that come from real, measurable sources
+
 ## Project Purpose
 
 This is the central hub for the MTGTools community initiative, founded and led by Guillaume Bordes, with Videre Project (https://github.com/videre-project) as the flagship project.
