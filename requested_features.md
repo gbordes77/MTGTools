@@ -47,3 +47,58 @@ Des puzzles de situations réelles : "Tu es à 3 vies, l'adversaire a ça, trouv
 **Le truc CRUCIAL :** Que ça s'intègre PENDANT que je joue. Pas un truc à remplir après. Les grinders sont des feignasses pour la paperasse, on veut que ça track tout seul.
 
 Si tu sors ne serait-ce qu'UNE de ces features qui marche vraiment bien, t'auras toute la communauté tryhard qui va jump dessus.
+
+---
+
+## Additional Features from Grinder Analysis
+
+### Core Features That Would Seal the Deal:
+
+**6. Live Performance Dashboard**
+Real-time winrate tracking during sessions with variance analysis. "You're running 5% below EV today" - helps tilt management.
+
+**7. Matchup Database with Heatmaps**
+Visual representation of all matchups: "You're 72% vs Control but only 41% vs Aggro". Instant deck choice optimization.
+
+**8. Mulligan Analyzer**
+"Based on 10,000 similar hands, keeping is +EV 67% of the time". With specific matchup context.
+
+**9. Clock Management Assistant**
+MTGO clock is brutal. Tool that warns: "At this pace, you'll timeout in game 3". With time-per-decision tracking.
+
+**10. Meta Shift Alerts**
+"Dimir increased 15% in last 48h, adjust your deck choice". Real-time meta movement notifications.
+
+### Quality of Life Features:
+
+**11. Auto-Screenshot Key Moments**
+Captures complex board states automatically for post-game review. No more "I should have screenshotted that".
+
+**12. Sideboard Quick Notes**
+In-game overlay with your sideboard notes. No more alt-tab to check your guide.
+
+**13. Opponent History Tracker**
+"You've played XxKillerxX 3 times, they always play Burn". Instant intel on regulars.
+
+**14. Tilt Detector**
+"Your play speed increased 40%, misclick rate up. Consider a break?" Based on play patterns.
+
+**15. Session Goals Tracker**
+Set goals like "Play 20 matches" or "Reach 1700 rating". Visual progress during grind.
+
+### Advanced Features:
+
+**16. Line Comparison Tool**
+"Line A wins 61%, Line B wins 58%, but Line B is 2 minutes faster". For when clock matters.
+
+**17. Custom Alerts System**
+"Opponent played 3rd land drop" or "You have lethal on board". Customizable triggers.
+
+**18. Format Transition Helper**
+"Your Modern skills translate to 68% Legacy winrate". Helps choose new formats to grind.
+
+**19. Bankroll Management**
+Tracks entry fees vs prizes. "You need 64% winrate to profit at this stakes". Essential for grinders.
+
+**20. Team Practice Mode**
+Share live sessions with teammates. See each other's hands for better testing.
