@@ -128,19 +128,21 @@
             height: 100%;
             overflow: hidden;
             pointer-events: none;
-            z-index: 0;
+            z-index: 1;
+            opacity: 0.5;
         }
         
         .matrix-column {
             position: absolute;
             top: -100%;
             font-family: monospace;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 1.2;
             color: #fbbf24;
-            opacity: 0.1;
+            opacity: 0.4;
             animation: matrix-rain 10s linear infinite;
             text-shadow: 0 0 5px #fbbf24;
+            white-space: nowrap;
         }
         
         .glassmorphism {
@@ -317,15 +319,17 @@
             -webkit-overflow-scrolling: touch;
         }
         
-        /* Prevent fixed elements from blocking scroll */
-        .matrix-bg {
-            position: absolute !important;
+        /* Prevent fixed elements from blocking scroll on mobile */
+        @media (max-width: 768px) {
+            .matrix-bg {
+                position: absolute !important;
+            }
         }
         
         /* Responsive improvements */
         @media (max-width: 768px) {
             .orb { display: none; }
-            .matrix-bg { opacity: 0.3; }
+            .matrix-bg { display: none; }
             .hero-title { font-size: 3.5rem; }
             .particle { display: none; }
         }
@@ -1451,9 +1455,20 @@
         }
         
         // Initialize effects with performance considerations
-        if (window.innerWidth > 768) {
-            createMatrixRain();
-            createParticles();
+        // Wait for DOM to be ready before creating effects
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                if (window.innerWidth > 768) {
+                    createMatrixRain();
+                    createParticles();
+                }
+            });
+        } else {
+            // DOM already loaded
+            if (window.innerWidth > 768) {
+                createMatrixRain();
+                createParticles();
+            }
         }
         
         // Add loaded class for entrance animations
