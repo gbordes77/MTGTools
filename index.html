@@ -103,12 +103,12 @@
             background-size: 400% 400%;
             animation: gradient 20s ease infinite;
             position: relative;
-            overflow: hidden;
+            min-height: 100vh;
         }
         
         .gradient-bg::before {
             content: '';
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
@@ -310,6 +310,17 @@
             transition: opacity 0.3s;
         }
         
+        /* Mobile scroll fix */
+        html, body {
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Prevent fixed elements from blocking scroll */
+        .matrix-bg {
+            position: absolute !important;
+        }
+        
         /* Responsive improvements */
         @media (max-width: 768px) {
             .orb { display: none; }
@@ -355,7 +366,7 @@
         }
     </style>
 </head>
-<body class="gradient-bg text-white font-['Inter'] overflow-x-hidden">
+<body class="gradient-bg text-white font-['Inter']">
     <!-- Loading spinner -->
     <div id="loading" class="loading-spinner"></div>
     
