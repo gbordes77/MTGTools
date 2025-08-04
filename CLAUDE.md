@@ -146,6 +146,15 @@ You can answer directly for:
 - **Différence UX/UI** : UX = logique/parcours, UI = visuel/esthétique
 - **Usage index.html** : UI + Marketing + Frontend pour transformation visuelle
 
+### Landing Page Major Refactoring (August 4, 2025)
+- **Principe établi** : "Ne jamais mettre en avant des features ou faits non validés"
+- **Hero optimisé** : Suppression +15% winrate, nouveau texte communauté, CTA unique Discord
+- **Mission consolidée** : 4→3 points clés (Data-Driven, Communauté, Innovation)
+- **Timelines réalistes** : SOON → Q2 2025, ajout liens GitHub
+- **Mobile fix critique** : Restauration du scroll sur tous appareils
+- **Footer enrichi** : Email contact + liens sociaux
+- **Documentation** : evolution_landing_page.md créé pour tracer tous les changements
+
 ### Upcoming: Directory Rename
 - **Change** : `/Videre-project/` → `/MTGTools/`
 - **Rationale** : Reflects evolution from single project to complete ecosystem
