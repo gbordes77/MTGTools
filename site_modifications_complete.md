@@ -37,7 +37,16 @@
    - "Voici comment le tracker améliore votre grind"
    - Cas d'usage réel : avant/après sur une session
 
-### Section Partenariat Cory
+### Projets à Mettre en Avant (PRIORITÉ)
+
+#### 1. VIDERE PROJECT (PRIORITÉ #1)
+- **Lien direct vers le site/GitHub de Videre Project**
+- **"Flagship project de MTGTools"**
+- **Screenshots/démo de Videre en action**
+- **Description claire de ce que fait Videre**
+- Position prominente sur la page d'accueil
+
+#### 2. Partenariat Cory
 - **"Développé avec Cory de [NOM_SITE]"**
 - Logo/lien vers son site
 - Mention de son expertise spécifique
