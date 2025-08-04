@@ -6,41 +6,39 @@ Coordonner une refonte complète de index.html en appliquant tous les points du 
 ## 📋 Informations Nécessaires
 
 ### 1. Videre Project - PRIORITÉ #1
-- **URL GitHub du projet** : [À FOURNIR]
-- **URL du site/démo si disponible** : [À FOURNIR]
-- **Description courte (1-2 phrases)** : [À FOURNIR]
-- **Screenshots disponibles** : [OUI/NON - Si oui, où les trouver ?]
-- **Status actuel** : [Beta/Production/Development]
+- **URL GitHub du projet** : https://github.com/videre-project
+- **URL du site vitrine** : https://observablehq.com/@qonfused/mtg-metagame
+- **Description courte** : Extraction et analyse de données MTGO en temps réel
+- **Screenshots disponibles** : OUI - Image SDK listener + Tweet tracker
+- **Status actuel** : Production
 
 ### 2. Partenariat Cory
-- **Nom complet de Cory** : [À FOURNIR]
-- **URL de son site** : [À FOURNIR]
-- **Son rôle exact dans MTGTools** : [À FOURNIR]
-- **Logo disponible** : [OUI/NON]
+- **Nom complet** : Cory Bennett
+- **Rôle** : Créateur et lead dev du Videre Project
+- **Contribution** : Architecture SDK et développement core
 
 ### 3. Status des Projets
 #### MTGOSDK
-- **Status actuel** : [Beta/Production/En développement]
-- **Lien GitHub** : [À FOURNIR]
-- **Documentation disponible** : [OUI/NON - URL si oui]
-- **Comment l'installer/utiliser** : [À FOURNIR]
+- **Status actuel** : STABLE/Production
+- **Lien GitHub** : Via Videre Project
+- **Fonctionnalité clé** : Listener MTGO (voir screenshot fourni)
+- **Usage** : Extraction temps réel des données de jeu
 
 #### MTGTracker
-- **Status actuel** : [Beta/Production/En développement]
-- **Screenshots disponibles** : [OUI/NON - Où ?]
-- **Features actuellement fonctionnelles** : [À LISTER]
-- **Lien téléchargement/test** : [À FOURNIR si disponible]
+- **Status actuel** : Backend OK, Frontend React en cours
+- **Screenshot** : https://x.com/TheQonfused/status/1910470930230391127
+- **Features fonctionnelles** : Tracking matchs, analyse winrate
+- **Interface** : Voir tweet pour aperçu
 
 #### MetaAPI
-- **Status actuel** : [Beta/Production/En développement]
-- **Endpoints disponibles** : [À LISTER]
-- **Documentation API** : [URL si disponible]
+- **Status actuel** : FONCTIONNELLE
+- **Showcase** : https://observablehq.com/@qonfused/mtg-metagame
+- **Data source** : Alimentée par SDK Videre
 
 ### 4. Roadmap & Dates
-- **Q1 2025 objectifs concrets** : [À FOURNIR]
-- **Q2 2025 objectifs concrets** : [À FOURNIR]
-- **Date beta access prévue** : [À FOURNIR]
-- **Process pour rejoindre la beta** : [À FOURNIR]
+- **Approche** : Pas de roadmap fixe - évolution selon communauté
+- **Priorités** : Définies par les contributeurs qui rejoignent
+- **Philosophy** : Développement organique basé sur besoins réels
 
 ### 5. Aspects Techniques
 - **Compatibilité OS** : [Windows only ? Mac ? Linux ?]
