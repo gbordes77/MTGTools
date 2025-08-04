@@ -140,7 +140,7 @@
             line-height: 1.2;
             color: #fbbf24;
             opacity: 0.4;
-            animation: matrix-rain 10s linear infinite;
+            animation: matrix-rain 8s linear infinite;
             text-shadow: 0 0 5px #fbbf24;
             white-space: nowrap;
         }
@@ -1410,8 +1410,8 @@
                 const column = document.createElement('div');
                 column.className = 'matrix-column';
                 column.style.left = `${i * 20}px`;
-                column.style.animationDelay = `${Math.random() * 10}s`;
-                column.style.animationDuration = `${10 + Math.random() * 10}s`;
+                column.style.animationDelay = `${Math.random() * 2}s`;
+                column.style.animationDuration = `${5 + Math.random() * 5}s`;
                 
                 let text = '';
                 for (let j = 0; j < 50; j++) {
