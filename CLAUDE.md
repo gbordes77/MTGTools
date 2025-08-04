@@ -213,3 +213,35 @@ You can answer directly for:
 - KEEP EVERYTHING ELSE
 
 **New Rule**: NEVER let agents do complete refonte without explicit approval. Always prefer surgical modifications.
+
+## Landing Page Phase 1 Implementation (August 4, 2025)
+
+### Context
+Guillaume requested implementation of grinder feedback from `site_modifications_complete.md`. Activated 3 agents (product-manager, marketing-writer, frontend-developer) to coordinate changes.
+
+### Phase 1 Completed Changes
+
+#### Content Updates
+1. **Page Title**: "MTGTools - Communauté Data-Driven pour les compétiteurs Magic"
+2. **Hero Title**: "La Forge des Outils Pro" (replaced "Dominez le Métagame")
+3. **Deckbuilding**: "Optimisation manabase mathématique" (replaced "IA avancée")
+4. **Testing**: "Base de données de parties réelles" (replaced "10,000 games simulées")
+5. **Innovation**: "Beta testing avec la communauté" (replaced "Features secrètes")
+6. **CTA**: Removed "First 100 founding members" FOMO tactics
+7. **UTF-8**: Added encoding meta tag for special characters
+
+#### Join Us Section - Bullshit Removal
+**For Technical Talents:**
+- ❌ "problématiques concrètes des Pro Tours" → ✅ "outils open-source"
+- ❌ "top 100 mondiaux" → ✅ "joueurs passionnés de hauts niveaux"
+- ❌ "utilisées en Pro Tour" → ✅ "valorisées sur GitHub"
+
+**For Competitors:**
+- Added: "Soyez les premiers à tester les outils de demain"
+- ❌ "30 jours avant le public" → ✅ "beta testing communautaire"
+- ❌ "devs Google, Meta, Amazon" → ✅ "développeurs passionnés"
+
+### Key Learnings
+- Always check ALL sections for unverified claims (Join Us wasn't in initial TODO)
+- "La Forge des Outils Pro" better represents MTGTools identity than competitive coaching
+- Community and open source focus > exclusive elite promises
