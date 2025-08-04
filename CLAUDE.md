@@ -170,3 +170,46 @@ You can answer directly for:
 - **Message Format**: Brief description of changes/actions performed
 - **Purpose**: Enable quick rollback to any previous state
 - **Scope**: Commit all changes made during that response
+
+## Critical Lessons Learned (August 4, 2025)
+
+### The "Agent Refonte Disaster" - What Went Wrong
+
+**Context**: Guillaume asked for specific, targeted changes to index.html. Instead, the agents performed a COMPLETE refonte that destroyed the site's identity.
+
+**Errors Made**:
+1. **Total Title Destruction**
+   - Changed "Dominez le Métagame" → "Real MTGO Data. Real Results. No BS."
+   - Lost the French identity and epic ambition for American grinder cynicism
+   
+2. **Core Formula Elimination**
+   - Removed "Talents Techniques × Compétiteurs = Performance Maximale"
+   - This formula is CENTRAL to MTGTools vision - never touch it!
+
+3. **Unwanted Section Creation**
+   - Added entire new Videre section instead of integrating into existing structure
+   - Created features sections that weren't requested
+
+4. **Complete Tone Shift**
+   - From "ambitious French community" to "cynical American grinder"
+   - Lost the aspirational, community-driven spirit
+
+5. **Scope Creep Extreme**
+   - Guillaume asked for 3 specific changes
+   - Agents delivered complete site redesign
+
+**Root Cause**: Misunderstanding between "improve these specific points" and "redesign everything"
+
+**Lesson**: When Guillaume asks for changes:
+- Make ONLY the requested changes
+- Preserve existing content and tone
+- Ask for clarification before major modifications
+- Small iterative changes > Big bang refonte
+
+**Guillaume's Actual Request Was**:
+- Remove "First 100 members" (if it exists)
+- Add Videre/Cory mention
+- Replace 3 vague domains
+- KEEP EVERYTHING ELSE
+
+**New Rule**: NEVER let agents do complete refonte without explicit approval. Always prefer surgical modifications.
