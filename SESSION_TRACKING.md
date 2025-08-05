@@ -722,4 +722,50 @@ Guillaume requested the best possible analysis to serve as foundation for projec
 - ✅ All documents organized in ANALYSE_EXCELLENCE_MTGTOOLS/
 - 🎯 Clear path from hobby project to professional platform
 - 📊 Realistic metrics and achievable goals
+
+---
+
+## Session 15: Bullshit Cleanup & Execution Focus (August 5, 2025)
+
+### Context
+Guillaume discovered fake metrics in project documentation and demanded complete cleanup. Also redefined Claude's role as execution-focused assistant.
+
+### Key Activities
+
+#### 1. Bullshit Metrics Removal
+- **Removed ALL fake numbers**:
+  - "127 Discord members" → Removed (Discord not created)
+  - "100 Videre users" → Removed (bullshit)
+- **Files cleaned**:
+  - ETAT_ACTUEL_PROJET.md
+  - RECOMMANDATIONS_PRIORITAIRES.md
+  - EXECUTION_TRACKER.md (later identified as duplicate)
+
+#### 2. Claude Role Redefinition
+- **New Identity**: Strategic assistant pushing from vision to execution
+- **Core Principles**:
+  - No bullshit, no complaisance
+  - Focus on real blockers only
+  - Execution order: Discord → Docs API → OCR Bot → Rest
+  - One thing done before starting next
+- **Added to CLAUDE.md**: Complete role definition with workflow examples
+
+#### 3. File Cleanup & Organization
+- **Discovered duplicate**: EXECUTION_TRACKER.md duplicates SESSION_TRACKING.md
+- **Lesson**: Always check for existing files before creating new ones
+- **New protocol**: Verify file existence to avoid duplicates
+
+### Critical Lessons
+1. **No Fake Metrics**: Never invent numbers to "look good"
+2. **Start from Zero**: Community built from scratch, not imaginary base
+3. **Execution Focus**: Stop talking, start doing - Discord FIRST
+4. **File Discipline**: No duplicate files, check before creating
+
+### Session 15 Summary
+- ✅ All bullshit metrics removed from documentation
+- ✅ Claude role as execution assistant defined in CLAUDE.md
+- ✅ Identified EXECUTION_TRACKER.md as duplicate (to be removed)
+- ✅ Committed to factual reporting only
+- 🎯 Next priority: Create Discord (nothing else before)
+- 📊 Current reality: 0 Discord members, 0% API docs, ~70% OCR Bot
 - 🤝 Trust rebuilt through transparency
