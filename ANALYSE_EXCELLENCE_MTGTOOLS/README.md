@@ -7,13 +7,13 @@ Cette analyse contient **15 documents** totalisant **4,483 lignes** répartis en
 ## 📖 Ordre de Lecture Recommandé
 
 ### 1. Vue d'Ensemble (Commencez ici)
-- **key-findings-summary.md** (157 lignes) - Résumé exécutif avec points clés
+- **sub-agents/context/key-findings-summary.md** (157 lignes) - Résumé exécutif avec points clés
 - **MTGTOOLS_PRODUCT_VISION_2025.md** - Vision stratégique et analyse de marché
 
 ### 2. Analyse Technique Détaillée
-- **mtgtools-ecosystem-analysis.md** - Cartographie complète du projet
-- **technology-stack-inventory.md** - Inventaire des technologies utilisées
-- **context-manager.json** - Structure détaillée du projet (format JSON)
+- **sub-agents/context/mtgtools-ecosystem-analysis.md** - Cartographie complète du projet
+- **sub-agents/context/technology-stack-inventory.md** - Inventaire des technologies utilisées
+- **sub-agents/context/context-manager.json** - Structure détaillée du projet (format JSON)
 
 ### 3. Plans d'Infrastructure
 - **DEPLOYMENT_SUMMARY.md** - Vue d'ensemble du déploiement
