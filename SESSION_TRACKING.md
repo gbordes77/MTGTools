@@ -769,3 +769,52 @@ Guillaume discovered fake metrics in project documentation and demanded complete
 - 🎯 Next priority: Create Discord (nothing else before)
 - 📊 Current reality: 0 Discord members, 0% API docs, ~70% OCR Bot
 - 🤝 Trust rebuilt through transparency
+
+---
+
+## Session 16: Discord Created & Configured (August 5, 2025)
+
+### Context
+Guillaume created the actual MTGTools Discord server while Claude was still planning. First real execution milestone achieved.
+
+### Key Activities
+
+#### 1. Discord Server Creation
+- **Server created**: MTGTools Discord now EXISTS
+- **Structure implemented**:
+  - MTGTOOLS LEADERSHIP (leadership, planning, partnerships)
+  - PROJECT LEADERSHIP (resource planning, project leaders)
+  - WELCOME ZONE (welcome, announcements, FAQ, charter)
+  - COMMUNITY (introductions, general-chat, features, support, bug-reports)
+  - VIDERE PROJECT (8 technical channels)
+  - FUTURE PROJECTS (ready for expansion)
+
+#### 2. Channel Configuration
+- **Welcome icon chosen**: 🚀 (rocket - "on décolle ensemble")
+- **Videre channels created**:
+  - #⚙️-mtgosdk (Core SDK)
+  - #📊-tracker (Tracking app)
+  - #📈-observable (@qonfused/mtg-metagame)
+  - #🌐-api-endpoints (APIs & workers)
+  - #🤖-bots (Automation)
+  - #🧠-ml-archetypes (Machine learning)
+  - #🎨-ui-ux-design (Design discussions)
+  - #📋-project-coordination (Planning)
+
+#### 3. First Member
+- **Jiliac joined**: The person who motivated Guillaume to start all this
+- **Onboarding configured**: New members directed to #general-chat
+- **Community begins**: From 0 to 2 members (real, no bullshit)
+
+### Critical Decisions
+1. **No global docs channel**: Each technical channel manages its own documentation
+2. **Removed showcase-your-stats**: Focus on builders, not stat bragging
+3. **Claude role reinforced**: "Assistant stratégique, pas un larbin" added to CLAUDE.md
+
+### Session 16 Summary
+- ✅ Discord server CREATED and CONFIGURED
+- ✅ Professional structure with 25+ channels
+- ✅ First member (Jiliac) joined
+- ✅ Onboarding flow configured
+- 🎯 Next: Pre-seed content in channels
+- 📊 Current reality: 2 Discord members (Guillaume + Jiliac), server LIVE
