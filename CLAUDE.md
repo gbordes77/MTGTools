@@ -133,6 +133,15 @@ You can answer directly for:
 - **Voice channels complets** : 20+ salons vocaux en 6 catégories
 - **Métriques définies** : 4 phases de croissance (50→150→300→500 membres)
 
+### Discord Finalization (August 5, 2025)
+- **Bilingual Naming Convention** : Strategic approach prioritizing usability
+  - English primary for technical channels (developer-focused)
+  - French primary for community channels (player-focused)
+  - Examples: `📖│règles-rules`, `🔧│dev-chat-discussions`
+- **Community Vision Clarified** : MTGTools for builders/creators, not stat showcasing
+- **Channel Structure Finalized** : ~35 channels, reordered to match website hierarchy
+- **Template Ready** : Fully prepared for Discord server implementation
+
 ### DevOps Agents Creation
 - **devops-engineer agent créé** : Spécialiste CI/CD, GitHub Actions, Docker, monitoring
 - **deployment-engineer agent créé** : Architecte déploiement, Kubernetes, GitOps
