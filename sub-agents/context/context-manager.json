@@ -1,0 +1,347 @@
+{
+  "projectName": "MTGTools",
+  "lastFullScan": "2025-08-05T19:12:27Z",
+  "projectMetadata": {
+    "description": "Community hub for competitive Magic: The Gathering tools across MTGO, Arena, and paper",
+    "founder": "Guillaume Bordes",
+    "technicalLead": "Cory Bennett",
+    "flagshipProject": "Videre Project",
+    "mainRepository": "https://github.com/videre-project",
+    "currentPhase": "Foundation - Pre-Discord Launch",
+    "visionStatement": "Democratizing competitive Magic data through open-source tools"
+  },
+  "directoryTree": {
+    "path": "/",
+    "purpose": "Root directory containing MTGTools ecosystem hub - project management, documentation, and community resources",
+    "lastScanned": "2025-08-05T19:12:27Z",
+    "files": [
+      "README.md",
+      "CLAUDE.md",
+      "SESSION_TRACKING.md",
+      "MTGTOOLS_MANIFESTO_FR.md",
+      "MTGTOOLS_MANIFESTO_EN.md",
+      "MTGTOOLS_DISCORD_VISION.md",
+      "MTGTOOLS_STRATEGIC_ANALYSIS.md",
+      "LANGUAGE_PHILOSOPHY.md",
+      "index.html",
+      "manifest.json",
+      "robots.txt",
+      "sitemap.xml",
+      "sw.js",
+      "_config.yml",
+      "LICENSE"
+    ],
+    "subdirectories": {
+      ".github": {
+        "path": "/.github",
+        "purpose": "GitHub-specific configuration and workflows for CI/CD automation",
+        "lastScanned": "2025-08-05T19:12:27Z",
+        "files": [],
+        "subdirectories": {
+          "workflows": {
+            "path": "/.github/workflows",
+            "purpose": "GitHub Actions workflows for automated deployment and testing",
+            "lastScanned": "2025-08-05T19:12:27Z",
+            "files": ["deploy-pages.yml"],
+            "subdirectories": {}
+          }
+        }
+      },
+      "design": {
+        "path": "/design",
+        "purpose": "Design system components and visual assets for MTGTools branding",
+        "lastScanned": "2025-08-05T19:12:27Z",
+        "files": [],
+        "subdirectories": {
+          "components": {
+            "path": "/design/components",
+            "purpose": "Reusable UI component styles and patterns",
+            "lastScanned": "2025-08-05T19:12:27Z",
+            "files": ["button-variants.css"],
+            "subdirectories": {}
+          },
+          "tokens": {
+            "path": "/design/tokens",
+            "purpose": "Design tokens for consistent styling across projects",
+            "lastScanned": "2025-08-05T19:12:27Z",
+            "files": [],
+            "subdirectories": {}
+          }
+        }
+      },
+      "discord": {
+        "path": "/discord",
+        "purpose": "Discord community setup resources, rules, and onboarding materials",
+        "lastScanned": "2025-08-05T19:12:27Z",
+        "files": [
+          "COMMUNITY_RULES.md",
+          "FAQ.md",
+          "ONBOARDING_GUIDE.md"
+        ],
+        "subdirectories": {}
+      },
+      "docs": {
+        "path": "/docs",
+        "purpose": "Public documentation directory for GitHub Pages (currently empty, needs population)",
+        "lastScanned": "2025-08-05T19:12:27Z",
+        "files": [],
+        "subdirectories": {}
+      },
+      "marketing": {
+        "path": "/marketing",
+        "purpose": "Marketing materials, templates, and community outreach resources",
+        "lastScanned": "2025-08-05T19:12:27Z",
+        "files": [
+          "discord_channel_descriptions.md",
+          "discord_landing_page.html",
+          "discord_launch_content.md",
+          "discord_launch_reddit_posts.md",
+          "email_templates.md",
+          "homepage_taglines.md",
+          "partner_streamer_kit.md"
+        ],
+        "subdirectories": {}
+      },
+      "sub-agents": {
+        "path": "/sub-agents",
+        "purpose": "Agent coordination system for AI-assisted development and management",
+        "lastScanned": "2025-08-05T19:12:27Z",
+        "files": [],
+        "subdirectories": {
+          "context": {
+            "path": "/sub-agents/context",
+            "purpose": "Context management files including ecosystem analysis and project state",
+            "lastScanned": "2025-08-05T19:12:27Z",
+            "files": [
+              "context-manager.json",
+              "mtgtools-ecosystem-analysis.md"
+            ],
+            "subdirectories": {}
+          },
+          "subagent-ressources": {
+            "path": "/sub-agents/subagent-ressources",
+            "purpose": "Agent-specific resources and prompts",
+            "lastScanned": "2025-08-05T19:12:27Z",
+            "files": ["player-agent-prompt.md"],
+            "subdirectories": {}
+          }
+        }
+      },
+      "subagent-resources": {
+        "path": "/subagent-resources",
+        "purpose": "Comprehensive library of 100+ specialized AI agents for various development tasks",
+        "lastScanned": "2025-08-05T19:12:27Z",
+        "files": [
+          "AGENTS_CREATION_GUIDE.md",
+          "CLAUDE_WITH_AGENTS_EXAMPLE.md",
+          "UNIFIED_AGENT_CATALOG.md"
+        ],
+        "subdirectories": {
+          "subagent-resources": {
+            "path": "/subagent-resources/subagent-resources",
+            "purpose": "Main agent definition repository organized by specialization",
+            "lastScanned": "2025-08-05T19:12:27Z",
+            "files": [],
+            "subdirectories": {
+              "business": {
+                "path": "/subagent-resources/subagent-resources/business",
+                "purpose": "Business-focused agents for product management and strategy",
+                "lastScanned": "2025-08-05T19:12:27Z",
+                "files": ["product-manager.md"],
+                "subdirectories": {}
+              },
+              "data-ai": {
+                "path": "/subagent-resources/subagent-resources/data-ai",
+                "purpose": "Data science and AI/ML specialized agents",
+                "lastScanned": "2025-08-05T19:12:27Z",
+                "files": [
+                  "ai-engineer.md",
+                  "data-engineer.md",
+                  "data-scientist.md",
+                  "database-optimizer.md",
+                  "graphql-architect.md",
+                  "ml-engineer.md",
+                  "postgres-pro.md",
+                  "prompt-engineer.md"
+                ],
+                "subdirectories": {}
+              },
+              "development": {
+                "path": "/subagent-resources/subagent-resources/development",
+                "purpose": "Software development agents across all stack layers",
+                "lastScanned": "2025-08-05T19:12:27Z",
+                "files": [
+                  "electorn-pro.md",
+                  "full-stack-developer.md",
+                  "payment-integration.md"
+                ],
+                "subdirectories": {
+                  "backend": {
+                    "path": "/subagent-resources/subagent-resources/development/backend",
+                    "purpose": "Backend development specialists",
+                    "lastScanned": "2025-08-05T19:12:27Z",
+                    "files": [
+                      "api-developer.md",
+                      "backend-architect.md",
+                      "golang-pro.md",
+                      "java-pro.md",
+                      "python-pro.md"
+                    ],
+                    "subdirectories": {}
+                  },
+                  "frontend": {
+                    "path": "/subagent-resources/subagent-resources/development/frontend",
+                    "purpose": "Frontend and UI development specialists",
+                    "lastScanned": "2025-08-05T19:12:27Z",
+                    "files": [
+                      "frontend-developer.md",
+                      "ios-developer.md",
+                      "javascript-pro.md",
+                      "mobile-developer.md",
+                      "nextjs-pro.md",
+                      "react-pro.md",
+                      "shadcn-ui-builder.md",
+                      "typescript-pro.md"
+                    ],
+                    "subdirectories": {}
+                  }
+                }
+              },
+              "infrastructure": {
+                "path": "/subagent-resources/subagent-resources/infrastructure",
+                "purpose": "DevOps, cloud, and infrastructure management agents",
+                "lastScanned": "2025-08-05T19:12:27Z",
+                "files": [
+                  "cloud-architect.md",
+                  "deployment-engineer.md",
+                  "devops-incident-responder.md",
+                  "incident-responder.md",
+                  "performance-engineer.md"
+                ],
+                "subdirectories": {}
+              },
+              "meta": {
+                "path": "/subagent-resources/subagent-resources/meta",
+                "purpose": "Meta-agents for coordination and project management",
+                "lastScanned": "2025-08-05T19:12:27Z",
+                "files": [
+                  "agent-organizer.md",
+                  "context-manager.md",
+                  "project-planner.md"
+                ],
+                "subdirectories": {}
+              },
+              "quality": {
+                "path": "/subagent-resources/subagent-resources/quality",
+                "purpose": "Quality assurance, testing, and code review agents",
+                "lastScanned": "2025-08-05T19:12:27Z",
+                "files": [
+                  "architect-review.md",
+                  "code-reviewer-pro.md",
+                  "debugger.md",
+                  "qa-expert.md",
+                  "tdd-specialist.md",
+                  "test-automator.md"
+                ],
+                "subdirectories": {}
+              },
+              "security": {
+                "path": "/subagent-resources/subagent-resources/security",
+                "purpose": "Security audit and vulnerability scanning agents",
+                "lastScanned": "2025-08-05T19:12:27Z",
+                "files": [
+                  "security-auditor.md",
+                  "security-scanner.md"
+                ],
+                "subdirectories": {}
+              },
+              "specialization": {
+                "path": "/subagent-resources/subagent-resources/specialization",
+                "purpose": "Specialized agents for documentation, marketing, and communication",
+                "lastScanned": "2025-08-05T19:12:27Z",
+                "files": [
+                  "api-documenter.md",
+                  "documentation-expert.md",
+                  "marketing-writer.md"
+                ],
+                "subdirectories": {}
+              }
+            }
+          },
+          "temp-lst97": {
+            "path": "/subagent-resources/temp-lst97",
+            "purpose": "Temporary agent resource collection (appears to be a git submodule)",
+            "lastScanned": "2025-08-05T19:12:27Z",
+            "files": ["README.md", "CLAUDE.md"],
+            "subdirectories": {}
+          },
+          "temp-wshobson": {
+            "path": "/subagent-resources/temp-wshobson",
+            "purpose": "Another temporary agent resource collection (git submodule)",
+            "lastScanned": "2025-08-05T19:12:27Z",
+            "files": ["README.md"],
+            "subdirectories": {}
+          }
+        }
+      }
+    }
+  },
+  "externalProjects": {
+    "videre-project": {
+      "name": "Videre Project",
+      "description": "Flagship MTGO data extraction and analysis toolkit",
+      "repositories": {
+        "mtgosdk": {
+          "url": "https://github.com/videre-project/mtgosdk",
+          "language": ".NET/C#",
+          "purpose": "Core SDK for MTGO memory reading",
+          "maturity": "Production (681+ commits)"
+        },
+        "mtgtracker": {
+          "url": "https://github.com/videre-project/mtgtracker",
+          "purpose": "In-game overlay application",
+          "status": "Active development"
+        },
+        "api": {
+          "url": "https://github.com/videre-project/api",
+          "infrastructure": "Cloudflare Workers",
+          "purpose": "Distributed API for data access"
+        }
+      },
+      "integrations": {
+        "observable": "@qonfused/mtg-metagame"
+      }
+    }
+  },
+  "agentActivityLog": {
+    "context-manager": {
+      "lastActionSummary": "Performed initial comprehensive ecosystem scan and created project structure map",
+      "lastActivityTimestamp": "2025-08-05T19:12:27Z",
+      "filesModified": [
+        "/sub-agents/context/mtgtools-ecosystem-analysis.md",
+        "/sub-agents/context/context-manager.json"
+      ]
+    }
+  },
+  "projectStatus": {
+    "phase": "Pre-Launch Foundation",
+    "priorities": [
+      "Fix website videreproject.com references",
+      "Launch Discord server with pre-seeded content",
+      "Create API documentation",
+      "Release OCR Bot as first quick win"
+    ],
+    "blockers": [
+      "No API documentation exists",
+      "Discord server not yet created",
+      "Website shows old domain",
+      "High contributor barrier due to missing docs"
+    ],
+    "opportunities": [
+      "100+ Videre users ready to migrate",
+      "Strong technical foundation in MTGOSDK",
+      "First-mover advantage in unified Magic tools",
+      "Clear community vision and manifesto"
+    ]
+  }
+}
