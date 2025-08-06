@@ -198,7 +198,7 @@
 
 > *You've found the forge where competitive Magic tools are built.*
 
-🌐 **Visit our website:** https://gbordes77.github.io/MTGTools/
+🌐 **Learn more:** https://gbordes77.github.io/MTGTools/
 
 ---
 
