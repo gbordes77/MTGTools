@@ -37,11 +37,12 @@
 
 ## **📍 Phase 1** *(Current)*
 ✅ **Discord** community launch
+🎯 **MTGO Tracker** at least alpha version on few players
 ⏳ **Videre API** documentation `0% → 100%`
 ⏳ **OCR Bot** completion `70% → 100%`
 
 ## **🚀 Phase 2** *(Q4 2025)*
-🎯 **Arena tracker** development
+🎯 **MTGO Tracker** at least beta version in more players
 🎯 **PostgreSQL** infrastructure migration
 🎯 **ML archetype** detection enhancement
 
@@ -196,6 +197,8 @@
 # 🚀 **Welcome to MTGTools!**
 
 > *You've found the forge where competitive Magic tools are built.*
+
+🌐 **Visit our website:** https://gbordes77.github.io/MTGTools/
 
 ---
 
