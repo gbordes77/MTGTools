@@ -44,7 +44,6 @@ This is the central hub for the MTGTools community initiative, founded and led b
 #### MTGTools Community Documents
 - `MTGTOOLS_MANIFESTO_FR.md` - Manifesto français (version originale)
 - `MTGTOOLS_MANIFESTO_EN.md` - English manifesto (for Discord charter)
-- `CHARTE_MTGTOOLS_V2.md` - Charte communautaire (excellence + learning together) - NOT USED
 - `MTGTOOLS_DISCORD_VISION.md` - Discord transformation plan
 - `DISCORD_REWORK_VISION.md` - Original Discord expansion plan
 - `DISCORD_VISUAL_MOCKUP.md` - Visual Discord preview

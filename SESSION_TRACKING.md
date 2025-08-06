@@ -950,6 +950,6 @@ Guillaume continuing Discord setup after creating server. Working on populating 
 - ✅ English manifesto formatted for Discord
 - ✅ CLAUDE.md updated with correct document status
 - ✅ Session tracking updated
-- ❌ CHARTE_MTGTOOLS_V2.md rejected (keep for reference)
+- ❌ CHARTE_MTGTOOLS_V2.md rejected and deleted
 - 🎯 Discord charter channel populated
 - 📊 Current: Discord has manifesto, ready for community growth
