@@ -953,3 +953,66 @@ Guillaume continuing Discord setup after creating server. Working on populating 
 - ❌ CHARTE_MTGTOOLS_V2.md rejected and deleted
 - 🎯 Discord charter channel populated
 - 📊 Current: Discord has manifesto, ready for community growth
+
+---
+
+## Session 20: Discord Content Population & Bullshit Elimination (August 6, 2025)
+
+### Context
+Guillaume requested complete Discord content creation with agent-organizer team, then populated all text channels.
+
+### Key Activities
+
+#### 1. Agent Team Assembly
+- **agent-organizer** assembled optimal team for Discord content:
+  - community-engagement (lead)
+  - product-manager (vision alignment)
+  - documentation-expert (technical content)
+- Created 4-phase strategy for content seeding
+
+#### 2. Discord Content Creation
+- **DISCORD_SEED_CONTENT_ENGLISH.md** created with:
+  - Channel topics for all 30+ channels
+  - Initial seed messages with Discord markdown
+  - Professional formatting (tables, code blocks, emojis)
+  - Bilingual considerations
+
+#### 3. Critical Bullshit Detection & Removal
+Guillaume caught multiple false claims:
+- **MTGOSDK Version 2.0.3** → Removed (unverified)
+- **API endpoints** (/api/collection, etc.) → Changed to "in development"
+- **OCR Bot 70% complete** → Changed to "in development"
+- **85% ML accuracy** → Changed to "Goal: high accuracy"
+- **10,000+ decklists** → Changed to "building dataset"
+- **50,000+ matches** → Removed completely
+
+#### 4. Content Refinements
+- Timeline corrected: Q1 2025 → Q3 2025 (we're in August)
+- "Visit our website" → "Learn more" (more accurate)
+- Added site link to welcome message
+- Removed "Arena tracker" from future projects (already exists)
+
+#### 5. Discord Population
+- Guillaume populated all private channels
+- Then populated all public channels with seed content
+- Discussed transparency: considering making leadership channels public
+
+### Technical Decisions
+1. **No fake metrics**: Everything must be verifiable
+2. **Honest positioning**: "In development" instead of fake percentages
+3. **Clear channel purposes**: Each channel has specific topic and seed content
+
+### Lessons Learned
+- Always verify claims before posting
+- Guillaume's vigilance caught critical errors
+- Better to undersell than overpromise
+- Transparency builds trust
+
+### Session 20 Summary
+- ✅ Complete Discord content document created
+- ✅ All bullshit removed after Guillaume's review
+- ✅ 30+ channels populated with honest, engaging content
+- ✅ Professional Discord markdown formatting applied
+- ✅ Voice channels pending (not urgent)
+- 🎯 Discord ready for community growth
+- 📊 Current: 2 real members, authentic content, no fake metrics
