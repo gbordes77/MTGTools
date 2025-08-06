@@ -39,7 +39,7 @@
 ✅ **Discord** community launch
 🎯 **MTGO Tracker** at least alpha version on few players
 ⏳ **Videre API** documentation `0% → 100%`
-⏳ **OCR Bot** completion `70% → 100%`
+⏳ **OCR Bot** development
 
 ## **🚀 Phase 2** *(Q4 2025)*
 🎯 **MTGO Tracker** at least beta version in more players
@@ -570,13 +570,7 @@ Data visualization notebooks
 ## **📊 Current Visualizations**
 • **Meta breakdown** by archetype
 • **Win rate** matrices
-• **Sideboard** patterns
-• **Time series** analysis
 
----
-
-### **📦 Dataset Available**
-**50,000+** matches
 
 ---
 
@@ -594,22 +588,18 @@ Data visualization notebooks
 
 > *RESTful API for MTGO data access*
 
-## **📡 Current Endpoints**
-\`\`\`http
-GET /api/collection
-GET /api/matches
-GET /api/decks
-POST /api/game-state
-\`\`\`
+## **🚧 API Development Status**
 
-## **🔜 Coming Soon**
-• **WebSocket** real-time updates
-• **GraphQL** support
-• **Rate limiting** improvements
+The API is currently in development. We're designing endpoints for:
+• Collection tracking
+• Match history
+• Deck management
+• Real-time game state
 
 ---
 
-📖 **API documentation:** *[in progress - help needed!]*
+📖 **Want to help design the API?**
+*Share your ideas for what endpoints would be most useful!*
 
 💡 **What endpoints would you need for your project?**
 ```
@@ -627,7 +617,7 @@ POST /api/game-state
 
 | Bot | Status |
 |-----|--------|
-| **OCR Deck Detection** | `70% complete` |
+| **OCR Deck Detection** | 🔄 In development |
 | **Discord Stats** | 🔄 In progress |
 | **Price Alert** | 📈 Planning |
 | **Tournament Reporter** | 💡 Concept |
@@ -660,13 +650,13 @@ POST /api/game-state
 • **Neural networks** for classification
 
 ## **🎯 Performance**
-**Accuracy:** `~85%` on known archetypes
+**Goal:** High accuracy archetype detection
 
 ## **🎮 Challenge**
 Detecting **rogue decks** and **new archetypes**
 
 ## **📦 Dataset**
-**10,000+** labeled decklists
+Building a labeled decklist dataset
 
 ---
 
