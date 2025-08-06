@@ -818,3 +818,61 @@ Guillaume created the actual MTGTools Discord server while Claude was still plan
 - ✅ Onboarding flow configured
 - 🎯 Next: Pre-seed content in channels
 - 📊 Current reality: 2 Discord members (Guillaume + Jiliac), server LIVE
+
+---
+
+## Session 17: Discord Icon Design & Finalization (August 6, 2025)
+
+### Context
+Guillaume needed a professional Discord server icon for MTGTools. Worked through multiple iterations to create the perfect design.
+
+### Key Activities
+
+#### 1. Icon Design Process
+- **Initial attempts**: ui-designer agent created specs but poor SVG execution
+- **Concept refined**: "MTG Tools" text + Forge/Anvil + Data bars
+- **Multiple iterations**: 
+  - discord-icon-mtg.svg (animated, too complex)
+  - discord-icon-mtg-static.svg (better but not perfect)
+  - discord-icon-final.svg (FINAL version combining best elements)
+
+#### 2. Design Specifications Created
+- **DISCORD_ICON_SPECIFICATION.md**: Complete design system
+  - ASCII mockup
+  - Color palette (#fbbf24, #fde047, #f59e0b)
+  - Size requirements (512px, 128px, 32px)
+  - Validation checklist
+- **Core concept**: "La Forge des Outils Pro" visualized
+
+#### 3. Final Design Elements
+```
+     MTG       <- Bold golden letters
+    Tools      <- Smaller subtitle
+   ╔═════╗     <- Forge/anvil shape
+   ╚══╤══╝    
+   ████████    <- Trapezoid base
+   ▐█▌▐██▌▐█▌  <- Data visualization bars
+```
+
+#### 4. Discord Configuration Updates
+- **DISCORD_FINAL_STRUCTURE.md** updated with complete channel structure
+- Welcome icon changed to 🚀 (rocket - "on décolle ensemble")
+- Onboarding flow configured for new members
+
+### Critical Decisions
+1. **MTG instead of just M**: Double meaning (Magic The Gathering + MTGTools)
+2. **No fancy effects**: Clean, professional, readable at all sizes
+3. **Agent limitations acknowledged**: Visual design needs human tools, not just code
+
+### Files Created/Modified
+- discord-icon-final.svg (production ready)
+- DISCORD_ICON_SPECIFICATION.md (complete specs)
+- DISCORD_FINAL_STRUCTURE.md (channel organization)
+
+### Session 17 Summary
+- ✅ Professional Discord icon designed and specified
+- ✅ Multiple SVG versions created and refined
+- ✅ Complete design documentation
+- ✅ Ready for PNG export and Discord upload
+- 🎯 Next: Export to PNG and set as server icon
+- 📊 Discord growth: Structure ready for scaling
