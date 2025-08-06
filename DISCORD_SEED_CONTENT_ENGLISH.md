@@ -249,7 +249,6 @@
 ## **🔜 Coming Soon**
 
 ⏳ Complete **API documentation**
-⏳ **Arena tracker**
 ⏳ **OCR** deck detection bot
 
 ---
@@ -507,23 +506,18 @@ Data visualization notebooks
 
 > *The heart of Videre: direct memory reading from MTGO client*
 
-## **📦 Current Status**
-**Version:** `2.0.3`
-**Language:** `C# (.NET 6)`
+## **📦 Technical Stack**
+**Language:** `C# (.NET Core)`
 **Method:** Process memory manipulation
-
-## **🎆 Recent Improvements**
-✅ Faster game state detection
-✅ Reduced memory footprint
-✅ Better error handling
+**Install:** `dotnet add package MTGOSDK`
 
 ---
 
-### **💻 Code Snippet of the Day**
+### **💻 Getting Started**
 \`\`\`csharp
-var gameState = mtgoService.GetGameState();
-var hand = gameState.Players[0].Hand;
-Console.WriteLine($"Cards in hand: {hand.Count}");
+// SDK provides APIs for reading MTGO client state
+// Check GitHub for actual implementation examples
+// github.com/videre-project/MTGOSDK
 \`\`\`
 
 ---
