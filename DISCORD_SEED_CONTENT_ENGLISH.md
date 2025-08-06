@@ -11,7 +11,7 @@
 
 > **Our Vision:** *Technical Talents × Competitors = Maximum Performance*
 
-## **📌 Q1 2025 Key Priorities**
+## **📌 Q3 2025 Key Priorities**
 
 **1.** 📚 Launch **Videre Project** documentation
 **2.** 🎮 Expand from **MTGO** → **Arena** tools  
@@ -31,7 +31,7 @@
 **Initial Content:**
 ```markdown
 # 📋 **MTGTools Strategic Roadmap**
-### *Q1-Q2 2025*
+### *Q3-Q4 2025*
 
 ---
 
@@ -40,7 +40,7 @@
 ⏳ **Videre API** documentation `0% → 100%`
 ⏳ **OCR Bot** completion `70% → 100%`
 
-## **🚀 Phase 2** *(Q2 2025)*
+## **🚀 Phase 2** *(Q4 2025)*
 🎯 **Arena tracker** development
 🎯 **PostgreSQL** infrastructure migration
 🎯 **ML archetype** detection enhancement
