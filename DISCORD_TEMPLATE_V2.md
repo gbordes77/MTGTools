@@ -81,19 +81,6 @@
 │   ├── 🧑‍🏫 Code Review Sessions
 │   └── 📚 Study Room (Push-to-talk)
 │
-├── 🏆 COMPETITIVE PRACTICE
-│   ├── 🎯 Tournament Prep 1
-│   ├── 🎯 Tournament Prep 2
-│   ├── 📊 Meta Analysis Lab
-│   ├── 🃏 Deck Testing Arena
-│   └── 🎙️ Streaming Room
-│
-├── 🎪 EVENT SPACES
-│   ├── 🎤 Stage (500+ listeners)
-│   ├── 🏅 Tournament Room A
-│   ├── 🏅 Tournament Room B
-│   └── 🎬 Watch Party
-│
 ├── 🔒 PRIVATE ROOMS
 │   ├── 🚪 Click to Create Private
 │   └── [Dynamic rooms appear here]

@@ -787,8 +787,6 @@ Optimize memory reading
 
 ## **📝 Proposed Projects**
 
-### **1️⃣ Arena Tracker**
-Similar to Videre but for MTGA
 
 ### **2️⃣ Paper Tournament App**
 Round timer, life tracking
