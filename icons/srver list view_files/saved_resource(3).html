@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<!-- saved from url=(0012)about:srcdoc -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js" integrity="sha512-iZ2ORl595Wx6miw+GuadDet4WQbdSWS3JLMoNfY8cRGoEFy6oT3G9IbcrBeL6AfkgpA51ETt/faX6yLV+/gFJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      (function() {
+        const originalConsole = window.console;
+        window.console = {
+          log: (...args) => {
+            originalConsole.log(...args);
+            window.parent.postMessage({ type: 'console', message: args.join(' ') }, '*');
+          },
+          error: (...args) => {
+            originalConsole.error(...args);
+            window.parent.postMessage({ type: 'console', message: 'Error: ' + args.join(' ') }, '*');
+          },
+          warn: (...args) => {
+            originalConsole.warn(...args);
+            window.parent.postMessage({ type: 'console', message: 'Warning: ' + args.join(' ') }, '*');
+          }
+        };
+
+        let requestId = 0;
+        let callbacksMap = new Map();
+        let streamControllers = new Map();
+        
+        window.claude = {
+          complete: (prompt) => {
+            return new Promise((resolve, reject) => {
+              const id = requestId++;
+              callbacksMap.set(id, { resolve, reject });
+              window.parent.postMessage({ type: 'claudeComplete', id, prompt }, '*');
+            });
+          }
+        };
+
+        let pendingBlobs = new Map();
+        URL.createObjectURL = (blob) => {
+          // Store the blob and create an ID and URL for it
+          const blobId = `blob-${Date.now()}-${Math.random()}`;
+          pendingBlobs.set(blobId, blob);
+          return `blob-request://${blobId}`;
+        };
+
+        URL.revokeObjectURL = (url) => {
+          // Remove the blob from our store
+          const blobId = url.replace("blob-request://", "");
+          pendingBlobs.delete(blobId);
+        };
+
+        const getBlobFromURL = (url) => {
+          const blobId = url.replace("blob-request://", "");
+          return pendingBlobs.get(blobId);
+        };
+
+        // Override global fetch with streaming support
+        window.fetch = (url, init = {}) => {
+          return new Promise((resolve, reject) => {
+            const id = requestId++;
+            const channelId = `fetch-${id}-${Date.now()}`;
+            
+            callbacksMap.set(id, { 
+              resolve: (response) => {
+                // Create a ReadableStream for the response body
+                const stream = new ReadableStream({
+                  start(controller) {
+                    streamControllers.set(channelId, controller);
+                  },
+                  cancel() {
+                    streamControllers.delete(channelId);
+                  }
+                });
+                
+                // Create and return the Response with the stream
+                resolve(new Response(stream, {
+                  status: response.status,
+                  statusText: response.statusText,
+                  headers: response.headers
+                }));
+              },
+              reject,
+              channelId
+            });
+            
+            window.parent.postMessage({
+              type: 'proxyFetch',
+              id,
+              url,
+              init,
+              channelId
+            }, '*');
+          });
+        };
+
+        window.addEventListener('message', async (event) => {
+          if (event.data.type === 'takeScreenshot') {
+            const rootElement = document.getElementById('artifacts-component-root-html');
+            if (!rootElement) {
+              window.parent.postMessage({
+                type: 'screenshotError',
+                error: new Error('Root element not found'),
+              }, '*');
+            }
+            const screenshot = await htmlToImage.toPng(rootElement, {
+              imagePlaceholder:
+                "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjePDgwX8ACOQDoNsk0PMAAAAASUVORK5CYII=",
+            });
+            window.parent.postMessage({
+              type: 'screenshotData',
+              data: screenshot,
+            }, '*');
+          } else if (event.data.type === 'claudeComplete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.completion);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'proxyFetchResponse') {
+            const callback = callbacksMap.get(event.data.id);
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+              callbacksMap.delete(event.data.id);
+            } else {
+              // Initial response with headers, status, etc.
+              callback.resolve({
+                status: event.data.status,
+                statusText: event.data.statusText,
+                headers: event.data.headers
+              });
+              // Don't delete the callback yet if streaming
+              if (!event.data.body) {
+                callbacksMap.delete(event.data.id);
+              }
+            }
+          } else if (event.data.type === 'proxyFetchStream') {
+            // Handle streaming data chunks
+            const controller = streamControllers.get(event.data.channelId);
+            if (controller) {
+              if (event.data.error) {
+                controller.error(new Error(event.data.error));
+                streamControllers.delete(event.data.channelId);
+              } else if (event.data.done) {
+                controller.close();
+                streamControllers.delete(event.data.channelId);
+                // Clean up the callback
+                const callback = Array.from(callbacksMap.entries()).find(
+                  ([_, value]) => value.channelId === event.data.channelId
+                );
+                if (callback) {
+                  callbacksMap.delete(callback[0]);
+                }
+              } else if (event.data.chunk) {
+                controller.enqueue(new Uint8Array(event.data.chunk));
+              }
+            }
+          }
+        });
+
+        window.addEventListener('click', (event) => {
+          const isEl = event.target instanceof HTMLElement;
+          if (!isEl) return;
+    
+          // find ancestor links
+          const linkEl = event.target.closest("a");
+          if (!linkEl || !linkEl.href) return;
+    
+          event.preventDefault();
+          event.stopImmediatePropagation();
+    
+          if (linkEl.href.startsWith("blob-request:")) {
+            const blob = getBlobFromURL(linkEl.href);
+            if (!blob) return;
+            void blob.arrayBuffer().then((data) => {
+              window.parent.postMessage({
+                type: "downloadFile",
+                filename: linkEl.download,
+                data,
+                mimeType: blob.type || "application/octet-stream",
+              });
+            });
+          } else if (linkEl.href.startsWith("data:")) {
+            const [header, base64Data] = linkEl.href.split(",");
+            const mimeMatch = header.match(/data:([^;]+)/);
+            const mimeType = mimeMatch ? mimeMatch[1] : "application/octet-stream";
+            const binaryString = atob(base64Data);
+            const data = Uint8Array.from(binaryString, (c) =>
+              c.charCodeAt(0),
+            ).buffer;
+            window.parent.postMessage({
+              type: "downloadFile",
+              filename: linkEl.download,
+              data,
+              mimeType,
+            });
+          } else {
+            let linkUrl;
+            try {
+              linkUrl = new URL(linkEl.href);
+            } catch (error) {
+              return;
+            }
+    
+            if (linkUrl.hostname === window.location.hostname) return;
+      
+            window.parent.postMessage({
+              type: 'openExternal',
+              href: linkEl.href,
+            }, '*');
+          }
+      });
+
+        const originalOpen = window.open;
+        window.open = function (url) {
+          window.parent.postMessage({
+            type: "openExternal",
+            href: url,
+          }, "*");
+        };
+
+        window.addEventListener('error', (event) => {
+          window.parent.postMessage({ type: 'console', message: 'Uncaught Error: ' + event.message }, '*');
+        });
+      })();
+    </script>
+  
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTGTools Discord Icon - Final Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0f00 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 195, 0, 0.2);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 
+                0 30px 100px rgba(255, 195, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            max-width: 1600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 3em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #FFC300, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(255, 195, 0, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 50px;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .main-preview {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .main-canvas-wrapper {
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.8),
+                inset 0 2px 5px rgba(255, 255, 255, 0.1);
+        }
+
+        .main-canvas {
+            border-radius: 50%;
+            box-shadow: 
+                0 0 100px rgba(255, 195, 0, 0.4),
+                0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .icon-preview {
+            background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 195, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .icon-preview:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 195, 0, 0.2);
+            border-color: rgba(255, 195, 0, 0.3);
+        }
+
+        .icon-canvas {
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .size-label {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .actual-size {
+            color: #FFC300;
+            font-size: 14px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .controls {
+            background: linear-gradient(145deg, #1a1a1a, #252525);
+            padding: 40px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 195, 0, 0.1);
+        }
+
+        .controls h3 {
+            color: #FFC300;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .control-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .control-group label {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFC300, #FFD700);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 195, 0, 0.5);
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 195, 0, 0.2);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        select option {
+            background: #2a2a2a;
+        }
+
+        .download-section {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #FFC300, #FFD700);
+            color: #000;
+            border: none;
+            padding: 20px 60px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 
+                0 10px 40px rgba(255, 195, 0, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 50px rgba(255, 195, 0, 0.6),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .value-display {
+            color: #FFC300;
+            font-weight: bold;
+        }
+
+        .specs {
+            background: linear-gradient(145deg, rgba(255, 195, 0, 0.05), rgba(255, 195, 0, 0.02));
+            border: 2px solid rgba(255, 195, 0, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .specs h3 {
+            color: #FFC300;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .spec-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        .spec-item::before {
+            content: "⚒️";
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body id="artifacts-component-root-html">
+    <div class="container">
+        <h1>⚒️ MTGTools Forge Icon ⚒️</h1>
+        <p class="subtitle">Professional Forge Design • Optimized Proportions • Discord Ready</p>
+
+        <div class="main-preview">
+            <div class="main-canvas-wrapper">
+                <canvas id="icon-main" class="main-canvas" width="512" height="512"></canvas>
+            </div>
+        </div>
+
+        <div class="controls">
+            <h3>🔧 Configuration de la Forge</h3>
+            <div class="control-grid">
+                <div class="control-group">
+                    <label>Style de Forge</label>
+                    <select id="forge-detail" onchange="updateDesign()">
+                        <option value="detailed">Forge Détaillée</option>
+                        <option value="simple">Forge Simple</option>
+                        <option value="modern">Forge Moderne</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Intensité Feu: <span class="value-display" id="fire-value">85</span>%</label>
+                    <input type="range" class="slider" id="fire-intensity" min="0" max="100" value="85" oninput="document.getElementById(&#39;fire-value&#39;).textContent = this.value; updateDesign()">
+                </div>
+                <div class="control-group">
+                    <label>Brillance Métal: <span class="value-display" id="shine-value">75</span>%</label>
+                    <input type="range" class="slider" id="metal-shine" min="0" max="100" value="75" oninput="document.getElementById(&#39;shine-value&#39;).textContent = this.value; updateDesign()">
+                </div>
+                <div class="control-group">
+                    <label>Taille Forge: <span class="value-display" id="forge-size">100</span>%</label>
+                    <input type="range" class="slider" id="forge-scale" min="80" max="120" value="100" oninput="document.getElementById(&#39;forge-size&#39;).textContent = this.value; updateDesign()">
+                </div>
+                <div class="control-group">
+                    <label>Position Data: <span class="value-display" id="data-pos">81</span>%</label>
+                    <input type="range" class="slider" id="data-position" min="65" max="85" value="75" oninput="document.getElementById(&#39;data-pos&#39;).textContent = this.value; updateDesign()">
+                </div>
+                <div class="control-group">
+                    <label>Hauteur Max Barres: <span class="value-display" id="bars-height">164</span>px</label>
+                    <input type="range" class="slider" id="bars-max-height" min="50" max="200" value="150" oninput="document.getElementById(&#39;bars-height&#39;).textContent = this.value; updateDesign()">
+                </div>
+                <div class="control-group">
+                    <label>Largeur Barres: <span class="value-display" id="bars-width">59</span>px</label>
+                    <input type="range" class="slider" id="bars-width-control" min="30" max="100" value="65" oninput="document.getElementById(&#39;bars-width&#39;).textContent = this.value; updateDesign()">
+                </div>
+                <div class="control-group">
+                    <label>Espacement Barres: <span class="value-display" id="bars-spacing">75</span>px</label>
+                    <input type="range" class="slider" id="bars-spacing-control" min="50" max="100" value="75" oninput="document.getElementById(&#39;bars-spacing&#39;).textContent = this.value; updateDesign()">
+                </div>
+                <div class="control-group">
+                    <label>Valeurs des Barres</label>
+                    <input type="text" id="bars-values" value="35,25,20,12,8" style="width: 100%; padding: 12px; background: rgba(255, 255, 255, 0.05); 
+                                  border: 2px solid rgba(255, 195, 0, 0.2); border-radius: 10px; 
+                                  color: #fff; font-size: 14px;" placeholder="Ex: 35,25,20,12,8" oninput="updateDesign()">
+                </div>
+                <div class="control-group">
+                    <label>Animation Data</label>
+                    <select id="data-animation" onchange="updateDesign()">
+                        <option value="static">Statique</option>
+                        <option value="hammer">Coups de Marteau</option>
+                        <option value="pulse">Pulsation</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-grid">
+            <div class="icon-preview">
+                <div class="size-label">Discord Server Icon</div>
+                <canvas id="icon-discord" class="icon-canvas" width="128" height="128"></canvas>
+                <div class="actual-size">128×128px</div>
+            </div>
+
+            <div class="icon-preview">
+                <div class="size-label">Server List View</div>
+                <canvas id="icon-small" class="icon-canvas" width="48" height="48"></canvas>
+                <div class="actual-size">48×48px</div>
+            </div>
+
+            <div class="icon-preview">
+                <div class="size-label">Emoji Size</div>
+                <canvas id="icon-emoji" class="icon-canvas" width="64" height="64"></canvas>
+                <div class="actual-size">64×64px</div>
+            </div>
+
+            <div class="icon-preview">
+                <div class="size-label">Notification Icon</div>
+                <canvas id="icon-tiny" class="icon-canvas" width="32" height="32"></canvas>
+                <div class="actual-size">32×32px</div>
+            </div>
+        </div>
+
+        <div class="specs">
+            <h3>📋 Spécifications Techniques</h3>
+            <div class="spec-list">
+                <div class="spec-item">Forge proportionnelle au marteau</div>
+                <div class="spec-item">Forge collée au texte MTGTools</div>
+                <div class="spec-item">Data bars plus grandes et visibles</div>
+                <div class="spec-item">Zone sûre circulaire respectée</div>
+                <div class="spec-item">Lisible à toutes les tailles</div>
+                <div class="spec-item">Design professionnel gaming</div>
+                <div class="spec-item">Export PNG haute qualité</div>
+                <div class="spec-item">Animation subtile disponible</div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <button class="download-btn" onclick="downloadIcon()">
+                ⚒️ Télécharger l'Icône Finale
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let animationFrame = 0;
+        let animationId = null;
+
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 512;
+            
+            // Settings
+            const forgeDetail = document.getElementById('forge-detail').value;
+            const fireIntensity = document.getElementById('fire-intensity').value / 100;
+            const metalShine = document.getElementById('metal-shine').value / 100;
+            const forgeScale = document.getElementById('forge-scale').value / 100;
+            const dataPosition = document.getElementById('data-position').value / 100;
+            const dataAnimation = document.getElementById('data-animation').value;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Background - noir profond
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Fire glow background - using #FF6600 color
+            if (fireIntensity > 0) {
+                const glowGradient = ctx.createRadialGradient(size/2, size * 0.45, 0, size/2, size * 0.45, size * 0.4);
+                glowGradient.addColorStop(0, `rgba(255, 102, 0, ${0.5 * fireIntensity})`);
+                glowGradient.addColorStop(0.3, `rgba(255, 136, 0, ${0.3 * fireIntensity})`);
+                glowGradient.addColorStop(0.6, `rgba(255, 102, 0, ${0.1 * fireIntensity})`);
+                glowGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctx.fillStyle = glowGradient;
+                ctx.fillRect(0, 0, size, size);
+            }
+            
+            // Draw MTG text at top
+            ctx.save();
+            ctx.translate(size/2, size * 0.18);
+            
+            // Text shadow for depth
+            ctx.shadowColor = '#FF6600';
+            ctx.shadowBlur = 25 * scale * fireIntensity;
+            
+            // Golden gradient text with #FF6600 and #FFD700
+            const textGradient = ctx.createLinearGradient(0, -45 * scale, 0, 45 * scale);
+            textGradient.addColorStop(0, '#FFFFFF');
+            textGradient.addColorStop(0.2, '#FFD700');
+            textGradient.addColorStop(0.5, '#FF9900');
+            textGradient.addColorStop(0.8, '#FF6600');
+            textGradient.addColorStop(1, '#CC5500');
+            
+            ctx.fillStyle = textGradient;
+            ctx.font = `900 ${100 * scale}px Arial Black, Impact, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('MTG', 0, 0);
+            
+            // Metallic outline
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2 * scale;
+            ctx.strokeText('MTG', 0, 0);
+            
+            ctx.restore();
+            
+            // Draw "Tools" with hammer as T
+            ctx.save();
+            ctx.translate(size/2, size * 0.32);
+            
+            // Calculate text metrics for proper spacing
+            ctx.font = `600 ${40 * scale}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Measure "ools" width to position hammer correctly
+            const oolsWidth = ctx.measureText('ools').width;
+            
+            // Draw hammer as "T" - positioned to left of "ools"
+            ctx.save();
+            ctx.translate(-oolsWidth/2 - 20 * scale, 0);
+            
+            // Rotate hammer slightly for dynamic look
+            ctx.rotate(-0.1);
+            
+            // Hammer handle (vertical part of T)
+            const handleGradient = ctx.createLinearGradient(-3 * scale, -25 * scale, 3 * scale, 20 * scale);
+            handleGradient.addColorStop(0, '#8B4513');
+            handleGradient.addColorStop(0.5, '#A0522D');
+            handleGradient.addColorStop(1, '#654321');
+            ctx.fillStyle = handleGradient;
+            ctx.fillRect(-3 * scale, -20 * scale, 6 * scale, 40 * scale);
+            
+            // Wood grain details
+            ctx.strokeStyle = '#5C4033';
+            ctx.lineWidth = 0.5 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-1 * scale, -20 * scale);
+            ctx.lineTo(-1 * scale, 20 * scale);
+            ctx.moveTo(1 * scale, -20 * scale);
+            ctx.lineTo(1 * scale, 20 * scale);
+            ctx.stroke();
+            
+            // Hammer head (horizontal part of T)
+            ctx.save();
+            ctx.translate(0, -20 * scale);
+            
+            // Main hammer head with metallic gradient
+            const hammerGradient = ctx.createLinearGradient(-18 * scale, -8 * scale, 18 * scale, 8 * scale);
+            hammerGradient.addColorStop(0, '#404040');
+            hammerGradient.addColorStop(0.2, '#808080');
+            hammerGradient.addColorStop(0.5, '#C0C0C0');
+            hammerGradient.addColorStop(0.8, '#808080');
+            hammerGradient.addColorStop(1, '#404040');
+            
+            ctx.fillStyle = hammerGradient;
+            
+            // Draw hammer head shape
+            ctx.beginPath();
+            // Left face
+            ctx.moveTo(-18 * scale, -8 * scale);
+            ctx.lineTo(-15 * scale, -10 * scale);
+            ctx.lineTo(-15 * scale, 10 * scale);
+            ctx.lineTo(-18 * scale, 8 * scale);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Right face
+            ctx.beginPath();
+            ctx.moveTo(18 * scale, -8 * scale);
+            ctx.lineTo(15 * scale, -10 * scale);
+            ctx.lineTo(15 * scale, 10 * scale);
+            ctx.lineTo(18 * scale, 8 * scale);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Center body
+            ctx.fillRect(-15 * scale, -10 * scale, 30 * scale, 20 * scale);
+            
+            // Top highlight for 3D effect
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.fillRect(-15 * scale, -10 * scale, 30 * scale, 3 * scale);
+            
+            // Bottom shadow for depth
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+            ctx.fillRect(-15 * scale, 7 * scale, 30 * scale, 3 * scale);
+            
+            // Metal shine streaks
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.lineWidth = 1 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-10 * scale, -8 * scale);
+            ctx.lineTo(-10 * scale, 8 * scale);
+            ctx.moveTo(10 * scale, -8 * scale);
+            ctx.lineTo(10 * scale, 8 * scale);
+            ctx.stroke();
+            
+            ctx.restore();
+            ctx.restore();
+            
+            // Draw "ools" after the hammer
+            ctx.fillStyle = '#FFD700';
+            ctx.font = `600 ${40 * scale}px Arial, sans-serif`;
+            ctx.textAlign = 'left';
+            ctx.fillText('ools', -oolsWidth/2 + 5 * scale, 0);
+            
+            ctx.restore();
+            
+            // Draw Anvil/Forge
+            ctx.save();
+            ctx.translate(size/2, size * 0.45);
+            ctx.scale(forgeScale * 1.1, forgeScale * 1.2);
+            
+            // Main anvil body gradient
+            const anvilGradient = ctx.createLinearGradient(0, -50 * scale, 0, 50 * scale);
+            anvilGradient.addColorStop(0, '#FFE4B5');
+            anvilGradient.addColorStop(0.2, '#FFD700');
+            anvilGradient.addColorStop(0.5, '#FF9900');
+            anvilGradient.addColorStop(0.8, '#FF6600');
+            anvilGradient.addColorStop(1, '#CC5500');
+            
+            ctx.fillStyle = anvilGradient;
+            
+            // Draw anvil shape
+            ctx.beginPath();
+            // Top surface
+            ctx.moveTo(-170 * scale, -25 * scale);
+            ctx.lineTo(170 * scale, -25 * scale);
+            
+            // Right horn
+            ctx.lineTo(200 * scale, -30 * scale);
+            ctx.lineTo(220 * scale, -28 * scale);
+            ctx.lineTo(230 * scale, -22 * scale);
+            ctx.lineTo(225 * scale, -15 * scale);
+            ctx.lineTo(200 * scale, -12 * scale);
+            ctx.lineTo(170 * scale, -12 * scale);
+            
+            // Right side
+            ctx.lineTo(150 * scale, -5 * scale);
+            ctx.lineTo(140 * scale, 5 * scale);
+            ctx.lineTo(130 * scale, 15 * scale);
+            
+            // Right foot
+            ctx.lineTo(160 * scale, 35 * scale);
+            ctx.lineTo(165 * scale, 45 * scale);
+            ctx.lineTo(-165 * scale, 45 * scale);
+            ctx.lineTo(-160 * scale, 35 * scale);
+            
+            // Left side
+            ctx.lineTo(-130 * scale, 15 * scale);
+            ctx.lineTo(-140 * scale, 5 * scale);
+            ctx.lineTo(-150 * scale, -5 * scale);
+            ctx.lineTo(-170 * scale, -12 * scale);
+            
+            // Left horn
+            ctx.lineTo(-200 * scale, -12 * scale);
+            ctx.lineTo(-210 * scale, -18 * scale);
+            ctx.lineTo(-210 * scale, -30 * scale);
+            ctx.lineTo(-195 * scale, -30 * scale);
+            ctx.lineTo(-170 * scale, -25 * scale);
+            
+            ctx.closePath();
+            ctx.fill();
+            
+            // Add depth lines
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillRect(-170 * scale, -12 * scale, 400 * scale, 3 * scale);
+            
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.6)';
+            ctx.lineWidth = 2 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-170 * scale, -12 * scale);
+            ctx.lineTo(170 * scale, -12 * scale);
+            ctx.stroke();
+            
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.lineWidth = 1 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-170 * scale, -13 * scale);
+            ctx.lineTo(170 * scale, -13 * scale);
+            ctx.stroke();
+            
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.lineWidth = 2.5 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-130 * scale, 15 * scale);
+            ctx.lineTo(130 * scale, 15 * scale);
+            ctx.stroke();
+            
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.lineWidth = 1 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-130 * scale, 14 * scale);
+            ctx.lineTo(130 * scale, 14 * scale);
+            ctx.stroke();
+            
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.7)';
+            ctx.lineWidth = 3 * scale;
+            ctx.beginPath();
+            ctx.moveTo(-165 * scale, 35 * scale);
+            ctx.lineTo(165 * scale, 35 * scale);
+            ctx.stroke();
+            
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+            ctx.fillRect(-165 * scale, 35 * scale, 330 * scale, 10 * scale);
+            
+            // Hardy hole
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillRect(-20 * scale, -25 * scale, 40 * scale, 10 * scale);
+            
+            // Pritchel hole
+            ctx.beginPath();
+            ctx.arc(70 * scale, -20 * scale, 10 * scale, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Metallic highlights
+            if (metalShine > 0) {
+                const highlightGradient = ctx.createLinearGradient(0, -25 * scale, 0, -15 * scale);
+                highlightGradient.addColorStop(0, `rgba(255, 255, 255, ${0.8 * metalShine})`);
+                highlightGradient.addColorStop(1, `rgba(255, 255, 255, ${0.3 * metalShine})`);
+                ctx.fillStyle = highlightGradient;
+                ctx.fillRect(-170 * scale, -25 * scale, 340 * scale, 8 * scale);
+                
+                ctx.fillStyle = `rgba(255, 255, 255, ${0.4 * metalShine})`;
+                ctx.beginPath();
+                ctx.moveTo(-170 * scale, -25 * scale);
+                ctx.lineTo(-140 * scale, 5 * scale);
+                ctx.lineTo(-130 * scale, 5 * scale);
+                ctx.lineTo(-160 * scale, -25 * scale);
+                ctx.fill();
+            }
+            
+            ctx.restore();
+            
+            // Draw data bars
+            ctx.save();
+            const dataPos = document.getElementById('data-position').value / 100;
+            ctx.translate(size/2, size * dataPos);
+            
+            // Get dynamic bar parameters
+            const barWidthControl = document.getElementById('bars-width-control').value;
+            const barSpacingControl = document.getElementById('bars-spacing-control').value;
+            const maxBarHeight = document.getElementById('bars-max-height').value;
+            const barsValuesInput = document.getElementById('bars-values').value;
+            
+            const barWidth = barWidthControl * scale;
+            const barSpacing = barSpacingControl * scale;
+            
+            // Parse bar values from input
+            let bars = [0.4, 0.6, 0.8, 0.95, 1.0]; // Default values
+            try {
+                const inputValues = barsValuesInput.split(',').map(v => parseFloat(v.trim()) / 100);
+                if (inputValues.every(v => !isNaN(v) && v >= 0 && v <= 1)) {
+                    bars = inputValues;
+                }
+            } catch (e) {
+                // Keep default values if parsing fails
+            }
+            
+            // Base line for bars
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.lineWidth = 2 * scale;
+            ctx.beginPath();
+            const totalWidth = bars.length * barSpacing;
+            ctx.moveTo(-totalWidth/2, 0);
+            ctx.lineTo(totalWidth/2, 0);
+            ctx.stroke();
+            
+            bars.forEach((height, i) => {
+                const x = -totalWidth/2 + barSpacing/2 + i * barSpacing;
+                let adjustedHeight = height;
+                
+                // Apply animation
+                if (dataAnimation === 'hammer') {
+                    const hammerPhase = (animationFrame * 0.08 + i * 0.3) % (Math.PI * 2);
+                    if (hammerPhase < 0.3) {
+                        adjustedHeight *= 1.3;
+                    }
+                } else if (dataAnimation === 'pulse') {
+                    adjustedHeight *= (1 + Math.sin(animationFrame * 0.05 + i * 0.5) * 0.15);
+                }
+                
+                const barHeight = adjustedHeight * maxBarHeight * scale * 1.8; // 80% plus hautes
+                
+                // Bar gradient
+                const barGradient = ctx.createLinearGradient(0, -barHeight, 0, 0);
+                barGradient.addColorStop(0, '#FFD700');
+                barGradient.addColorStop(0.3, '#FF9900');
+                barGradient.addColorStop(0.7, '#FF6600');
+                barGradient.addColorStop(1, '#CC5500');
+                
+                // Draw bar
+                ctx.fillStyle = barGradient;
+                ctx.fillRect(x - barWidth/2, -barHeight, barWidth, barHeight);
+                
+                // Volume lines
+                ctx.strokeStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.lineWidth = 3 * scale;
+                ctx.beginPath();
+                ctx.moveTo(x - barWidth/2, -barHeight/2);
+                ctx.lineTo(x + barWidth/2, -barHeight/2);
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(x - barWidth/2, -barHeight);
+                ctx.lineTo(x + barWidth/2, -barHeight);
+                ctx.stroke();
+                
+                // Graduation marks
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.lineWidth = 1 * scale;
+                for(let j = 0; j < 3; j++) {
+                    ctx.beginPath();
+                    ctx.moveTo(x - barWidth/2 - 5 * scale, -barHeight * (j+1) / 4);
+                    ctx.lineTo(x - barWidth/2, -barHeight * (j+1) / 4);
+                    ctx.stroke();
+                }
+                
+                // Add glow
+                if (fireIntensity > 0.3) {
+                    ctx.shadowColor = '#FF6600';
+                    ctx.shadowBlur = 10 * scale * fireIntensity;
+                    ctx.fillRect(x - barWidth/2, -barHeight, barWidth, barHeight);
+                    ctx.shadowBlur = 0;
+                }
+                
+                // Highlights
+                ctx.fillStyle = `rgba(255, 255, 255, ${0.4 * metalShine})`;
+                ctx.fillRect(x - barWidth/2, -barHeight, 12 * scale, barHeight);
+                
+                ctx.fillStyle = `rgba(255, 255, 255, ${0.6 * metalShine})`;
+                ctx.fillRect(x - barWidth/2, -barHeight, barWidth, 4 * scale);
+                
+                // Percentage value
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.font = `${10 * scale}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.fillText(`${Math.round(height * 100)}%`, x, -barHeight - 10 * scale);
+            });
+            
+            ctx.restore();
+            
+            // Add forge sparks
+            if (fireIntensity > 0.6) {
+                ctx.save();
+                for (let i = 0; i < 8; i++) {
+                    const sparkX = size * 0.3 + Math.random() * size * 0.4;
+                    const sparkY = size * 0.35 + Math.random() * size * 0.25;
+                    const sparkSize = Math.random() * 2 * scale;
+                    
+                    ctx.fillStyle = `rgba(255, 136, 0, ${Math.random() * fireIntensity})`;
+                    ctx.beginPath();
+                    ctx.arc(sparkX, sparkY, sparkSize, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        function updateDesign() {
+            drawIcon(document.getElementById('icon-main'), 512);
+            drawIcon(document.getElementById('icon-discord'), 128);
+            drawIcon(document.getElementById('icon-small'), 48);
+            drawIcon(document.getElementById('icon-emoji'), 64);
+            drawIcon(document.getElementById('icon-tiny'), 32);
+        }
+
+        function animate() {
+            animationFrame++;
+            const animation = document.getElementById('data-animation').value;
+            if (animation !== 'static') {
+                updateDesign();
+                animationId = requestAnimationFrame(animate);
+            }
+        }
+
+        function downloadIcon() {
+            const canvas = document.getElementById('icon-main');
+            const link = document.createElement('a');
+            link.download = 'mtgtools-forge-icon-final-512x512.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Event listeners
+        document.getElementById('data-animation').addEventListener('change', function() {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            if (this.value !== 'static') {
+                animate();
+            } else {
+                updateDesign();
+            }
+        });
+
+        // Initialize
+        updateDesign();
+        animate();
+    </script>
+
+</body></html>

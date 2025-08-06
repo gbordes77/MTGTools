@@ -876,3 +876,80 @@ Guillaume needed a professional Discord server icon for MTGTools. Worked through
 - ✅ Ready for PNG export and Discord upload
 - 🎯 Next: Export to PNG and set as server icon
 - 📊 Discord growth: Structure ready for scaling
+
+---
+
+## Session 18: Meta Tags Update Confusion (August 6, 2025)
+
+### Context
+Guillaume wanted to update meta tags for better social sharing when posting the MTGTools link.
+
+### Key Activities
+
+#### 1. Meta Description Strategy
+- Worked with marketing-writer and product-manager agents
+- Created multiple options for meta descriptions
+- Guillaume chose simple version: "Join us to forge the competitive tools of the future"
+
+#### 2. Meta Tags Updated
+- Changed title to: "MTGTools - Join us to forge the competitive tools of the future"  
+- Updated all meta descriptions (og:description, twitter:description, etc.)
+- Pushed changes to GitHub Pages
+
+#### 3. Caching Issue
+- Changes ARE live on the site (verified with curl)
+- Discord still shows old cached preview
+- This is a known Discord/social media caching problem
+
+### Critical Lesson
+- Discord and other platforms cache link previews aggressively
+- Even though meta tags are updated on live site, old previews persist
+- May take hours or need URL parameter (?v=2) to force refresh
+
+### Session 18 Summary
+- ✅ Meta tags successfully updated in index.html
+- ✅ Changes verified as live on GitHub Pages
+- ⚠️ Discord showing cached old preview (not our fault)
+- 🎯 Next: Wait for cache refresh or use URL parameters
+- 📊 Current: Site ready, Discord live, waiting on cache
+
+---
+
+## Session 19: Discord Charter Setup & Reality Check (August 6, 2025)
+
+### Context
+Guillaume continuing Discord setup after creating server. Working on populating charter channel with manifesto content.
+
+### Key Activities
+
+#### 1. Charter Evolution Abandoned
+- Created CHARTE_MTGTOOLS_V2.md with "excellence + learning together" philosophy
+- Guillaume reviewed and rejected: "pas du tout en phase, oublies ça"
+- Decision: Use original MANIFESTO instead of new charter
+- Lesson: Don't try to "improve" what already works
+
+#### 2. Discord Charter Channel Setup
+- Formatted English manifesto for Discord posting
+- Provided Discord-ready markdown formatting
+- Guillaume posted directly to #charter channel
+- Both FR and EN versions now available for community
+
+#### 3. Documentation Updates
+- Updated CLAUDE.md to reflect document status:
+  - MTGTOOLS_MANIFESTO_FR.md - Active (original)
+  - MTGTOOLS_MANIFESTO_EN.md - Active (for Discord)
+  - CHARTE_MTGTOOLS_V2.md - NOT USED (rejected)
+- Added DISCORD_FINAL_STRUCTURE.md reference
+
+### Critical Decisions
+1. **Original vision preserved**: Manifesto > Charter attempt
+2. **No unnecessary evolution**: Excellence alone, not "learning together"
+3. **Direct execution**: Guillaume posts content himself
+
+### Session 19 Summary
+- ✅ English manifesto formatted for Discord
+- ✅ CLAUDE.md updated with correct document status
+- ✅ Session tracking updated
+- ❌ CHARTE_MTGTOOLS_V2.md rejected (keep for reference)
+- 🎯 Discord charter channel populated
+- 📊 Current: Discord has manifesto, ready for community growth
