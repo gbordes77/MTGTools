@@ -416,3 +416,42 @@ Complete Discord content population with rigorous fact-checking by Guillaume.
 - **Guillaume's vigilance is essential** - caught multiple false claims
 - **Always verify before posting** - no assumptions
 - **Undersell rather than overpromise** - builds trust
+
+## Session 21: Discord Role System Implementation (August 7, 2025)
+
+### Context
+Guillaume identified critical need for role-based identification system before Discord launch to track who has which skills.
+
+### Key Activities
+1. **Role System Design**
+   - 3-tier structure planned: Primary roles → Tech specializations → Competitive level
+   - Decision: Start with Layer 1 only (Primary roles)
+   - Competitive levels postponed (not for initial launch)
+
+2. **Primary Roles Created**
+   - **🔧 Tech Team** - Developers, designers, data analysts (Blue #5865F2)
+   - **🎮 Competitor** - Players seeking tools for winrate (Green #57F287)
+   - **⚡ Hybrid** - Both tech AND competitive (Purple #EB459E)
+
+3. **Permission Configuration**
+   - All roles: NO general server permissions
+   - Permissions managed at channel level only
+   - Roles are for identification, not power
+   - Display members separately enabled
+
+4. **Implementation Strategy**
+   - Manual assignment initially (< 20 members)
+   - Bot implementation planned for scale
+   - Welcome message with role selection prepared
+   - All roles and messages in English (per Guillaume's requirement)
+
+### Technical Decisions
+- Roles are identification markers, not permission grants
+- Channel-level permissions for access control
+- Single role selection (no multiple primary roles)
+- Future: Tech specializations as Layer 2
+
+### Next Steps
+- Create #choose-your-role channel with reaction message
+- Configure channel permissions per role
+- Test role assignment workflow

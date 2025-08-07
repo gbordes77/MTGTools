@@ -1016,3 +1016,64 @@ Guillaume caught multiple false claims:
 - ✅ Voice channels pending (not urgent)
 - 🎯 Discord ready for community growth
 - 📊 Current: 2 real members, authentic content, no fake metrics
+
+---
+
+## Session 21: Discord Role System & Quick Wins Analysis (August 7, 2025)
+
+### Context
+Guillaume requested quick wins before Discord launch and identified critical need for role-based member identification system.
+
+### Key Activities
+
+#### 1. Quick Wins Analysis
+Identified 5 immediate improvements:
+- Fix videreproject.com references (5 files affected)
+- Update obsolete README.md
+- Create basic Videre repos documentation
+- Add Discord counter to landing page
+- Setup GitHub webhook for Discord
+
+#### 2. Discord Role System Design
+**3-tier structure planned:**
+- Layer 1: Primary roles (Tech/Competitor/Hybrid)
+- Layer 2: Tech specializations (Frontend, Backend, Data, etc.)
+- Layer 3: Competitive levels (postponed)
+
+#### 3. Primary Roles Implementation
+**Roles created in Discord:**
+- **🔧 Tech Team** (Blue #5865F2) - Developers, designers, analysts
+- **🎮 Competitor** (Green #57F287) - Players seeking tools
+- **⚡ Hybrid** (Purple #EB459E) - Both tech AND competitive
+
+**Configuration:**
+- All permissions disabled at server level
+- Permissions managed per channel
+- Display members separately enabled
+- Roles for identification, not power
+
+#### 4. Implementation Strategy
+- Manual assignment for first 20 members
+- Welcome message with role instructions prepared
+- Bot automation planned for scale (Carl-bot/MEE6)
+- All content in English per requirements
+
+### Technical Decisions
+1. **Single primary role only** - No multiple selections
+2. **Channel-based permissions** - Not role-based
+3. **English-only** for all roles and messages
+4. **Layer 2 postponed** until 20+ members
+
+### Next Steps
+- Create #choose-your-role channel
+- Post role selection message
+- Configure channel permissions per role
+- Fix critical videreproject.com references
+
+### Session 21 Summary
+- ✅ Quick wins identified and prioritized
+- ✅ Discord role system designed and implemented
+- ✅ Primary roles created with proper permissions
+- ✅ Documentation updated (CLAUDE.md, SESSION_TRACKING.md)
+- 🎯 Ready for role selection message in #welcome
+- 📊 Current: 3 roles created, ready for member categorization
