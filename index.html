@@ -24,7 +24,7 @@
     <meta name="twitter:description" content="Join us to forge the competitive tools of the future. Open-source MTG tools built by grinders, for grinders.">
     
     <!-- PWA Support -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#fbbf24">
     
     <!-- Fonts -->
@@ -78,6 +78,7 @@
             from { opacity: 0; transform: translateX(-50px); }
             to { opacity: 1; transform: translateX(0); }
         }
+        .animate-slide-in { animation: slide-in 0.6s ease forwards; }
         
         @keyframes matrix-rain {
             0% { transform: translateY(-100%) scaleY(0); opacity: 0; }
@@ -446,7 +447,8 @@
                     </div>
                     
                     <!-- Language Toggle -->
-                    <button @click="lang = lang === 'fr' ? 'en' : 'fr'" 
+                    <button @click="lang = lang === 'fr' ? 'en' : 'fr'; $nextTick(() => document.documentElement.lang = lang)" 
+                            aria-label="Toggle language"
                             class="glassmorphism px-6 py-3 rounded-full hover-glow flex items-center gap-3 text-sm font-medium">
                         <span x-show="lang === 'fr'">🇫🇷 FR</span>
                         <span x-show="lang === 'en'">🇬🇧 EN</span>
@@ -1305,7 +1307,7 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-amber-500/10 to-orange-400/20 opacity-50 group-hover:opacity-70 transition-opacity duration-1000"></div>
                     
                     <!-- Floating particles -->
-                    <div class="absolute inset-0 overflow-hidden">
+                    <div class="absolute inset-0 overflow-hidden" id="cta">
                         <div class="absolute top-10 left-10 w-2 h-2 bg-yellow-400 rounded-full animate-float" style="animation-delay: 0s;"></div>
                         <div class="absolute bottom-10 right-10 w-3 h-3 bg-amber-400 rounded-full animate-float" style="animation-delay: 1s;"></div>
                         <div class="absolute top-1/2 left-1/4 w-2 h-2 bg-orange-400 rounded-full animate-float" style="animation-delay: 2s;"></div>
@@ -1551,8 +1553,7 @@
             if (sectionId === 'hero') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else if (sectionId === 'cta') {
-                // For CTA section, find it by class since it might not have an ID
-                const ctaSection = document.querySelector('section.py-24.mb-24.pb-32');
+                const ctaSection = document.getElementById('cta');
                 if (ctaSection) {
                     ctaSection.scrollIntoView({ behavior: 'smooth' });
                 }
@@ -1663,7 +1664,7 @@
         // Service Worker registration for offline support
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
+                navigator.serviceWorker.register('sw.js').catch(() => {});
             });
         }
         
