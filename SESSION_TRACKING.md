@@ -1135,3 +1135,20 @@ Cory (Videre creator) clarified integration details (JSON‑RPC IPC between MTGO
 ### Next Steps
 - Open PRs in Videre repos following `QUICK_WINS.md` order
 - Track completion in a simple checklist in `QUICK_WINS.md`
+
+---
+
+## Session 23: GitHub authorization for automation (August 8, 2025)
+
+### Context
+- User requested permanent authorization so the assistant can manage GitHub tasks (Pages activation, PRs, issues) from this machine.
+
+### Plan
+- Prefer GitHub CLI login on this machine: `gh auth login` (browser flow). Grants durable, revocable access tied to the user account.
+- Alternative: Provide a fine‑grained PAT and export it as `GH_TOKEN` for CLI/API operations.
+
+### Minimal permissions needed
+- Repository scope sufficient for Pages settings and workflow management: contents (RW), pull requests (RW), issues (RW), workflows (RW). Pages/admin may be required to edit Pages settings.
+
+### Next
+- Complete auth locally, then activate GitHub Pages (main, root) and verify deployment URL.
