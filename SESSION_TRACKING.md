@@ -1192,3 +1192,6 @@ Cory (Videre creator) clarified integration details (JSON‑RPC IPC between MTGO
 ### Acceptance
 - Single markdown in repo (docs/API.md) + link from README
 - Copy‑pasteable examples returning real data from prod/staging
+
+#### Verification (Aug 8)
+- No existing public API doc found in repo (`docs/API.md` or equivalent missing). Only internal audit/code references under `videre-audit/`.
