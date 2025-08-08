@@ -14,8 +14,9 @@ Conventions
 Auth
 - Current endpoints documented here are public, no auth required.
 
-Rate limiting
-- Not specified in code. Assume standard CF limits; handle 429s gracefully.
+Caching & rate limiting
+- CDN/browser caching set via Cloudflare (Cache-Control): browser ~1h, CDN ~30min (see `CACHE_POLICY`)
+- Pas de quotas explicites dans le code; gérer 429 si le CDN en renvoie
 
 Endpoints
 
@@ -56,7 +57,8 @@ const data = await r.json();
 - Path params:
   - `format` (required by validator, optional in route signature): one of formats above
 - Query params (optional): inherit from `events` (date range, limit)
-- Response: rows from `getMetagame` query (presence by archetype). Shape may evolve; consume keys defensively.
+- Response: rows from `getMetagame` (join de `presence` + `winrates`):
+  - `archetype`, `count`, `percentage`, `match_count`, `match_winrate`, `match_ci`, `game_count`, `game_winrate`, `game_ci`
 - Examples:
 ```bash
 curl "https://api.videreproject.com/metagame/Modern?limit=50"
@@ -73,7 +75,7 @@ const data = await r.json();
 - Query params (optional):
   - `archetype` (string) — if provided, returns one row filtered to this archetype
   - Date window and `limit` like above
-- Response: matrix rows including win/loss/draw percentages (from `getMatchupMatrix`).
+- Response: `[{ id, archetype, matchups: [{ id, archetype, match_count, match_winrate, match_ci, game_count, game_winrate, game_ci }] }]`
 - Examples:
 ```bash
 curl "https://api.videreproject.com/matchups/Pioneer?limit=100"
