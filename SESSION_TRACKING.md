@@ -1162,3 +1162,4 @@ Cory (Videre creator) clarified integration details (JSON‑RPC IPC between MTGO
 
 ### Outcome
 - GitHub Pages activated (main/root) and live at https://gbordes77.github.io/MTGTools/
+ - User confirmation requested: verify visible 'Videre Project' showcase (terminal block + Observable link) after 'Projets'.
