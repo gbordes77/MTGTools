@@ -1195,3 +1195,27 @@ Cory (Videre creator) clarified integration details (JSON‑RPC IPC between MTGO
 
 #### Verification (Aug 8)
 - No existing public API doc found in repo (`docs/API.md` or equivalent missing). Only internal audit/code references under `videre-audit/`.
+
+---
+
+## Session 26: Documentation gaps identified (August 8, 2025)
+
+### Gaps (prioritized)
+1) API Reference Completeness
+- Versioning & Changelog for endpoints
+- Error model taxonomy (status codes, body shape) with examples
+- Parameters glossary (formats allowed, date formats, defaults) consolidated
+- Rate limits policy (even "unspecified" + recommended client backoff)
+
+2) Data Schema Guide
+- Public description of fields returned by queries (events, metagame, matchups, archetypes) and IDs semantics
+- Glossary: archetype naming rules, deck_id meaning, event kinds
+
+3) Deployment Guide (Public API)
+- Cloudflare Workers deployment steps (wrangler), env vars, Postgres connectivity, cache policy
+
+4) Contributor Docs (root)
+- CONTRIBUTING.md (mono‑repo pointers), CODE_OF_CONDUCT.md, SECURITY.md
+
+5) Cross‑repo Pointers
+- Update root README to link `docs/API.md` and Videre repos (Tracker, MTGOSDK) quickstarts
