@@ -1159,3 +1159,6 @@ Cory (Videre creator) clarified integration details (JSON‑RPC IPC between MTGO
 3) Choose: GitHub.com → HTTPS → Login with a web browser
 4) Press Enter to open the browser, paste the one‑time code, authorize
 5) Done — CLI is now authorized for repo/PR/Pages actions
+
+### Outcome
+- GitHub Pages activated (main/root) and live at https://gbordes77.github.io/MTGTools/
