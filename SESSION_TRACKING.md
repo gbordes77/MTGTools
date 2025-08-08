@@ -1176,3 +1176,19 @@ Cory (Videre creator) clarified integration details (JSON‑RPC IPC between MTGO
 
 ### Awaiting Mission
 - Suggested starters: (1) Videre API docs; (2) QUICK_WINS PR batch; (3) Discord onboarding bot.
+
+---
+
+## Session 25: Priority deliverable decision (August 8, 2025)
+
+### Decision
+- First deliverable: Videre Public API Documentation (MVP, one‑pager).
+
+### Scope (must‑have)
+- Overview (base URL, versioning, auth), rate limits, error model
+- Endpoints (read‑only) with request/response examples: winrates, presence, events, decks (per current API)
+- Quickstart: curl examples + minimal JS/TS fetch snippet
+
+### Acceptance
+- Single markdown in repo (docs/API.md) + link from README
+- Copy‑pasteable examples returning real data from prod/staging
