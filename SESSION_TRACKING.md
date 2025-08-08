@@ -1163,3 +1163,16 @@ Cory (Videre creator) clarified integration details (JSON‑RPC IPC between MTGO
 ### Outcome
 - GitHub Pages activated (main/root) and live at https://gbordes77.github.io/MTGTools/
  - User confirmation requested: verify visible 'Videre Project' showcase (terminal block + Observable link) after 'Projets'.
+
+---
+
+## Session 24: Agent Organizer readiness (August 8, 2025)
+
+### Context
+- User asked if GPT‑5 can run in agent mode for multi‑domain tasks.
+
+### Status
+- Agent‑organizer can assemble specialized agents (product‑manager, documentation‑expert, devops‑engineer, frontend‑developer, etc.) per protocol to execute complex tasks end‑to‑end.
+
+### Awaiting Mission
+- Suggested starters: (1) Videre API docs; (2) QUICK_WINS PR batch; (3) Discord onboarding bot.
