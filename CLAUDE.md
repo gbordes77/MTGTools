@@ -462,3 +462,34 @@ Guillaume identified critical need for role-based identification system before D
 - ✅ Announcement posted in #announcements
 - ✅ Three primary roles active: Tech Team, Competitor, Hybrid
 - 🎯 Ready to track member expertise distribution
+
+---
+
+## New: Videre Technical Audit & Architecture (August 7, 2025)
+
+### What changed
+- Created `videre-audit/` with a complete audit plan and per‑repo findings (English):
+  - `TECHNICAL_AUDIT_PLAN.md`
+  - `REPORT_MTGOSDK.md`, `REPORT_Tracker.md`, `REPORT_asi-worker.md`, `REPORT_mtgo-db.md`, `REPORT_mlm.md`, `REPORT_MTGOBot.md`, `REPORT_monorepo.md`
+- Added a single checklist: `QUICK_WINS.md` (high‑impact low‑effort fixes and PR order).
+- Published corrected architecture diagram matching author feedback: `videre-audit/ARCHITECTURE.md` (MTGOSDK ↔ Tracker via JSON‑RPC; asi‑worker & MTGOBot read/write Postgres; Cloudflare Workers expose public API that reads Postgres; Observable consumes API).
+
+### How to use
+- Default language: all audit docs are in English (keep French for conversations only).
+- When planning work, start from `QUICK_WINS.md` → open PRs in that order.
+- Cite `ARCHITECTURE.md` for integration questions and align wording with the author’s response.
+
+---
+
+## Site Hardening & PWA (August 7, 2025)
+
+### Changes applied
+- GitHub Pages compatibility: switched absolute paths to relative
+  - `index.html`: `manifest.json` and SW registration (`sw.js`)
+  - `sw.js`: cache list uses relative entries
+  - `manifest.json`: `start_url: "."`, icons without leading `/`
+- UX robustness: added `id="cta"` and fixed missing `.animate-slide-in` class
+- Accessibility: language toggle updates `<html lang>`; `rel="noopener noreferrer"` on external links
+
+### Rationale
+- Ensures the site works under `/MTGTools/` subpath; makes PWA installable and cache‑safe on Pages.

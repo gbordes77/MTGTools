@@ -1108,3 +1108,30 @@ Identified 5 immediate improvements:
 - ✅ Community notified via @everyone announcement
 - 🎯 Waiting to see member participation
 - 📊 Current: System live, tracking who identifies as what
+
+---
+
+## Session 22: Videre Technical Audit + Architecture Alignment (August 7, 2025)
+
+### Context
+Cory (Videre creator) clarified integration details (JSON‑RPC IPC between MTGOSDK and Tracker; asi‑worker/MTGOBot read/write central Postgres; Cloudflare Workers expose public API; Observable consumes API). A full technical audit and quick‑wins list were requested.
+
+### Key Activities
+1. Created `videre-audit/` folder with:
+   - `TECHNICAL_AUDIT_PLAN.md` (90‑day plan)
+   - Per‑repo reports: `REPORT_*.md`
+   - `QUICK_WINS.md` (prioritized, high‑impact fixes)
+   - `ARCHITECTURE.md` (corrected diagram per Cory’s feedback)
+2. Site hardening for GitHub Pages/PWA:
+   - Relative `manifest.json` and `sw.js` paths, `start_url: "."`
+   - Service Worker registration fix; cache list in relative paths
+   - Added `.animate-slide-in`, `id="cta"`, `rel="noopener"` and lang toggle
+
+### Outcomes
+- Single source of truth for quick wins and architecture
+- Clear PR order for rapid improvements
+- PWA works properly on GitHub Pages subpath
+
+### Next Steps
+- Open PRs in Videre repos following `QUICK_WINS.md` order
+- Track completion in a simple checklist in `QUICK_WINS.md`
