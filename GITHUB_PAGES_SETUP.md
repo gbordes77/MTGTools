@@ -1,5 +1,7 @@
 # Configuration GitHub Pages pour MTGTools
 
+Note: CLI activation requires a GitHub token (classic PAT with repo scope) or manual Settings → Pages.
+
 ## 🚀 Étapes pour activer GitHub Pages (2 minutes)
 
 ### 1. Va dans les Settings du repo
