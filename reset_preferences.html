@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset MTGTools Preferences</title>
+</head>
+<body>
+    <h1>Resetting MTGTools preferences...</h1>
+    <script>
+        localStorage.clear();
+        sessionStorage.clear();
+        document.write('<p>✅ All preferences cleared!</p>');
+        document.write('<p>Redirecting to MTGTools in 2 seconds...</p>');
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 2000);
+    </script>
+</body>
+</html>
