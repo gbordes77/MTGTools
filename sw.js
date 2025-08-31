@@ -1,5 +1,5 @@
 // Service Worker for MTGTools
-const CACHE_NAME = 'mtgtools-v1';
+const CACHE_NAME = 'mtgtools-v2';
 const urlsToCache = [
   'index.html',
   'test.html',
