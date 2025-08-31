@@ -65,9 +65,9 @@ self.addEventListener('fetch', event => {
         });
       })
       .catch(() => {
-        // Offline fallback
+        // Offline fallback – use relative path within scope
         if (event.request.destination === 'document') {
-          return caches.match('/index.html');
+          return caches.match('index.html');
         }
       })
   );
