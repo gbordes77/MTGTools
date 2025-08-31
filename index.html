@@ -144,15 +144,15 @@
         
         /* Hide language-specific content */
         [data-lang="fr"] {
-            display: none;
+            display: none !important;
         }
         
         body.lang-fr [data-lang="en"] {
-            display: none;
+            display: none !important;
         }
         
         body.lang-fr [data-lang="fr"] {
-            display: block;
+            display: initial !important;
         }
         
         /* Hero */
@@ -400,10 +400,10 @@
             <div class="logo">MTGTools</div>
             <ul class="nav-links">
                 <li><a href="#mission" data-lang="en">Mission</a></li>
-                <li><a href="#mission" data-lang="fr" style="display:none">Mission</a></li>
+                <li><a href="#mission" data-lang="fr">Mission</a></li>
                 <li><a href="#mtgosdk">MTGOSDK</a></li>
                 <li><a href="#contribute" data-lang="en">Contribute</a></li>
-                <li><a href="#contribute" data-lang="fr" style="display:none">Contribuer</a></li>
+                <li><a href="#contribute" data-lang="fr">Contribuer</a></li>
                 <li><a href="https://github.com/videre-project">GitHub</a></li>
             </ul>
             <div class="nav-right">
@@ -698,6 +698,12 @@ var currentMatch = client.GetCurrentMatch();
         const htmlElement = document.documentElement;
         
         // Check for saved language preference or default to English
+        // Clear old localStorage if it was set to French by mistake
+        if (!localStorage.getItem('mtgtools-v2-initialized')) {
+            localStorage.removeItem('language');
+            localStorage.removeItem('theme');
+            localStorage.setItem('mtgtools-v2-initialized', 'true');
+        }
         const currentLang = localStorage.getItem('language') || 'en';
         if (currentLang === 'fr') {
             body.classList.add('lang-fr');
