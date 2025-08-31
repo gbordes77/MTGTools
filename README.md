@@ -1,75 +1,81 @@
-# MTGTools Project Management Hub
+# MTGTools - Community Hub for Competitive Magic Tools
 
-**Bienvenue dans le hub PM du projet MTGTools !** 🚀
+**Building data-driven tools for competitive Magic players** 🎯
 
-Ce dépôt est le centre de gestion et de coordination pour la communauté MTGTools, avec le Videre Project comme projet phare.
+This repository is the central hub for the MTGTools community, uniting grinders and IT professionals to co-create performance-focused tools.
 
-## 🎯 État Actuel du Projet
+## 🎯 Current Project Status
 
-### Où en sommes-nous ?
+### What We Are
 
-Nous sommes en pleine transformation :
-- **De** : Videre Project (outil MTGO uniquement)
-- **Vers** : MTGTools (communauté complète pour TOUS les outils Magic compétitifs)
+MTGTools brings together:
+- **Competitive players** seeking data-driven tools to improve their winrate
+- **IT professionals** who play Magic and want to contribute their skills
+- **Open-source philosophy** - everything we build is transparent and collaborative
 
-**Phase actuelle** : Fondation de la communauté MTGTools et préparation du lancement public
+**Current Phase**: Community building and tool development
 
-### Réalisations récentes
-- ✅ Manifeste MTGTools finalisé (FR/EN)
-- ✅ Vision Discord définie pour 500+ membres
-- ✅ Philosophie linguistique établie
-- ✅ Accord de Cory pour la fusion
-- 🔄 Transition en cours vers l'identité MTGTools
+### Recent Achievements
+- ✅ Complete site redesign - honest co-creation focus (August 31, 2025)
+- ✅ Bilingual support (EN/FR) with dark mode
+- ✅ Discord community established
+- ✅ Videre Project integration with MTGOSDK
+- ✅ Performance optimization (70% code reduction)
 
-## 📚 Documents Essentiels pour Nouveaux Arrivants
+## 📚 Essential Documentation
 
-### 1. Vision & Stratégie
-- **[MTGTOOLS_MANIFESTO_FR_EN.md](MTGTOOLS_MANIFESTO_FR_EN.md)** - COMMENCER ICI ! Notre vision, mission et valeurs
-- **[MTGTOOLS_DISCORD_VISION.md](MTGTOOLS_DISCORD_VISION.md)** - Plan de transformation Discord (10 → 500+ membres)
-- **[LANGUAGE_PHILOSOPHY.md](LANGUAGE_PHILOSOPHY.md)** - Notre approche nuancée du multilinguisme
+### 1. Vision & Strategy
+- **[MTGTOOLS_MANIFESTO_EN.md](MTGTOOLS_MANIFESTO_EN.md)** - START HERE! Our vision and values
+- **[MTGTOOLS_DISCORD_VISION.md](MTGTOOLS_DISCORD_VISION.md)** - Discord community structure
+- **[LANGUAGE_PHILOSOPHY.md](LANGUAGE_PHILOSOPHY.md)** - Our multilingual approach
 
-### 2. État du Projet
-- **[CURRENT_PRIORITIES.md](CURRENT_PRIORITIES.md)** - Priorités actuelles et actions immédiates
-- **[PROJECT_ROADMAP.md](PROJECT_ROADMAP.md)** - Roadmap stratégique complète
-- **[KPI_DASHBOARD.md](KPI_DASHBOARD.md)** - Métriques de succès et objectifs
+### 2. Project Status
+- **[CURRENT_PRIORITIES.md](CURRENT_PRIORITIES.md)** - Current priorities and immediate actions
+- **[PROJECT_ROADMAP.md](PROJECT_ROADMAP.md)** - Strategic roadmap
+- **[KPI_DASHBOARD.md](KPI_DASHBOARD.md)** - Success metrics and goals
 
-### 3. Contexte Technique
-- **[VIDERE_PROJECT_VERIFIED_ANALYSIS.md](VIDERE_PROJECT_VERIFIED_ANALYSIS.md)** - Architecture technique du Videre Project
-- **[CORY_TECHNICAL_INSIGHTS.md](CORY_TECHNICAL_INSIGHTS.md)** - Insights techniques de Cory (lead dev)
+### 3. Technical Context
+- **[VIDERE_PROJECT_VERIFIED_ANALYSIS.md](VIDERE_PROJECT_VERIFIED_ANALYSIS.md)** - Videre Project technical architecture
+- **[videre-audit/](videre-audit/)** - Complete technical audit and quick wins
 
-### 4. Gestion & Risques
-- **[ACTION_ITEMS.md](ACTION_ITEMS.md)** - Liste des tâches priorisées
-- **[RISK_REGISTER.md](RISK_REGISTER.md)** - Risques identifiés et mitigations
-- **[STAKEHOLDER_MATRIX.md](STAKEHOLDER_MATRIX.md)** - Cartographie des parties prenantes
+### 4. Management & Risks
+- **[ACTION_ITEMS.md](ACTION_ITEMS.md)** - Prioritized task list
+- **[RISK_REGISTER.md](RISK_REGISTER.md)** - Identified risks and mitigations
+- **[STAKEHOLDER_MATRIX.md](STAKEHOLDER_MATRIX.md)** - Stakeholder mapping
 
-### 5. Rapports Hebdomadaires
-- **[WEEKLY_REPORTS/](WEEKLY_REPORTS/)** - Historique des rapports de progression
+### 5. Weekly Reports
+- **[WEEKLY_REPORTS/](WEEKLY_REPORTS/)** - Progress report history
 
-## 🚀 Quick Start pour Contributeurs
+## 🚀 Quick Start for Contributors
 
-1. **Lisez le manifeste** pour comprendre notre vision
-2. **Consultez CURRENT_PRIORITIES.md** pour voir où nous avons besoin d'aide
-3. **Rejoignez notre Discord** (lien dans le manifeste)
-4. **Choisissez un good-first-issue** et commencez à contribuer !
+1. **Read the manifesto** to understand our vision
+2. **Check CURRENT_PRIORITIES.md** to see where we need help
+3. **Join our Discord** to connect with the community
+4. **Choose a good-first-issue** and start contributing!
 
-## 🎯 Prochaines Étapes Majeures
+## 🎯 What We're Building
 
-1. **Semaine 1-2** : Lancement du Discord MTGTools
-2. **Mois 1** : Migration communauté Videre + premiers events
-3. **Mois 2-3** : Expansion vers Arena et paper Magic
-4. **Mois 4-6** : 500+ membres, multiples projets actifs
+### Current Projects
+- **Videre Project** - MTGO data extraction with MTGOSDK
+- **MTGTracker** - Real-time match tracking and analysis
+- **Community Tools** - Co-created based on grinder needs
 
-## 💡 Pour Claude Code
+### How to Contribute
+- **Grinders**: Tell us what tools would improve your winrate
+- **Developers**: Pick an issue and submit a PR
+- **Designers**: Help improve UX for competitive players
+- **Data Analysts**: Create insights from tournament data
 
-Si vous utilisez Claude Code, consultez **[CLAUDE.md](CLAUDE.md)** pour les instructions spécifiques à l'assistant.
+## 💡 For Claude Code Users
+
+If you're using Claude Code, check **[CLAUDE.md](CLAUDE.md)** for specific assistant instructions.
 
 ## 📞 Contact
 
-- **Project Manager** : Guillaume
-- **Technical Lead** : Cory
-- **Discord** : https://discord.gg/mtgtools (bientôt)
-- **GitHub** : https://github.com/videre-project
+- **Website**: https://gbordes77.github.io/MTGTools/
+- **Discord**: [Join the community](https://discord.gg/mtgtools)
+- **GitHub**: https://github.com/videre-project
 
 ---
 
-*"Nous mettons la puissance des données et de l'open-source au service de vos victoires, pour que le talent soit la seule limite."*
+*"Technical Talents × Competitive Players = Maximum Performance"*
