@@ -4,8 +4,8 @@
   "description": "MTGTools connecte talents techniques et compétiteurs pour créer des outils performants",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#0f0f0f",
-  "theme_color": "#fbbf24",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
   "icons": [
     {
       "src": "icon-192.png",

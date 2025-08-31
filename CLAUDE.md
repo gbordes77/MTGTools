@@ -224,6 +224,17 @@ You can answer directly for:
 - **Footer enrichi** : Email contact + liens sociaux
 - **Documentation** : evolution_landing_page.md créé pour tracer tous les changements
 
+### Site Web Refonte Complète (August 31, 2025) - Plan B Success
+- **Approche** : Plan B choisi (4h refonte messaging + visual cleanup) au lieu de quick fix ou refonte totale
+- **Visual** : Noir/jaune → Blanc/bleu, suppression 100% animations, design épuré professionnel
+- **Performance** : 1700 lignes → 500 lignes (-70%), suppression CDN inutiles (Alpine.js, AOS)
+- **Messaging** : "Co-création" remplace "révolution", focus contribution pas marketing
+- **Bilingue** : EN par défaut (international), toggle FR/EN avec drapeaux 🇬🇧/🇫🇷
+- **Dark mode** : Ajouté avec toggle 🌙/☀️, light par défaut (plus pro)
+- **Corrections** : "développeurs" → "professionnels IT", "joueurs" → "grinders"
+- **Mission** : Focus impact mesurable sur winrate, pas promesses vides
+- **Live** : https://gbordes77.github.io/MTGTools/ déployé avec succès
+
 ### Upcoming: Directory Rename
 - **Change** : `/Videre-project/` → `/MTGTools/`
 - **Rationale** : Reflects evolution from single project to complete ecosystem

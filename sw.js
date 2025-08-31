@@ -1,13 +1,7 @@
 // Service Worker for MTGTools
-const CACHE_NAME = 'mtgtools-v2';
+const CACHE_NAME = 'mtgtools-v3';
 const urlsToCache = [
   'index.html',
-  'test.html',
-  'marketing/discord_landing_page.html',
-  'https://cdn.tailwindcss.com',
-  'https://cdn.jsdelivr.net/npm/alpinejs@3.13.7/dist/cdn.min.js',
-  'https://unpkg.com/aos@2.3.1/dist/aos.css',
-  'https://unpkg.com/aos@2.3.1/dist/aos.js',
   'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'
 ];
 
