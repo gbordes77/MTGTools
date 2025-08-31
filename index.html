@@ -33,6 +33,15 @@
             --gray-900: #111827;
         }
         
+        body.dark {
+            --gray-50: #111827;
+            --gray-100: #1F2937;
+            --gray-200: #374151;
+            --gray-600: #9CA3AF;
+            --gray-800: #F3F4F6;
+            --gray-900: #F9FAFB;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -44,6 +53,7 @@
             background: var(--gray-50);
             color: var(--gray-800);
             line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
         }
         
         .container {
@@ -54,7 +64,7 @@
         
         /* Header */
         header {
-            background: white;
+            background: var(--gray-100);
             border-bottom: 1px solid var(--gray-200);
             position: sticky;
             top: 0;
@@ -95,7 +105,7 @@
         .hero {
             padding: 5rem 0;
             text-align: center;
-            background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
         }
         
         .badge {
@@ -153,7 +163,7 @@
         }
         
         .btn-secondary {
-            background: white;
+            background: var(--gray-100);
             color: var(--gray-800);
             border: 2px solid var(--gray-200);
         }
@@ -196,7 +206,7 @@
         }
         
         .card {
-            background: white;
+            background: var(--gray-100);
             padding: 2rem;
             border-radius: 1rem;
             border: 1px solid var(--gray-200);
@@ -226,7 +236,7 @@
         
         /* Feature */
         .feature {
-            background: white;
+            background: var(--gray-100);
             border-radius: 1rem;
             padding: 3rem;
             margin: 2rem 0;
@@ -326,6 +336,10 @@
             .nav-links { display: none; }
             .hero { padding: 3rem 0; }
             section { padding: 3rem 0; }
+            #theme-toggle { 
+                padding: 0.5rem !important;
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
@@ -340,6 +354,9 @@
                 <li><a href="#contribute">Contribuer</a></li>
                 <li><a href="https://github.com/videre-project">GitHub</a></li>
             </ul>
+            <button id="theme-toggle" class="btn" style="padding: 0.5rem 1rem; background: var(--gray-200); color: var(--gray-800); border: none; cursor: pointer;">
+                <span id="theme-icon">🌙</span>
+            </button>
         </nav>
     </header>
 
@@ -359,9 +376,6 @@
                     </svg>
                     Rejoindre le Discord
                 </a>
-                <a href="https://github.com/videre-project/MTGOSDK" class="btn btn-secondary">
-                    Voir le code
-                </a>
             </div>
         </div>
     </section>
@@ -372,7 +386,8 @@
             <div class="section-header">
                 <h2>Notre Mission</h2>
                 <p class="section-subtitle">
-                    Transformer vos frustrations en solutions concrètes grâce à l'open source.
+                    Créer des outils qui répondent vraiment aux besoins des compétiteurs<br>
+                    avec un impact mesurable sur votre winrate.
                 </p>
             </div>
             
@@ -397,7 +412,7 @@
     </section>
 
     <!-- MTGOSDK Feature -->
-    <section id="mtgosdk" style="background: white;">
+    <section id="mtgosdk" style="background: var(--gray-100);">
         <div class="container">
             <div class="section-header">
                 <h2>MTGOSDK : La preuve que c'est possible</h2>
@@ -424,7 +439,7 @@ var collection = client.GetCollection();<br>
 var currentMatch = client.GetCurrentMatch();
                 </div>
                 <p style="margin-top: 1.5rem;">
-                    <strong>Possibilités illimitées :</strong> Tracker de stats, assistant de draft, 
+                    <strong>Nombreuses possibilités :</strong> Tracker de stats, assistant de draft, 
                     analyseur de métagame, gestionnaire de collection... Venez nous dire ce dont VOUS avez besoin.
                 </p>
                 <div style="margin-top: 1.5rem;">
@@ -442,13 +457,13 @@ var currentMatch = client.GetCurrentMatch();
             <div class="section-header">
                 <h2>Comment participer ?</h2>
                 <p class="section-subtitle">
-                    Que vous soyez joueur ou développeur, votre contribution compte.
+                    Que vous soyez grinder ou professionnel IT, votre contribution compte.
                 </p>
             </div>
             
             <div class="card-grid">
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Pour les joueurs compétitifs</h3>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Pour les grinders</h3>
                     <ul style="list-style: none; padding: 0;">
                         <li style="margin-bottom: 0.5rem;">✓ Partagez vos frustrations actuelles</li>
                         <li style="margin-bottom: 0.5rem;">✓ Proposez des idées d'outils</li>
@@ -457,7 +472,7 @@ var currentMatch = client.GetCurrentMatch();
                     </ul>
                 </div>
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Pour les développeurs</h3>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Pour les professionnels IT</h3>
                     <ul style="list-style: none; padding: 0;">
                         <li style="margin-bottom: 0.5rem;">✓ Accédez à MTGOSDK pour vos projets</li>
                         <li style="margin-bottom: 0.5rem;">✓ Contribuez au code existant</li>
@@ -508,7 +523,7 @@ var currentMatch = client.GetCurrentMatch();
             <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;">
                 Les 100 premiers membres définiront la roadmap 2025.
             </p>
-            <a href="https://discord.gg/nzb6mVctAb" class="btn" style="background: white; color: var(--primary);">
+            <a href="https://discord.gg/nzb6mVctAb" class="btn" style="background: var(--gray-100); color: var(--primary);">
                 Rejoindre maintenant →
             </a>
         </div>
@@ -552,6 +567,25 @@ var currentMatch = client.GetCurrentMatch();
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js');
         }
+        
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            body.classList.add('dark');
+            themeIcon.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('dark');
+            const isDark = body.classList.contains('dark');
+            themeIcon.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
     </script>
 </body>
 </html>
