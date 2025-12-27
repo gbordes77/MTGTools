@@ -1,757 +1,989 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTGTools - Co-create the competitive tools of tomorrow</title>
-    <meta name="description" content="Join the community building the Magic tools YOU need. MTGOSDK works, come define what's next.">
-    
-    <!-- SEO -->
-    <meta property="og:title" content="MTGTools - Co-create competitive tools">
-    <meta property="og:description" content="Open-source Magic community. Your needs become our tools.">
-    <meta property="og:url" content="https://gbordes77.github.io/MTGTools/">
-    <meta name="twitter:card" content="summary_large_image">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#3B82F6">
-    
-    <!-- Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary: #3B82F6;
-            --primary-dark: #2563EB;
-            --gray-50: #F9FAFB;
-            --gray-100: #F3F4F6;
-            --gray-200: #E5E7EB;
-            --gray-600: #4B5563;
-            --gray-800: #1F2937;
-            --gray-900: #111827;
-        }
-        
-        body.dark {
-            --gray-50: #111827;
-            --gray-100: #1F2937;
-            --gray-200: #374151;
-            --gray-600: #9CA3AF;
-            --gray-800: #F3F4F6;
-            --gray-900: #F9FAFB;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--gray-50);
-            color: var(--gray-800);
-            line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Language Toggle */
-        .lang-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--gray-200);
-            padding: 0.25rem;
-            border-radius: 9999px;
-            position: relative;
-        }
-        
-        .lang-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
-            color: var(--gray-600);
-            font-size: 0.9rem;
-        }
-        
-        .lang-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .lang-btn:not(.active):hover {
-            color: var(--gray-800);
-        }
-        
-        /* Header */
-        header {
-            background: var(--gray-100);
-            border-bottom: 1px solid var(--gray-200);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--gray-600);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        /* Hide language-specific content */
-        [data-lang="fr"] {
-            display: none !important;
-        }
-        
-        body.lang-fr [data-lang="en"] {
-            display: none !important;
-        }
-        
-        body.lang-fr [data-lang="fr"] {
-            display: revert !important;
-        }
-        
-        /* Hero */
-        .hero {
-            padding: 5rem 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
-        }
-        
-        .badge {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-        
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-        
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-        
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-        
-        /* Sections */
-        section {
-            padding: 4rem 0;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
-        }
-        
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: var(--gray-600);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Cards */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .card {
-            background: var(--gray-100);
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid var(--gray-200);
-            transition: all 0.2s;
-        }
-        
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: 0.5rem;
-        }
-        
-        .card p {
-            color: var(--gray-600);
-        }
-        
-        /* Feature */
-        .feature {
-            background: var(--gray-100);
-            border-radius: 1rem;
-            padding: 3rem;
-            margin: 2rem 0;
-            border: 1px solid var(--gray-200);
-        }
-        
-        .feature-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-badge {
-            background: #10B981;
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-        
-        .code-block {
-            background: var(--gray-900);
-            color: #10B981;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-        
-        /* Process */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .step {
-            text-align: center;
-        }
-        
-        .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 3rem;
-            height: 3rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--gray-900);
-            color: white;
-            padding: 3rem 0;
-            margin-top: 5rem;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .footer-links a {
-            color: var(--gray-200);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        /* Mobile */
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            .nav-links { display: none; }
-            .hero { padding: 3rem 0; }
-            section { padding: 3rem 0; }
-            .lang-btn span.lang-text { display: none; }
-            .lang-btn { padding: 0.5rem; }
-        }
-        
-        #theme-toggle {
-            padding: 0.5rem 1rem;
-            background: var(--gray-200);
-            color: var(--gray-800);
-            border: none;
-            cursor: pointer;
-            border-radius: 0.5rem;
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">MTGTools</div>
-            <ul class="nav-links">
-                <li><a href="#mission" data-lang="en">Mission</a></li>
-                <li><a href="#mission" data-lang="fr">Mission</a></li>
-                <li><a href="#mtgosdk">MTGOSDK</a></li>
-                <li><a href="#contribute" data-lang="en">Contribute</a></li>
-                <li><a href="#contribute" data-lang="fr">Contribuer</a></li>
-                <li><a href="https://github.com/videre-project">GitHub</a></li>
-            </ul>
-            <div class="nav-right">
-                <div class="lang-toggle">
-                    <button class="lang-btn active" data-lang-switch="en">
-                        🇬🇧 <span class="lang-text">EN</span>
-                    </button>
-                    <button class="lang-btn" data-lang-switch="fr">
-                        🇫🇷 <span class="lang-text">FR</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MTGTools - Co-create the competitive tools of tomorrow</title>
+        <meta
+            name="description"
+            content="Join the community building the Magic tools YOU need. MTGOSDK works, come define what's next."
+        />
+
+        <!-- SEO -->
+        <meta
+            property="og:title"
+            content="MTGTools - Co-create competitive tools"
+        />
+        <meta
+            property="og:description"
+            content="Open-source Magic community. Your needs become our tools."
+        />
+        <meta
+            property="og:url"
+            content="https://gbordes77.github.io/MTGTools/"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <!-- PWA -->
+        <link rel="manifest" href="manifest.json" />
+        <meta name="theme-color" content="#3B82F6" />
+
+        <!-- Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            :root {
+                --primary: #3b82f6;
+                --primary-dark: #2563eb;
+                --gray-50: #f9fafb;
+                --gray-100: #f3f4f6;
+                --gray-200: #e5e7eb;
+                --gray-600: #4b5563;
+                --gray-800: #1f2937;
+                --gray-900: #111827;
+            }
+
+            body.dark {
+                --gray-50: #111827;
+                --gray-100: #1f2937;
+                --gray-200: #374151;
+                --gray-600: #9ca3af;
+                --gray-800: #f3f4f6;
+                --gray-900: #f9fafb;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Inter", sans-serif;
+                background: var(--gray-50);
+                color: var(--gray-800);
+                line-height: 1.6;
+                transition:
+                    background 0.3s,
+                    color 0.3s;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Language Toggle */
+            .lang-toggle {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: var(--gray-200);
+                padding: 0.25rem;
+                border-radius: 9999px;
+                position: relative;
+            }
+
+            .lang-btn {
+                padding: 0.5rem 1rem;
+                border-radius: 9999px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: all 0.2s;
+                color: var(--gray-600);
+                font-size: 0.9rem;
+            }
+
+            .lang-btn.active {
+                background: var(--primary);
+                color: white;
+            }
+
+            .lang-btn:not(.active):hover {
+                color: var(--gray-800);
+            }
+
+            /* Header */
+            header {
+                background: var(--gray-100);
+                border-bottom: 1px solid var(--gray-200);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 0;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--gray-900);
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+
+            .nav-links a {
+                color: var(--gray-600);
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.2s;
+            }
+
+            .nav-links a:hover {
+                color: var(--primary);
+            }
+
+            .nav-right {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            /* Hide language-specific content */
+            [data-lang="fr"] {
+                display: none !important;
+            }
+
+            body.lang-fr [data-lang="en"] {
+                display: none !important;
+            }
+
+            body.lang-fr [data-lang="fr"] {
+                display: revert !important;
+            }
+
+            /* Hero */
+            .hero {
+                padding: 5rem 0;
+                text-align: center;
+                background: linear-gradient(
+                    135deg,
+                    var(--gray-50) 0%,
+                    var(--gray-100) 100%
+                );
+            }
+
+            .badge {
+                display: inline-block;
+                background: var(--primary);
+                color: white;
+                padding: 0.25rem 0.75rem;
+                border-radius: 9999px;
+                font-size: 0.875rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+            }
+
+            h1 {
+                font-size: 3rem;
+                font-weight: 800;
+                color: var(--gray-900);
+                margin-bottom: 1.5rem;
+                line-height: 1.1;
+            }
+
+            .subtitle {
+                font-size: 1.25rem;
+                color: var(--gray-600);
+                max-width: 600px;
+                margin: 0 auto 2rem;
+            }
+
+            .cta-group {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                padding: 0.75rem 2rem;
+                border-radius: 0.5rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.2s;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .btn-primary {
+                background: var(--primary);
+                color: white;
+            }
+
+            .btn-primary:hover {
+                background: var(--primary-dark);
+                transform: translateY(-2px);
+            }
+
+            /* Sections */
+            section {
+                padding: 4rem 0;
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: var(--gray-900);
+                margin-bottom: 1rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.125rem;
+                color: var(--gray-600);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            /* Cards */
+            .card-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .card {
+                background: var(--gray-100);
+                padding: 2rem;
+                border-radius: 1rem;
+                border: 1px solid var(--gray-200);
+                transition: all 0.2s;
+            }
+
+            .card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-icon {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .card h3 {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--gray-900);
+                margin-bottom: 0.5rem;
+            }
+
+            .card p {
+                color: var(--gray-600);
+            }
+
+            /* Feature */
+            .feature {
+                background: var(--gray-100);
+                border-radius: 1rem;
+                padding: 3rem;
+                margin: 2rem 0;
+                border: 1px solid var(--gray-200);
+            }
+
+            .feature-header {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-badge {
+                background: #10b981;
+                color: white;
+                padding: 0.25rem 0.5rem;
+                border-radius: 0.25rem;
+                font-size: 0.75rem;
+                font-weight: 700;
+            }
+
+            .code-block {
+                background: var(--gray-900);
+                color: #10b981;
+                padding: 1.5rem;
+                border-radius: 0.5rem;
+                font-family: "Courier New", monospace;
+                overflow-x: auto;
+                margin: 1rem 0;
+            }
+
+            /* Process */
+            .process-steps {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .step {
+                text-align: center;
+            }
+
+            .step-number {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 3rem;
+                height: 3rem;
+                background: var(--primary);
+                color: white;
+                border-radius: 50%;
+                font-weight: 700;
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+
+            /* Footer */
+            footer {
+                background: var(--gray-900);
+                color: white;
+                padding: 3rem 0;
+                margin-top: 5rem;
+            }
+
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+
+            .footer-links {
+                display: flex;
+                gap: 2rem;
+            }
+
+            .footer-links a {
+                color: var(--gray-200);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: color 0.2s;
+            }
+
+            .footer-links a:hover {
+                color: white;
+            }
+
+            /* Mobile */
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 2rem;
+                }
+                h2 {
+                    font-size: 1.75rem;
+                }
+                .nav-links {
+                    display: none;
+                }
+                .hero {
+                    padding: 3rem 0;
+                }
+                section {
+                    padding: 3rem 0;
+                }
+                .lang-btn span.lang-text {
+                    display: none;
+                }
+                .lang-btn {
+                    padding: 0.5rem;
+                }
+            }
+
+            #theme-toggle {
+                padding: 0.5rem 1rem;
+                background: var(--gray-200);
+                color: var(--gray-800);
+                border: none;
+                cursor: pointer;
+                border-radius: 0.5rem;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <nav class="container">
+                <div class="logo">MTGTools</div>
+                <ul class="nav-links">
+                    <li><a href="#mission" data-lang="en">Mission</a></li>
+                    <li><a href="#mission" data-lang="fr">Mission</a></li>
+                    <li><a href="#mtgosdk">MTGOSDK</a></li>
+                    <li><a href="#contribute" data-lang="en">Contribute</a></li>
+                    <li><a href="#contribute" data-lang="fr">Contribuer</a></li>
+                    <li>
+                        <a href="https://github.com/videre-project">GitHub</a>
+                    </li>
+                </ul>
+                <div class="nav-right">
+                    <div class="lang-toggle">
+                        <button class="lang-btn active" data-lang-switch="en">
+                            🇬🇧 <span class="lang-text">EN</span>
+                        </button>
+                        <button class="lang-btn" data-lang-switch="fr">
+                            🇫🇷 <span class="lang-text">FR</span>
+                        </button>
+                    </div>
+                    <button id="theme-toggle">
+                        <span id="theme-icon">🌙</span>
                     </button>
                 </div>
-                <button id="theme-toggle">
-                    <span id="theme-icon">🌙</span>
-                </button>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <!-- English -->
-            <div data-lang="en">
-                <span class="badge">🚧 Community under construction</span>
-                <h1>Co-create the tools<br>YOU need</h1>
-                <p class="subtitle">
-                    MTGTools brings together competitive players and IT professionals to build 
-                    the tools missing from the Magic community.
-                </p>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <!-- English -->
+                <div data-lang="en">
+                    <span class="badge">🚧 Community under construction</span>
+                    <h1>Co-create the tools<br />YOU need</h1>
+                    <p
+                        class="tagline"
+                        style="
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            color: var(--primary);
+                            margin-bottom: 1rem;
+                            font-style: italic;
+                        "
+                    >
+                        Technical Talents × Competitive Players = Maximum
+                        Performance
+                    </p>
+                    <p class="subtitle">
+                        MTGTools brings together competitive players and IT
+                        professionals to build the tools missing from the Magic
+                        community.
+                    </p>
+                </div>
+
+                <!-- French -->
+                <div data-lang="fr">
+                    <span class="badge">🚧 Communauté en construction</span>
+                    <h1>Co-créons les outils<br />dont VOUS avez besoin</h1>
+                    <p
+                        class="tagline"
+                        style="
+                            font-size: 1.1rem;
+                            font-weight: 600;
+                            color: var(--primary);
+                            margin-bottom: 1rem;
+                            font-style: italic;
+                        "
+                    >
+                        Talents Techniques × Compétiteurs = Performance Maximale
+                    </p>
+                    <p class="subtitle">
+                        MTGTools rassemble joueurs compétitifs et professionnels
+                        IT pour construire ensemble les outils qui manquent à la
+                        communauté Magic.
+                    </p>
+                </div>
+
+                <div class="cta-group">
+                    <a
+                        href="https://discord.gg/nzb6mVctAb"
+                        class="btn btn-primary"
+                    >
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.994a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"
+                            />
+                        </svg>
+                        <span data-lang="en">Join Discord</span>
+                        <span data-lang="fr">Rejoindre le Discord</span>
+                    </a>
+                </div>
             </div>
-            
-            <!-- French -->
-            <div data-lang="fr">
-                <span class="badge">🚧 Communauté en construction</span>
-                <h1>Co-créons les outils<br>dont VOUS avez besoin</h1>
-                <p class="subtitle">
-                    MTGTools rassemble joueurs compétitifs et professionnels IT pour construire 
-                    ensemble les outils qui manquent à la communauté Magic.
-                </p>
+        </section>
+
+        <!-- Mission -->
+        <section id="mission">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-lang="en">Our Mission</h2>
+                    <h2 data-lang="fr">Notre Mission</h2>
+
+                    <p class="section-subtitle" data-lang="en">
+                        Create tools that truly meet competitive players'
+                        needs<br />
+                        with measurable impact on your winrate.
+                    </p>
+                    <p class="section-subtitle" data-lang="fr">
+                        Créer des outils qui répondent vraiment aux besoins des
+                        compétiteurs<br />
+                        avec un impact mesurable sur votre winrate.
+                    </p>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">🎯</div>
+                        <h3 data-lang="en">Your needs first</h3>
+                        <h3 data-lang="fr">Vos besoins d'abord</h3>
+                        <p data-lang="en">
+                            Players express their problems, the community
+                            develops solutions.
+                        </p>
+                        <p data-lang="fr">
+                            Les joueurs expriment leurs problèmes, la communauté
+                            développe les solutions.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🛠️</div>
+                        <h3 data-lang="en">Fully open source</h3>
+                        <h3 data-lang="fr">Open source total</h3>
+                        <p data-lang="en">
+                            MIT license, transparent development, contributions
+                            welcome.
+                        </p>
+                        <p data-lang="fr">
+                            Code MIT, développement transparent, contributions
+                            bienvenues.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <h3>Data-driven</h3>
+                        <p data-lang="en">
+                            Decisions based on real data, not assumptions.
+                        </p>
+                        <p data-lang="fr">
+                            Décisions basées sur des données réelles, pas des
+                            suppositions.
+                        </p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="cta-group">
-                <a href="https://discord.gg/nzb6mVctAb" class="btn btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.994a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
-                    </svg>
-                    <span data-lang="en">Join Discord</span>
-                    <span data-lang="fr">Rejoindre le Discord</span>
+        </section>
+
+        <!-- MTGOSDK Feature -->
+        <section id="mtgosdk" style="background: var(--gray-100)">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-lang="en">MTGOSDK: Proof it's possible</h2>
+                    <h2 data-lang="fr">
+                        MTGOSDK : La preuve que c'est possible
+                    </h2>
+                    <p class="section-subtitle" data-lang="en">
+                        Our first technical building block already reads MTGO
+                        memory in real-time.
+                    </p>
+                    <p class="section-subtitle" data-lang="fr">
+                        Notre première brique technique lit déjà la mémoire MTGO
+                        en temps réel.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-header">
+                        <h3 style="font-size: 1.5rem; margin: 0">MTGOSDK</h3>
+                        <span class="feature-badge" data-lang="en"
+                            >FUNCTIONAL</span
+                        >
+                        <span class="feature-badge" data-lang="fr"
+                            >FONCTIONNEL</span
+                        >
+                    </div>
+                    <p style="margin-bottom: 1.5rem" data-lang="en">
+                        C# SDK that extracts all MTGO client data in real-time:
+                        cards, matches, events, collection. The foundation for
+                        building any tool.
+                    </p>
+                    <p style="margin-bottom: 1.5rem" data-lang="fr">
+                        SDK C# qui extrait en temps réel toutes les données du
+                        client MTGO : cartes, matchs, événements, collection. La
+                        base pour construire n'importe quel outil.
+                    </p>
+                    <div class="code-block">
+                        // Installation<br />
+                        dotnet add package MTGOSDK<br /><br />
+                        // Usage<br />
+                        var client = new MTGOClient();<br />
+                        var collection = client.GetCollection();<br />
+                        var currentMatch = client.GetCurrentMatch();
+                    </div>
+                    <p style="margin-top: 1.5rem">
+                        <strong data-lang="en">Numerous possibilities:</strong>
+                        <strong data-lang="fr"
+                            >Nombreuses possibilités :</strong
+                        >
+                        <span data-lang="en"
+                            >Stats tracker, draft assistant, metagame analyzer,
+                            collection manager... Tell us what YOU need.</span
+                        >
+                        <span data-lang="fr"
+                            >Tracker de stats, assistant de draft, analyseur de
+                            métagame, gestionnaire de collection... Venez nous
+                            dire ce dont VOUS avez besoin.</span
+                        >
+                    </p>
+                    <div style="margin-top: 1.5rem">
+                        <a
+                            href="https://github.com/videre-project/MTGOSDK"
+                            class="btn btn-primary"
+                        >
+                            <span data-lang="en">Full documentation →</span>
+                            <span data-lang="fr">Documentation complète →</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contribute -->
+        <section id="contribute">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-lang="en">How to participate?</h2>
+                    <h2 data-lang="fr">Comment participer ?</h2>
+                    <p class="section-subtitle" data-lang="en">
+                        Whether you're a grinder or IT professional, your
+                        contribution matters.
+                    </p>
+                    <p class="section-subtitle" data-lang="fr">
+                        Que vous soyez grinder ou professionnel IT, votre
+                        contribution compte.
+                    </p>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3
+                            style="color: var(--primary); margin-bottom: 1rem"
+                            data-lang="en"
+                        >
+                            For grinders
+                        </h3>
+                        <h3
+                            style="color: var(--primary); margin-bottom: 1rem"
+                            data-lang="fr"
+                        >
+                            Pour les grinders
+                        </h3>
+                        <ul style="list-style: none; padding: 0">
+                            <li style="margin-bottom: 0.5rem" data-lang="en">
+                                ✓ Share your current frustrations
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="fr">
+                                ✓ Partagez vos frustrations actuelles
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="en">
+                                ✓ Propose tool ideas
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="fr">
+                                ✓ Proposez des idées d'outils
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="en">
+                                ✓ Test prototypes first
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="fr">
+                                ✓ Testez les prototypes en premier
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="en">
+                                ✓ Vote on development priorities
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="fr">
+                                ✓ Votez les priorités de développement
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3
+                            style="color: var(--primary); margin-bottom: 1rem"
+                            data-lang="en"
+                        >
+                            For IT professionals
+                        </h3>
+                        <h3
+                            style="color: var(--primary); margin-bottom: 1rem"
+                            data-lang="fr"
+                        >
+                            Pour les professionnels IT
+                        </h3>
+                        <ul style="list-style: none; padding: 0">
+                            <li style="margin-bottom: 0.5rem" data-lang="en">
+                                ✓ Access MTGOSDK for your projects
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="fr">
+                                ✓ Accédez à MTGOSDK pour vos projets
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="en">
+                                ✓ Contribute to existing code
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="fr">
+                                ✓ Contribuez au code existant
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="en">
+                                ✓ Propose new tools
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="fr">
+                                ✓ Proposez de nouveaux outils
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="en">
+                                ✓ Direct feedback from pros
+                            </li>
+                            <li style="margin-bottom: 0.5rem" data-lang="fr">
+                                ✓ Feedback direct des pros
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 4rem">
+                    <h3
+                        style="font-size: 1.75rem; margin-bottom: 2rem"
+                        data-lang="en"
+                    >
+                        The process is simple
+                    </h3>
+                    <h3
+                        style="font-size: 1.75rem; margin-bottom: 2rem"
+                        data-lang="fr"
+                    >
+                        Le processus est simple
+                    </h3>
+                </div>
+
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4 data-lang="en">Join Discord</h4>
+                        <h4 data-lang="fr">Rejoignez le Discord</h4>
+                        <p data-lang="en">The conversation starts there</p>
+                        <p data-lang="fr">La conversation commence là</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4 data-lang="en">Express your needs</h4>
+                        <h4 data-lang="fr">Exprimez vos besoins</h4>
+                        <p data-lang="en">Tell us what's missing</p>
+                        <p data-lang="fr">Dites-nous ce qui manque</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4 data-lang="en">Vote priorities</h4>
+                        <h4 data-lang="fr">Votez les priorités</h4>
+                        <p data-lang="en">The community decides</p>
+                        <p data-lang="fr">La communauté décide</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4 data-lang="en">Quick prototype</h4>
+                        <h4 data-lang="fr">Prototype rapide</h4>
+                        <p data-lang="en">Devs create a v1</p>
+                        <p data-lang="fr">Les devs créent une v1</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <h4 data-lang="en">Test & iterate</h4>
+                        <h4 data-lang="fr">Test & itération</h4>
+                        <p data-lang="en">We improve together</p>
+                        <p data-lang="fr">On améliore ensemble</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section
+            style="
+                background: linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-dark)
+                );
+                color: white;
+                text-align: center;
+            "
+        >
+            <div class="container">
+                <h2 style="color: white; margin-bottom: 1rem" data-lang="en">
+                    Ready to build the future?
+                </h2>
+                <h2 style="color: white; margin-bottom: 1rem" data-lang="fr">
+                    Prêt à construire l'avenir ?
+                </h2>
+                <p
+                    style="
+                        font-size: 1.25rem;
+                        margin-bottom: 2rem;
+                        opacity: 0.9;
+                    "
+                    data-lang="en"
+                >
+                    The first 100 members will define the 2025 roadmap.
+                </p>
+                <p
+                    style="
+                        font-size: 1.25rem;
+                        margin-bottom: 2rem;
+                        opacity: 0.9;
+                    "
+                    data-lang="fr"
+                >
+                    Les 100 premiers membres définiront la roadmap 2025.
+                </p>
+                <a
+                    href="https://discord.gg/nzb6mVctAb"
+                    class="btn"
+                    style="background: var(--gray-100); color: var(--primary)"
+                >
+                    <span data-lang="en">Join now →</span>
+                    <span data-lang="fr">Rejoindre maintenant →</span>
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Mission -->
-    <section id="mission">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-lang="en">Our Mission</h2>
-                <h2 data-lang="fr">Notre Mission</h2>
-                
-                <p class="section-subtitle" data-lang="en">
-                    Create tools that truly meet competitive players' needs<br>
-                    with measurable impact on your winrate.
-                </p>
-                <p class="section-subtitle" data-lang="fr">
-                    Créer des outils qui répondent vraiment aux besoins des compétiteurs<br>
-                    avec un impact mesurable sur votre winrate.
-                </p>
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div>
+                        <div style="font-weight: 700; margin-bottom: 0.5rem">
+                            MTGTools
+                        </div>
+                        <div style="opacity: 0.7">
+                            Open source. Community driven.
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/videre-project">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                                />
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://discord.gg/nzb6mVctAb">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.994a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"
+                                />
+                            </svg>
+                            Discord
+                        </a>
+                    </div>
+                </div>
             </div>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon">🎯</div>
-                    <h3 data-lang="en">Your needs first</h3>
-                    <h3 data-lang="fr">Vos besoins d'abord</h3>
-                    <p data-lang="en">Players express their problems, the community develops solutions.</p>
-                    <p data-lang="fr">Les joueurs expriment leurs problèmes, la communauté développe les solutions.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">🛠️</div>
-                    <h3 data-lang="en">Fully open source</h3>
-                    <h3 data-lang="fr">Open source total</h3>
-                    <p data-lang="en">MIT license, transparent development, contributions welcome.</p>
-                    <p data-lang="fr">Code MIT, développement transparent, contributions bienvenues.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon">📊</div>
-                    <h3>Data-driven</h3>
-                    <p data-lang="en">Decisions based on real data, not assumptions.</p>
-                    <p data-lang="fr">Décisions basées sur des données réelles, pas des suppositions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </footer>
 
-    <!-- MTGOSDK Feature -->
-    <section id="mtgosdk" style="background: var(--gray-100);">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-lang="en">MTGOSDK: Proof it's possible</h2>
-                <h2 data-lang="fr">MTGOSDK : La preuve que c'est possible</h2>
-                <p class="section-subtitle" data-lang="en">
-                    Our first technical building block already reads MTGO memory in real-time.
-                </p>
-                <p class="section-subtitle" data-lang="fr">
-                    Notre première brique technique lit déjà la mémoire MTGO en temps réel.
-                </p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-header">
-                    <h3 style="font-size: 1.5rem; margin: 0;">MTGOSDK</h3>
-                    <span class="feature-badge" data-lang="en">FUNCTIONAL</span>
-                    <span class="feature-badge" data-lang="fr">FONCTIONNEL</span>
-                </div>
-                <p style="margin-bottom: 1.5rem;" data-lang="en">
-                    C# SDK that extracts all MTGO client data in real-time: 
-                    cards, matches, events, collection. The foundation for building any tool.
-                </p>
-                <p style="margin-bottom: 1.5rem;" data-lang="fr">
-                    SDK C# qui extrait en temps réel toutes les données du client MTGO : 
-                    cartes, matchs, événements, collection. La base pour construire n'importe quel outil.
-                </p>
-                <div class="code-block">
-// Installation<br>
-dotnet add package MTGOSDK<br><br>
-// Usage<br>
-var client = new MTGOClient();<br>
-var collection = client.GetCollection();<br>
-var currentMatch = client.GetCurrentMatch();
-                </div>
-                <p style="margin-top: 1.5rem;">
-                    <strong data-lang="en">Numerous possibilities:</strong>
-                    <strong data-lang="fr">Nombreuses possibilités :</strong>
-                    <span data-lang="en">Stats tracker, draft assistant, metagame analyzer, collection manager... Tell us what YOU need.</span>
-                    <span data-lang="fr">Tracker de stats, assistant de draft, analyseur de métagame, gestionnaire de collection... Venez nous dire ce dont VOUS avez besoin.</span>
-                </p>
-                <div style="margin-top: 1.5rem;">
-                    <a href="https://github.com/videre-project/MTGOSDK" class="btn btn-primary">
-                        <span data-lang="en">Full documentation →</span>
-                        <span data-lang="fr">Documentation complète →</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Scripts -->
+        <script>
+            // PWA
+            if ("serviceWorker" in navigator) {
+                navigator.serviceWorker.register("sw.js");
+            }
 
-    <!-- Contribute -->
-    <section id="contribute">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-lang="en">How to participate?</h2>
-                <h2 data-lang="fr">Comment participer ?</h2>
-                <p class="section-subtitle" data-lang="en">
-                    Whether you're a grinder or IT professional, your contribution matters.
-                </p>
-                <p class="section-subtitle" data-lang="fr">
-                    Que vous soyez grinder ou professionnel IT, votre contribution compte.
-                </p>
-            </div>
-            
-            <div class="card-grid">
-                <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;" data-lang="en">For grinders</h3>
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;" data-lang="fr">Pour les grinders</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.5rem;" data-lang="en">✓ Share your current frustrations</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="fr">✓ Partagez vos frustrations actuelles</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="en">✓ Propose tool ideas</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="fr">✓ Proposez des idées d'outils</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="en">✓ Test prototypes first</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="fr">✓ Testez les prototypes en premier</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="en">✓ Vote on development priorities</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="fr">✓ Votez les priorités de développement</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;" data-lang="en">For IT professionals</h3>
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;" data-lang="fr">Pour les professionnels IT</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 0.5rem;" data-lang="en">✓ Access MTGOSDK for your projects</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="fr">✓ Accédez à MTGOSDK pour vos projets</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="en">✓ Contribute to existing code</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="fr">✓ Contribuez au code existant</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="en">✓ Propose new tools</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="fr">✓ Proposez de nouveaux outils</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="en">✓ Direct feedback from pros</li>
-                        <li style="margin-bottom: 0.5rem;" data-lang="fr">✓ Feedback direct des pros</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="section-header" style="margin-top: 4rem;">
-                <h3 style="font-size: 1.75rem; margin-bottom: 2rem;" data-lang="en">The process is simple</h3>
-                <h3 style="font-size: 1.75rem; margin-bottom: 2rem;" data-lang="fr">Le processus est simple</h3>
-            </div>
-            
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4 data-lang="en">Join Discord</h4>
-                    <h4 data-lang="fr">Rejoignez le Discord</h4>
-                    <p data-lang="en">The conversation starts there</p>
-                    <p data-lang="fr">La conversation commence là</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4 data-lang="en">Express your needs</h4>
-                    <h4 data-lang="fr">Exprimez vos besoins</h4>
-                    <p data-lang="en">Tell us what's missing</p>
-                    <p data-lang="fr">Dites-nous ce qui manque</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4 data-lang="en">Vote priorities</h4>
-                    <h4 data-lang="fr">Votez les priorités</h4>
-                    <p data-lang="en">The community decides</p>
-                    <p data-lang="fr">La communauté décide</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4 data-lang="en">Quick prototype</h4>
-                    <h4 data-lang="fr">Prototype rapide</h4>
-                    <p data-lang="en">Devs create a v1</p>
-                    <p data-lang="fr">Les devs créent une v1</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">5</div>
-                    <h4 data-lang="en">Test & iterate</h4>
-                    <h4 data-lang="fr">Test & itération</h4>
-                    <p data-lang="en">We improve together</p>
-                    <p data-lang="fr">On améliore ensemble</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            // Language toggle
+            const langBtns = document.querySelectorAll("[data-lang-switch]");
+            const body = document.body;
+            const htmlElement = document.documentElement;
 
-    <!-- CTA Final -->
-    <section style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; text-align: center;">
-        <div class="container">
-            <h2 style="color: white; margin-bottom: 1rem;" data-lang="en">Ready to build the future?</h2>
-            <h2 style="color: white; margin-bottom: 1rem;" data-lang="fr">Prêt à construire l'avenir ?</h2>
-            <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;" data-lang="en">
-                The first 100 members will define the 2025 roadmap.
-            </p>
-            <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;" data-lang="fr">
-                Les 100 premiers membres définiront la roadmap 2025.
-            </p>
-            <a href="https://discord.gg/nzb6mVctAb" class="btn" style="background: var(--gray-100); color: var(--primary);">
-                <span data-lang="en">Join now →</span>
-                <span data-lang="fr">Rejoindre maintenant →</span>
-            </a>
-        </div>
-    </section>
+            // Check for saved language preference or default to English
+            // Clear old localStorage if it was set to French by mistake
+            if (!localStorage.getItem("mtgtools-v2-initialized")) {
+                localStorage.removeItem("language");
+                localStorage.removeItem("theme");
+                localStorage.setItem("mtgtools-v2-initialized", "true");
+            }
+            const currentLang = localStorage.getItem("language") || "en";
+            if (currentLang === "fr") {
+                body.classList.add("lang-fr");
+                htmlElement.lang = "fr";
+                langBtns.forEach((btn) => {
+                    btn.classList.toggle(
+                        "active",
+                        btn.getAttribute("data-lang-switch") === "fr",
+                    );
+                });
+            }
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div style="font-weight: 700; margin-bottom: 0.5rem;">MTGTools</div>
-                    <div style="opacity: 0.7;">Open source. Community driven.</div>
-                </div>
-                <div class="footer-links">
-                    <a href="https://github.com/videre-project">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                        GitHub
-                    </a>
-                    <a href="https://discord.gg/nzb6mVctAb">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.994a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
-                        </svg>
-                        Discord
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+            langBtns.forEach((btn) => {
+                btn.addEventListener("click", function () {
+                    const lang = this.getAttribute("data-lang-switch");
 
-    <!-- Scripts -->
-    <script>
-        // PWA
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-        
-        // Language toggle
-        const langBtns = document.querySelectorAll('[data-lang-switch]');
-        const body = document.body;
-        const htmlElement = document.documentElement;
-        
-        // Check for saved language preference or default to English
-        // Clear old localStorage if it was set to French by mistake
-        if (!localStorage.getItem('mtgtools-v2-initialized')) {
-            localStorage.removeItem('language');
-            localStorage.removeItem('theme');
-            localStorage.setItem('mtgtools-v2-initialized', 'true');
-        }
-        const currentLang = localStorage.getItem('language') || 'en';
-        if (currentLang === 'fr') {
-            body.classList.add('lang-fr');
-            htmlElement.lang = 'fr';
-            langBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-lang-switch') === 'fr');
+                    // Update active states
+                    langBtns.forEach((b) => b.classList.remove("active"));
+                    this.classList.add("active");
+
+                    // Update body class and html lang
+                    if (lang === "fr") {
+                        body.classList.add("lang-fr");
+                        htmlElement.lang = "fr";
+                    } else {
+                        body.classList.remove("lang-fr");
+                        htmlElement.lang = "en";
+                    }
+
+                    // Save preference
+                    localStorage.setItem("language", lang);
+                });
             });
-        }
-        
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang-switch');
-                
-                // Update active states
-                langBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Update body class and html lang
-                if (lang === 'fr') {
-                    body.classList.add('lang-fr');
-                    htmlElement.lang = 'fr';
-                } else {
-                    body.classList.remove('lang-fr');
-                    htmlElement.lang = 'en';
-                }
-                
-                // Save preference
-                localStorage.setItem('language', lang);
+
+            // Dark mode toggle
+            const themeToggle = document.getElementById("theme-toggle");
+            const themeIcon = document.getElementById("theme-icon");
+
+            // Check for saved theme preference or default to light mode
+            const currentTheme = localStorage.getItem("theme") || "light";
+            if (currentTheme === "dark") {
+                body.classList.add("dark");
+                themeIcon.textContent = "☀️";
+            }
+
+            themeToggle.addEventListener("click", function () {
+                body.classList.toggle("dark");
+                const isDark = body.classList.contains("dark");
+                themeIcon.textContent = isDark ? "☀️" : "🌙";
+                localStorage.setItem("theme", isDark ? "dark" : "light");
             });
-        });
-        
-        // Dark mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        if (currentTheme === 'dark') {
-            body.classList.add('dark');
-            themeIcon.textContent = '☀️';
-        }
-        
-        themeToggle.addEventListener('click', function() {
-            body.classList.toggle('dark');
-            const isDark = body.classList.contains('dark');
-            themeIcon.textContent = isDark ? '☀️' : '🌙';
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
